@@ -1,0 +1,42 @@
+[user]
+	name = Dmitry Marchuk
+	email = code@dmarchuk.com
+[merge]
+	tool = kdiff3
+    conflictstyle = diff3
+[mergetool "kdiff3"]
+	path = kdiff3
+[branch]
+	autosetuprebase = always
+[color]
+    branch=auto
+	ui = auto
+[color "status"]
+    added=green
+    changed=yellow
+    untracked=white ul
+[color "diff"]
+    meta=white bold
+    frag=magenta ul
+    old=red bold
+    new=green bold
+[push]
+    default = simple
+[pull]
+    rebase = true
+[core]
+    editor=vi
+    autocrlf = input
+[alias]
+    co = checkout
+    ci = commit
+    st = status
+    br = branch
+    ds = diff --staged
+    ha = log --pretty=format:\"%Cred%h%Creset %C(yellow)%d%Creset | %C(bold blue)[%an]%Creset %s %Cgreen(%cr)%Creset\" --graph --all
+    h =  log --pretty=format:\"%Cred%h%Creset %C(yellow)%d%Creset | %C(bold blue)[%an]%Creset %s %Cgreen(%cr)%Creset\" --graph --since=\"7 days ago\"
+    hat =log --pretty=format:\"%Cred%h%Creset %Cgreen%ad%Creset %C(yellow)%d%Creset | %C(bold blue)[%an]%Creset %s %Cgreen(%cr)%Creset\" --graph --all --date=local
+    ht = log --pretty=format:\"%Cred%h%Creset %Cgreen%ad%Creset %C(yellow)%d%Creset | %C(bold blue)[%an]%Creset %s %Cgreen(%cr)%Creset\" --graph --date=local --since=\"7 days ago\"
+    type = cat-file -t
+    dump = cat-file -p
+    
