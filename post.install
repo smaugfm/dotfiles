@@ -1,10 +1,145 @@
 #!/bin/bash
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get dist upgrade
-sudo apt-get install konsole
-sudo apt-get install gcalctool
-sudo apt-get install libxss1 libappindicator1 libindicator7
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg -i google-chrome*.deb
-rm -f google-chrome*.deb
+# Repos and ppas
+sudo add-apt-repository -y "deb http://dl.google.com/linux/chrome/deb/ stable main"
+sudo add-apt-repository -y "deb http://dl.google.com/linux/talkplugin/deb/ stable main"
+sudo apt-add-repository -y ppa:mc3man/trusty-media
+sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
+sudo add-apt-repository -y ppa:xorg-edgers/ppa #NVIDIA drivers
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+
+# Update and upgrage
+sudo apt-get -y --force-yes update
+sudo apt-get -y --force-yes upgrade
+
+# Install packages
+sudo apt-get -y install konsole mc git vim-gtk gparted openssh-server python-dev \
+    silversearcher-ag thunderbird grub-customizer kdiff3 keepass2 \
+    gnome-calculator audacity audacious build-essential \
+    cmake conky dconf-tools dos2unix exfat-utils exfat-fuse google-chrome-stable \
+    transmission goldendict gufw leafpad dkms linux-headers-generic mono-complete fsharp
+
+#Install File Compression Libs
+sudo apt-get -y install unace rar unrar zip unzip lzip lunzip xz-utils p7zip-full p7zip-rar sharutils uudeview mpack arj cabextract 
+
+#Codecs
+sudo apt-get -y install ffmpeg gstreamer0.10-plugins-ugly libavcodec-extra libvdpau-va-gl1 libmad0 mpg321 gstreamer1.0-libav
+
+#Remove some Switchboard Plug's
+sudo rm -rf /usr/lib/plugs/GnomeCC/gnomecc-bluetooth.plug
+sudo rm -rf /usr/lib/plugs/GnomeCC/gnomecc-wacom.plug
+
+#Clean-up System
+sudo apt-get remove nvidia*
+sudo apt-get -y purge midori-granite noise bluez geary modemmanager 
+sudo apt-get -y autoremove
+sudo apt-get -y autoclean
+
+#**********************************
+#**********************************
+cd /tmp #Intall other packages
+wget -o telegram https://tdesktop.com/linux
+tar -xJvf linux
+sudo mv Telegram /opt/telegram
+sudo ln -sf /opt/telegram /usr/bin/telegram
+
+#Screenfetch
+sudo wget -O /usr/share/bin/screenfetch 'https://raw.github.com/KittyKatt/screenFetch/master/screenfetch-dev'
+sudo chmod +x /usr/share/bin/screenfetch
+
+# Dropbox
+git clone https://github.com/zant95/elementary-dropbox
+sudo bash ./elementary-dropbox/install.sh -y
+
+# Teamviewer
+wget http://download.teamviewer.com/download/teamviewer_i386.deb
+sudo dpkg -i teamviewer_i386.deb
+sudo apt-get -f install
+
+# dotfiles
+git clone git@github.com:dmitrymarchuk/dotfiles.git
+shopt -s dotglob
+/bin/cp -ar ./dotfiles/* ~
+cp -ar ./dotfiles/usr/share/fonts/* /usr/share/fonts
+
+# Folders
+rm -rf ~/Public
+rm -rf ~/Templates
+rm -rf ~/Videos
+mkdir ~/Dev
+
+# settings
+gsettings set com.canonical.indicator.messages applications "['thunderbird.desktop']"
+gsettings set com.canonical.indicator.sound interested-media-players "['vlc.desktop', 'noise.desktop']"
+gsettings set org.gnome.calculator button-mode 'programming'
+gsettings set org.gnome.desktop.default-applications.terminal exec 'konsole'
+gsettings set org.gnome.desktop.input-sources per-window true
+gsettings set org.gnome.desktop.default-applications.terminal exec-arg ''
+gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('xkb', 'ru+typewriter')]"
+gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
+gsettings set org.gnome.desktop.interface document-font-name 'Droid Sans 10'
+gsettings set org.gnome.desktop.interface monospace-font-name 'Monospace 10'
+gsettings set org.gnome.desktop.interface scaling-factor uint32 1
+gsettings set org.gnome.settings-daemon.plugins.xsettings overrides {'Gtk/DecorationLayout': <':minimize,maximize,close'>}
+gsettings set org.pantheon.desktop.gala.appearance button-layout ':minimize,maximize,close'
+gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
+gsettings set org.gnome.settings-daemon.peripherals.mouse motion-acceleration 1.0
+gsettings set org.gnome.settings-daemon.peripherals.mouse motion-threshold 10
+gsettings set org.gnome.settings-daemon.peripherals.touchpad touchpad-enabled false
+gsettings set org.gnome.settings-daemon.plugins.media-keys calculator '<Primary>F12'
+gsettings set org.gnome.settings-daemon.plugins.media-keys home '<Super>e'
+gsettings set org.gnome.settings-daemon.plugins.media-keys terminal '<Primary>grave'
+gsettings set org.gnome.settings-daemon.plugins.media-keys volume-down '<Alt><Super>Down'
+gsettings set org.gnome.settings-daemon.plugins.media-keys volume-up '<Alt><Super>Up'
+gsettings set org.gnome.settings-daemon.plugins.power button-power 'shutdown'
+gsettings set org.gnome.settings-daemon.plugins.xsettings hinting 'full'
+gsettings set org.pantheon.desktop.gala.keybindings switch-input-source "['<Primary>space']"
+gsettings set org.pantheon.desktop.gala.notifications apps "['NetworkManager:show,on', 'Power:show,on', ':show,on', 'terminal:show,on', 'dropbox:show,on', 'konsole:show,on', 'transmission:show,on', 'vlc:show,on']"
+gsettings set org.pantheon.desktop.slingshot screen-resolution '1920x1080'
+gsettings set org.pantheon.files.preferences maximized false
+gsettings set org.pantheon.files.preferences sidebar-width 191
+gsettings set org.pantheon.files.preferences tab-info-list "[(uint32 0, 'file%3A%2F%2F%2Fmedia%2Fpassport', '')]"
+gsettings set org.pantheon.noise.saved-state more-width 1
+gsettings set org.pantheon.noise.settings music-folder '/home/dmitr/Music'
+
+# requires clicks
+sudo apt-get install -y ubuntu-restricted-extras
+sudo apt-get dist-upgrade
+
+#Nvidia
+sudo echo "blacklist nouveau
+blacklist lbm-nouveau
+options nouveau modeset=0
+alias nouveau off
+alias lbm-nouveau off" >> /etc/modprobe.d/blacklist-nouveau.conf
+echo options nouveau modeset=0 | sudo tee -a /etc/modprobe.d/nouveau-kms.conf
+sudo update-initramfs -u
+sudo /etc/init.d/lightdm stop
+sudo apt-get install nvidia-current
+
+# prompt for a reboot
+clear
+echo ""
+echo "===================="
+echo " TIME FOR A REBOOT! "
+echo "===================="
+echo ""
+sleep 5
+reboot
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
