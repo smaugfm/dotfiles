@@ -164,7 +164,11 @@ map <F4> :TagbarToggle<CR>
 nnoremap <leader>a :Ag
 
 "Python
-autocmd FileType python :nnoremap <F5> :!start cmd /k "python %" & pause<CR>
+if has("win32")
+    autocmd FileType python :nnoremap <F5> :!start cmd /k "python %" & pause<CR>
+else
+    autocmd FileType python :nnoremap <F5> :!python %<CR>
+endif
 let python_highlight_all = 1
 
 "Airline

@@ -37,38 +37,46 @@ sudo apt-get -y autoclean
 
 #**********************************
 #**********************************
-cd /tmp #Intall other packages
+echo "Installing Telegram"
+sleep 2
+cd /tmp
 wget -o telegram https://tdesktop.com/linux
 tar -xJvf linux
 sudo mv Telegram /opt/telegram
 sudo ln -sf /opt/telegram /usr/bin/telegram
 
-#Screenfetch
+echo "Installing Screenfetch"
+sleep 2
 sudo wget -O /usr/share/bin/screenfetch 'https://raw.github.com/KittyKatt/screenFetch/master/screenfetch-dev'
 sudo chmod +x /usr/share/bin/screenfetch
 
-# Dropbox
-git clone https://github.com/zant95/elementary-dropbox
+echo "Installing Dropbox"
+sleep 2
+yes | git clone https://github.com/zant95/elementary-dropbox
 sudo bash ./elementary-dropbox/install.sh -y
 
-# Teamviewer
+echo "Installing Teamviewer"
+sleep 2
 wget http://download.teamviewer.com/download/teamviewer_i386.deb
 sudo dpkg -i teamviewer_i386.deb
-sudo apt-get -f install
+sudo apt-get -fy install
 
-# dotfiles
-git clone git@github.com:dmitrymarchuk/dotfiles.git
+echo "Installing dmitr's dotfiles"
+sleep 2
+yes | git clone https://github.com/dmitrymarchuk/dotfiles.git
 shopt -s dotglob
 /bin/cp -ar ./dotfiles/* ~
-cp -ar ./dotfiles/usr/share/fonts/* /usr/share/fonts
+sudo cp -ar ./dotfiles/usr/share/fonts/* /usr/share/fonts
 
-# Folders
+echo "Settings up folders"
+sleep 2
 rm -rf ~/Public
 rm -rf ~/Templates
 rm -rf ~/Videos
 mkdir ~/Dev
 
-# settings
+echo "Settings up settings"
+sleep 2
 gsettings set com.canonical.indicator.messages applications "['thunderbird.desktop']"
 gsettings set com.canonical.indicator.sound interested-media-players "['vlc.desktop', 'noise.desktop']"
 gsettings set org.gnome.calculator button-mode 'programming'
@@ -80,7 +88,7 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
 gsettings set org.gnome.desktop.interface document-font-name 'Droid Sans 10'
 gsettings set org.gnome.desktop.interface monospace-font-name 'Monospace 10'
 gsettings set org.gnome.desktop.interface scaling-factor uint32 1
-gsettings set org.gnome.settings-daemon.plugins.xsettings overrides {'Gtk/DecorationLayout': <':minimize,maximize,close'>}
+gsettings set org.gnome.settings-daemon.plugins.xsettings overrides "{'Gtk/DecorationLayout': <':minimize,maximize,close'>}"
 gsettings set org.pantheon.desktop.gala.appearance button-layout ':minimize,maximize,close'
 gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
 gsettings set org.gnome.settings-daemon.peripherals.mouse motion-acceleration 1.0
@@ -102,10 +110,13 @@ gsettings set org.pantheon.files.preferences tab-info-list "[(uint32 0, 'file%3A
 gsettings set org.pantheon.noise.saved-state more-width 1
 gsettings set org.pantheon.noise.settings music-folder '/home/dmitr/Music'
 
-# requires clicks
+echo "Final steps. Require user action"
+sleep 2
 sudo apt-get install -y ubuntu-restricted-extras
 sudo apt-get dist-upgrade
 
+echo "Installing NVIDIA driver"
+sleep 2
 #Nvidia
 sudo echo "blacklist nouveau
 blacklist lbm-nouveau
@@ -117,11 +128,10 @@ sudo update-initramfs -u
 sudo /etc/init.d/lightdm stop
 sudo apt-get install nvidia-current
 
-# prompt for a reboot
 clear
 echo ""
 echo "===================="
-echo " TIME FOR A REBOOT! "
+echo " TIME FOR REBOOT! "
 echo "===================="
 echo ""
 sleep 5
