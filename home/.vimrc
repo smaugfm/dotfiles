@@ -29,6 +29,7 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'nvie/vim-togglemouse'
 Plugin 'rking/ag.vim'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'szw/vim-tags'
 call vundle#end() 
 filetype plugin on
 filetype plugin indent on
@@ -62,10 +63,12 @@ endif
 
 "General settings
 colorscheme hybrid
+syntax enable
+map <S-F12> :hi CursorLine term=NONE cterm=NONE<CR>
 let mapleader=","
 "From this post http://nvie.com/posts/how-i-boosted-my-vim/
 nnoremap ; :
-syntax enable
+set tags=./tags;~,tags;~,./.git/tags;~,.git/tags;~
 set showcmd
 set clipboard=unnamed
 set laststatus=2 "Displaying status line always
@@ -87,18 +90,20 @@ set lazyredraw " redraw only when we need to.
 vmap Q gq
 nmap Q gqapkup
 " Quickly edit/reload the vimrc file
-nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
-nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
+nnoremap <leader>ev :e $MYVIMRC<CR>
+nnoremap <leader>sv :so $MYVIMRC<CR>
 "Clear search highliting AND clear search pattern
-nnoremap <silent> <leader><space> :noh<CR>:let @/ = ""<CR>
+nnoremap <leader><space> :noh<CR>:let @/ = ""<CR>
 "Highlight words under cursor BUT without moving the cursor
-nnoremap <silent> <leader>h :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+nnoremap <leader>h :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 "If you forget to sudo edit the file
 cmap w!! w !sudo tee % >/dev/null
 " highlight last inserted text
 nnoremap gV `[v`]
 " save session
 nnoremap <leader>s :mksession<CR>
+" Change current directory to current file's directory
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 " Close all buffers
 map <leader>ba :1,1000 bd!<cr>
 " Vim-like tab navigation
@@ -109,6 +114,8 @@ nnoremap td :tabclose<CR>
 nnoremap te :tabedit<Space>
 nnoremap tm :tabm<Space>
 nnoremap to :tabonly<CR>
+" Vim-like buffer navigation
+nnoremap <leader>bn :buffernext
 "Quickly insert parenthesis etc.
 inoremap {<CR> {<CR>}<esc>O
 inoremap $( ()<esc>i
@@ -160,7 +167,10 @@ highlight lCursor guifg=NONE guibg=Cyan
 "General
 map <F3> :NERDTreeToggle<CR>
 map <F4> :TagbarToggle<CR>
-"Open ag.vim
+map <F5> :make<CR>
+nnoremap <F1> :TagsGenerate
+"maps C-SPACE for tag search
+nnoremap <NUL> :CtrlPTag<CR>
 nnoremap <leader>a :Ag
 
 "Python
@@ -176,6 +186,12 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 "Show buffer number in tabline
 let g:airline#extensions#tabline#buffer_nr_show = 1
+
+"Tagbar
+let g:tagbar_width = 45
+let g:tagbar_sort = 0
+let g:tagbar_show_linenubmers = -1
+let g:tagbar_compact = 1
 
 "YouCompleteMe
 let g:ycm_filetype_blacklist = {
@@ -196,6 +212,16 @@ let g:ycm_filetype_specific_completion_to_disable = {
       \ 'fsharp' : 1
       \}
 let g:ycm_key_list_previous_completion = ['<C-TAB>', '<Up>']
+let g:ycm_collect_identifiers_from_tags_files = 1
+
+"Syntastic
+let g:syntastic_java_checkers = ["javac"]
+let g:syntastic_mode_map = {
+    \ "mode": "active",
+    \ "passive_filetypes": ["java"] }
 
 "CtrlP
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+
+"Vim-tags
+let g:vim_tags_auto_generate = 0
