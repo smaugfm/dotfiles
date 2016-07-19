@@ -123,12 +123,14 @@ inoremap $[ []<esc>i
 inoremap ${ {}<esc>i
 inoremap $" ""<esc>i
 inoremap $' ''<esc>i
+inoremap $< <><esc>i
 "Surround the visual selection in parenthesis/brackets/etc
 vnoremap $( <esc>`>a)<esc>`<i(<esc>
 vnoremap $[ <esc>`>a]<esc>`<i[<esc>
 vnoremap ${ <esc>`>a}<esc>`<i{<esc>
 vnoremap $" <esc>`>a"<esc>`<i"<esc>
 vnoremap $' <esc>`>a'<esc>`<i'<esc>
+vnoremap $< <esc>`>a><esc>`<i<<esc>
 
 "Encoding
 if has("multi_byte")
