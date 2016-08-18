@@ -12,23 +12,23 @@ else
 endif
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-scripts/ScrollColors'
-Plugin 'vim-scripts/YankRing.vim'
+"Plugin 'vim-scripts/YankRing.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'amix/open_file_under_cursor.vim'
+"Plugin 'amix/open_file_under_cursor.vim'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/syntastic'
 Plugin 'fsharp/vim-fsharp'
-Plugin 'tpope/vim-surround'
+"Plugin 'tpope/vim-surround'
 Plugin 'valloric/youcompleteme'
-Plugin 'sirver/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'nathanaelkane/vim-indent-guides'
+"Plugin 'sirver/ultisnips'
+"Plugin 'honza/vim-snippets'
+"Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'nvie/vim-togglemouse'
 Plugin 'rking/ag.vim'
-Plugin 'scrooloose/nerdcommenter'
+"Plugin 'scrooloose/nerdcommenter'
 Plugin 'szw/vim-tags'
 call vundle#end() 
 filetype plugin on
@@ -66,8 +66,6 @@ colorscheme hybrid
 syntax enable
 map <S-F12> :hi CursorLine term=NONE cterm=NONE<CR>
 let mapleader=","
-"From this post http://nvie.com/posts/how-i-boosted-my-vim/
-nnoremap ; :
 set tags=./tags;~,tags;~,./.git/tags;~,.git/tags;~
 set showcmd
 set clipboard=unnamed
@@ -86,6 +84,8 @@ set nobackup
 set wildmode=longest,list,full " visual autocomplete for command menu
 set wildmenu " visual autocomplete for command menu
 set lazyredraw " redraw only when we need to.
+" Deciaml format for C-a, C-x commands.
+set nrformats=
 " Use Q for formatting the current paragraph (or selection)
 vmap Q gq
 nmap Q gqapkup
@@ -123,21 +123,15 @@ inoremap $[ []<esc>i
 inoremap ${ {}<esc>i
 inoremap $" ""<esc>i
 inoremap $' ''<esc>i
-inoremap $< <><esc>i
 "Surround the visual selection in parenthesis/brackets/etc
 vnoremap $( <esc>`>a)<esc>`<i(<esc>
 vnoremap $[ <esc>`>a]<esc>`<i[<esc>
 vnoremap ${ <esc>`>a}<esc>`<i{<esc>
 vnoremap $" <esc>`>a"<esc>`<i"<esc>
 vnoremap $' <esc>`>a'<esc>`<i'<esc>
-vnoremap $< <esc>`>a><esc>`<i<<esc>
 
 "Encoding
 if has("multi_byte")
-    " set listchars=tab:»\ ,trail:·,eol:¶,extends:→,precedes:←,nbsp:×
-    set listchars=tab:▸\ ,eol:¬ " TextMate
-    nmap <leader>l :set list!<CR>
-
     set encoding=utf-8
     "let &termencoding=&encoding
     set fileencoding=utf-8

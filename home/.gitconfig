@@ -1,16 +1,16 @@
 [user]
-	name = Dmitry Marchuk
-	email = code@dmarchuk.com
+    name = Dmitry Marchuk
+    email = dmitry.marchuk@atola.com
 [merge]
-	tool = kdiff3
+    tool = kdiff3
     conflictstyle = diff3
 [mergetool "kdiff3"]
-	path = kdiff3
+    path = C:/Program Files/KDiff3/kdiff3.exe
 [branch]
-	autosetuprebase = always
+    autosetuprebase = always
 [color]
     branch=auto
-	ui = auto
+    ui = auto
 [color "status"]
     added=green
     changed=yellow
@@ -25,7 +25,7 @@
 [pull]
     rebase = true
 [core]
-    editor=vi
+    editor=vim
     autocrlf = input
 [alias]
     co = checkout
