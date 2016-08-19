@@ -1,11 +1,11 @@
 [user]
     name = Dmitry Marchuk
-    email = dmitry.marchuk@atola.com
+    email = code@dmarchuk.com
 [merge]
     tool = kdiff3
     conflictstyle = diff3
 [mergetool "kdiff3"]
-    path = C:/Program Files/KDiff3/kdiff3.exe
+    path = kdiff3
 [branch]
     autosetuprebase = always
 [color]
