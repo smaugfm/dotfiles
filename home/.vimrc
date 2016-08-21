@@ -190,6 +190,7 @@ let g:tagbar_show_linenubmers = -1
 let g:tagbar_compact = 1
 
 "YouCompleteMe
+let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_filetype_blacklist = {
       \ 'tagbar' : 1,
       \ 'qf' : 1,
