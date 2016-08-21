@@ -27,13 +27,19 @@ sudo apt-get -y autoclean
 
 #**********************************
 #**********************************
-#echo "Installing Telegram"
-#sleep 2
-#cd /tmp
-#sudo wget -O telegram https://tdesktop.com/linux
-#sudo tar -xJvf telegram
-#sudo mv Telegram /opt/telegram
-#sudo ln -sf /opt/telegram /usr/bin/telegram
+echo "Installing Telegram"
+sleep 2
+cd /tmp
+sudo wget -O telegram.tar.xz https://tdesktop.com/linux
+sudo tar -xJvf telegram.tar.xz
+sudo mv Telegram /opt
+sudo ln -sf /opt/Telegram/Telegram /usr/bin/telegram
+
+echo "Installing Google Chrome"
+sleep 2
+cd /tmp
+wget -O chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i chrome.deb || sudo apt-get -fy install 
 
 echo "Installing Screenfetch"
 sleep 2
@@ -107,6 +113,5 @@ echo "Ubuntu restricted extras"
 sleep 2
 sudo apt-get install -y ubuntu-restricted-extras
 sudo apt-get dist-upgrade
-
 
 reboot
