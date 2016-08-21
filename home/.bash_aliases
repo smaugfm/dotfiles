@@ -15,7 +15,7 @@ alias gb='git branch '
 alias gc='git commit '
 alias gd='git diff '
 alias gds='git ds '
-alias go='git checkout '
+alias gco='git co'
 
 alias gh='git h '
 alias gha='git ha '

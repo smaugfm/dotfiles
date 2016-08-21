@@ -9,9 +9,9 @@ sudo apt-get -y --force-yes update
 sudo apt-get -y --force-yes upgrade
 
 # Install packages
-sudo apt-get -y install konsole mc git vim-gtk gparted openssh-server python-dev \
+sudo apt-get -y install konsole mc git vim-gtk gparted openssh-server python-dev python3-dev\
     silversearcher-ag thunderbird grub-customizer kdiff3 keepass2 \
-    gnome-calculator audacity audacious build-essential \
+    gnome-calculator audacity audacious build-essential golang-go\
     cmake conky dconf-tools dos2unix exfat-utils exfat-fuse \
     transmission goldendict gufw leafpad dkms linux-headers-generic mono-complete fsharp
 
@@ -30,8 +30,8 @@ sudo apt-get -y autoclean
 echo "Installing Telegram"
 sleep 2
 cd /tmp
-sudo wget -O telegram.tar.xz https://tdesktop.com/linux
-sudo tar -xJvf telegram.tar.xz
+wget -O telegram.tar.xz https://tdesktop.com/linux
+tar -xzvf telegram.tar.xz
 sudo mv Telegram /opt
 sudo ln -sf /opt/Telegram/Telegram /usr/bin/telegram
 
@@ -44,8 +44,8 @@ sudo dpkg -i chrome.deb || sudo apt-get -fy install
 echo "Installing Screenfetch"
 sleep 2
 cd /usr/local/bin
-sudo wget -O screenfetch 'https://raw.github.com/KittyKatt/screenFetch/master/screenfetch-dev'
-sudo chmod +x screenfetch
+wget -O screenfetch 'https://raw.github.com/KittyKatt/screenFetch/master/screenfetch-dev'
+chmod +x screenfetch
 
 echo "Installing Teamviewer"
 sleep 2
@@ -53,13 +53,40 @@ cd /tmp
 wget http://download.teamviewer.com/download/teamviewer_i386.deb
 sudo dpkg -i teamviewer_i386.deb || sudo apt-get -fy install
 
+echo "Installing node and typescript"
+sleep 2
+sudo curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install -y nodejs
+npm install -g typescript
+
 echo "Installing dmitr's dotfiles"
 sleep 2
 cd /tmp
 yes | git clone https://github.com/dmitrymarchuk/dotfiles.git
-sudo cp -r ./dotfiles/home/. ~
-sudo cp -r ./dotfiles/usr/. /usr
+cp -r ./dotfiles/home/. ~
+cp -r ./dotfiles/usr/. /usr
+
+echo "Configuring Vim"
+sleep 2
 yes | sudo git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim +PluginInstall +qall
+
+cd /tmp
+wget -O clang.tar.xz http://llvm.org/releases/3.8.1/clang+llvm-3.8.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz
+
+cd ~ && mkdir ycm_temp && cd ycm_temp 
+tar -C . -xvf /tmp/clang.tar.xz
+mv -v clang* llvm_root_dir
+
+cd ~ && mkdir ycm_build && cd ycm_build
+cmake -G "Unix Makefiles" -DPATH_TO_LLVM_ROOT=~/ycm_temp/llvm_root_dir . ~/.vim/bundle/youcompleteme/third_party/ycmd/cpp
+cmake --build . --target ycm_core --config Release
+#cd ~/.vim/bundle/youcompleteme/third_party/ycmd/third_party/OmniSharpServer
+#xbuild
+cd ~/.vim/bundle/youcompleteme/third_party/ycmd/third_party/gocode
+go build
+cd ~/.vim/bundle/youcompleteme/third_party/ycmd/third_party/tern_runtime
+npm install --production
 
 echo "Setting up folders"
 sleep 2
