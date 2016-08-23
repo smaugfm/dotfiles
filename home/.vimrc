@@ -68,7 +68,7 @@ if $TERM == "xterm-256color"
   set t_Co=256
 endif
 colorscheme lucius
-let g:lucius_style='light'
+let g:lucius_style='dark'
 let g:lucius_contrast='low'
 let g:lucius_contrast_bg='low'
 let g:lucius_use_bold=0

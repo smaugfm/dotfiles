@@ -4,8 +4,16 @@
 [merge]
     tool = kdiff3
     conflictstyle = diff3
-[mergetool "kdiff3"]
-    path = kdiff3
+[mergetool]
+    prompt = false
+    keepBackup = false
+    trustExitCode = true
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = true
+    keepBackup = false
+    trustExitCode = true
 [branch]
     autosetuprebase = always
 [color]
@@ -27,12 +35,8 @@
 [core]
     editor=vim
     autocrlf = input
+    excludesfile = ~/.gitignore
 [alias]
-    co = checkout
-    ci = commit
-    st = status
-    br = branch
-    ds = diff --staged
     ha = log --pretty=format:\"%Cred%h%Creset %C(yellow)%d%Creset | %C(bold blue)[%an]%Creset %s %Cgreen(%cr)%Creset\" --graph --all
     h =  log --pretty=format:\"%Cred%h%Creset %C(yellow)%d%Creset | %C(bold blue)[%an]%Creset %s %Cgreen(%cr)%Creset\" --graph --since=\"7 days ago\"
     hat =log --pretty=format:\"%Cred%h%Creset %Cgreen%ad%Creset %C(yellow)%d%Creset | %C(bold blue)[%an]%Creset %s %Cgreen(%cr)%Creset\" --graph --all --date=local
