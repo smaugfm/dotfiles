@@ -12,11 +12,13 @@ else
 endif
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-scripts/ScrollColors'
+Plugin 'flazz/vim-colorschemes'
 "Plugin 'vim-scripts/YankRing.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 "Plugin 'amix/open_file_under_cursor.vim'
 Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/syntastic'
@@ -62,7 +64,15 @@ if has('gui_running')
 endif
 
 "General settings
-colorscheme hybrid
+if $TERM == "xterm-256color"
+  set t_Co=256
+endif
+colorscheme lucius
+let g:lucius_style='light'
+let g:lucius_contrast='low'
+let g:lucius_contrast_bg='low'
+let g:lucius_use_bold=0
+let g:lucius_use_underline=0
 syntax enable
 map <S-F12> :hi CursorLine term=NONE cterm=NONE<CR>
 let mapleader=","
