@@ -1,0 +1,213 @@
+template_submenu {
+  panel {
+    attach_hcenter = 0
+    attach_vcenter = 0
+    class = frame
+  }
+}
+
+dialog_line {
+  panel {
+    parameters = "text=edit.text"
+    class = frame
+    width = 80%
+    attach_hcenter = 0
+    attach_vcenter = 0
+
+    edit {
+      lines = 1
+      max_lines = 1
+    }
+  }
+}
+
+dialog_edit {
+  panel {
+    parameters = "text=edit.text"
+    class = frame
+    width = 80%
+    attach_hcenter = 0
+    attach_vcenter = 0
+
+    edit {
+      lines = 10
+    }
+  }
+}
+
+dialog_message {
+  panel {
+    parameters = "text=text.text"
+    class = frame
+    margin_size = 1
+    margin_bottom = 0
+    space = 1
+    attach_hcenter = 0
+    attach_vcenter = 0
+    text {}
+    panel {
+      class = frame
+      command = true
+      halign = center
+      margin_left = 1
+      margin_right = 1
+      text { text = OK }
+    }
+  }
+}
+
+dialog_password {
+  panel {
+    parameters = "username=__user__.text:password=__pass__.text"
+    class = frame
+    margin_size = 1
+    margin_bottom = 0
+    attach_hcenter = 0
+    attach_vcenter = 0
+
+    panel {
+      direction = left_to_right
+      space = 1
+      text {
+        extend = 1
+        valign = center
+        text = Username
+      }
+      panel {
+        class = frame
+        margin_left = 1
+        margin_right = 1
+        edit {
+          id = __user__
+          max_lines = 1
+        }
+      }
+    }
+
+    panel {
+      direction = left_to_right
+      space = 1
+      text {
+        extend = 1
+        valign = center
+        text = Password
+      }
+      panel {
+        class = frame
+        margin_left = 1
+        margin_right = 1
+        password {
+          id = __pass__
+        }
+      }
+    }
+
+    panel {
+      class = frame
+      command = true
+      halign = center
+      margin_left = 1
+      margin_right = 1
+      text {
+        text = OK
+      }
+    }
+  }
+}
+
+term_window {
+  panel {
+    class = frame
+    width = 100%
+    height = 100%
+    term {
+      width=100%
+      height=100%
+    }
+  }
+}
+
+two_term {
+  panel {
+    width = 100%
+    height = 100%
+    direction = left_to_right
+
+    panel {
+      class = frame
+      extend = 1
+
+      term {
+        width=100%
+        height=100%
+      }
+    }
+
+    panel {
+      class = frame
+      extend = 1
+
+      term {
+        width=100%
+        height=100%
+      }
+    }
+  }
+}
+
+about {
+  panel {
+    class = frame
+    margin_size = 1
+    margin_bottom = 0
+    space = 1
+    attach_hcenter = 0
+    attach_vcenter = 0
+    text { text = "This is BURG loader" }
+    panel {
+      class = frame
+      command = true
+      halign = center
+      margin_left = 1
+      margin_right = 1
+      text { text = OK }
+    }
+  }
+}
+
+help {
+  panel {
+    class = frame
+    attach_hcenter = 0
+    attach_vcenter = 0
+    margin_left = 1
+    margin_right = 1
+    text { text = "F1/h - Help" }
+    text { text = "F2/t - Change theme" }
+    text { text = "F3/r - Change resolution" }
+    text { text = "F5/ctrl-x - Finish edit" }
+    text { text = "F6 - Next window" }
+    text { text = "F7 - Show folded items" }
+    text { text = "F8 - Toggle between text and graphic mode" }
+    text { text = "F9 - Shutdown" }
+    text { text = "F10 - Reboot" }
+    text { text = "f - Toggle between folded and unfolded mode" }
+    text { text = "c - Open terminal" }
+    text { text = "2 - Open two terminals" }
+    text { text = "e - Edit current command" }
+    text { text = "q - Quit graphic mode" }
+    text { text = "i - Show theme information" }
+    text { text = "n - Next item with the same class" }
+    text { text = "w - Next windows item" }
+    text { text = "u - Next ubuntu item" }
+    text { text = "ESC - Exit from window or menu" }
+    panel {
+      class = frame
+      command = true
+      halign = center
+      margin_left = 1
+      margin_right = 1
+      text { text = OK }
+    }
+  }
+}

@@ -1,0 +1,1 @@
+auth required pam_tally.so deny=2 unlock_time=600 onerr=succeed file=/var/log/faillog

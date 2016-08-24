@@ -3,16 +3,17 @@
 set -e 
 # Repos and ppas
 sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
+sudo add-apt-repository -y ppa:n-muench/burg
 
 # Update and upgrage
 sudo apt-get -y --force-yes update
 sudo apt-get -y --force-yes upgrade
 
 # Install packages
-sudo apt-get -y install konsole mc git vim-gtk gparted openssh-server python-dev python3-dev\
+sudo apt-get -y install konsole mc git vim-gtk gparted openssh-server python-dev python3-dev \
     silversearcher-ag thunderbird grub-customizer kdiff3 keepass2 \
-    gnome-calculator audacity audacious build-essential golang-go\
-    cmake conky dconf-tools dos2unix exfat-utils exfat-fuse ctags\
+    gnome-calculator audacity audacious build-essential golang-go htop hardinfo\
+    cmake conky dconf-tools dos2unix exfat-utils exfat-fuse ctags libpam-google-authenticator\
     transmission goldendict gufw leafpad dkms linux-headers-generic mono-complete fsharp
 
 #Install File Compression Libs
@@ -59,12 +60,10 @@ sudo curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
 npm install -g typescript
 
-echo "Installing dmitr's dotfiles"
+echo "Installing dotfiles"
 sleep 2
-cd /tmp
-yes | git clone https://github.com/dmitrymarchuk/dotfiles.git
-cp -r ./dotfiles/home/. ~
-cp -r ./dotfiles/usr/. /usr
+cp -r ../* ~
+echo 'auth required pam_google_authenticator.so' | cat - /etc/pam.d/sshd > temp && sudo mv temp /etc/pam.d/sshd 
 
 echo "Configuring Vim"
 sleep 2
@@ -153,6 +152,13 @@ echo "Installing Dropbox"
 sleep 2
 sudo apt-get install dropbox python-gpgme
 dropbox start -i
+
+echo "Configure Google-Authenticator"
+google-authenticator
+
+echo "Install BURG"
+sudo apt-get install burg burg-themes
+sudo update-burg
 
 echo "Ubuntu restricted extras"
 sleep 2
