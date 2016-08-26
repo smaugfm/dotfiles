@@ -15,24 +15,21 @@ Plugin 'vim-scripts/ScrollColors'
 Plugin 'flazz/vim-colorschemes'
 "Plugin 'vim-scripts/YankRing.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
-"Plugin 'amix/open_file_under_cursor.vim'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 Plugin 'fsharp/vim-fsharp'
 "Plugin 'tpope/vim-surround'
 Plugin 'valloric/youcompleteme'
 "Plugin 'sirver/ultisnips'
 "Plugin 'honza/vim-snippets'
-"Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'nvie/vim-togglemouse'
 Plugin 'rking/ag.vim'
-"Plugin 'scrooloose/nerdcommenter'
 Plugin 'szw/vim-tags'
-call vundle#end() 
+call vundle#end()
 filetype plugin on
 filetype plugin indent on
 "
@@ -80,8 +77,8 @@ set tags=./tags;~,tags;~,./.git/tags;~,.git/tags;~
 set showcmd
 set clipboard=unnamed
 set laststatus=2 "Displaying status line always
-set visualbell t_vb= 
-set novisualbell 
+set visualbell t_vb=
+set novisualbell
 set relativenumber "Numbers on the left
 set numberwidth=5
 set autoindent
