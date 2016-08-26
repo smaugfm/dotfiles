@@ -200,7 +200,7 @@ let python_highlight_all = 1
 
 "Markdown
 if has("win32")
-    autocmd FileType markdown :nnoremap <F5> :!start cmd /k "chrome %"<CR>
+    autocmd FileType markdown :nnoremap <F5> :!start chrome %<CR>
 else
     autocmd FileType markdown :nnoremap <F5> :!google-chrome %<CR>
 endif
