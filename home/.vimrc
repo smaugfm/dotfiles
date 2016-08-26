@@ -204,6 +204,7 @@ if has("win32")
 else
     autocmd FileType markdown :nnoremap <F5> :!google-chrome %<CR>
 endif
+autocmd FileType markdown :AirlineToggleWhitespace
 let g:vim_markdown_folding_disabled = 1
 
 "Airline
