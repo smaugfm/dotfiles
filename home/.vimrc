@@ -22,13 +22,18 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 "Plugin 'scrooloose/syntastic'
 Plugin 'fsharp/vim-fsharp'
-"Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-repeat'
 Plugin 'valloric/youcompleteme'
 "Plugin 'sirver/ultisnips'
 "Plugin 'honza/vim-snippets'
 Plugin 'nvie/vim-togglemouse'
 Plugin 'rking/ag.vim'
 Plugin 'szw/vim-tags'
+"Markdown
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 call vundle#end()
 filetype plugin on
 filetype plugin indent on
@@ -64,14 +69,7 @@ endif
 if $TERM == "xterm-256color"
   set t_Co=256
 endif
-colorscheme lucius
-let g:lucius_style='dark'
-let g:lucius_contrast='normal'
-let g:lucius_contrast_bg='normal'
-let g:lucius_use_bold=0
-let g:lucius_use_underline=0
 syntax enable
-map <S-F12> :hi CursorLine term=NONE cterm=NONE<CR>
 let mapleader=","
 set tags=./tags;~,tags;~,./.git/tags;~,.git/tags;~
 set showcmd
@@ -93,6 +91,22 @@ set wildmenu " visual autocomplete for command menu
 set lazyredraw " redraw only when we need to.
 " Deciaml format for C-a, C-x commands.
 set nrformats=
+colorscheme lucius
+let g:lucius_style='dark'
+let g:lucius_contrast='normal'
+let g:lucius_contrast_bg='normal'
+let g:lucius_use_bold=0
+let g:lucius_use_underline=0
+"Insert mode mappings
+imap <C-g>h <Left>
+imap <C-g><C-h> <Left>
+imap <C-g>l <Right>
+imap <C-g><C-l> <Right>
+imap <C-g>b <S-Left>
+imap <C-g><C-b> <S-Left>
+imap <C-g>w <S-Right>
+imap <C-g><C-w> <S-Right>
+" Use Q for formatting the current paragraph (or selection)
 " Use Q for formatting the current paragraph (or selection)
 vmap Q gq
 nmap Q gqapkup
@@ -183,6 +197,14 @@ else
     autocmd FileType python :nnoremap <F5> :!python %<CR>
 endif
 let python_highlight_all = 1
+
+"Markdown
+if has("win32")
+    autocmd FileType markdown :nnoremap <F5> :!start cmd /k "chrome %"<CR>
+else
+    autocmd FileType markdown :nnoremap <F5> :!google-chrome %<CR>
+endif
+let g:vim_markdown_folding_disabled = 1
 
 "Airline
 let g:airline_powerline_fonts = 1
