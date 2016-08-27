@@ -201,8 +201,10 @@ let python_highlight_all = 1
 "Markdown
 if has("win32")
     autocmd FileType markdown :nnoremap <F5> :!start chrome %<CR>
+    autocmd FileType markdown :nnoremap <S-F5> :!start chrome https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet<CR>
 else
     autocmd FileType markdown :nnoremap <F5> :!google-chrome %<CR>
+    autocmd FileType markdown :nnoremap <S-F5> :! google-chrome https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet<CR>
 endif
 autocmd FileType markdown :AirlineToggleWhitespace
 let g:vim_markdown_folding_disabled = 1
