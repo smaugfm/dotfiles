@@ -1,4 +1,5 @@
 ENTRY "home" URL "/home/dmitr"
+ENTRY "downloads" URL "/home/dmitr/Downloads"
 ENTRY "dropbox" URL "/home/dmitr/Dropbox/Stuff"
 ENTRY "dev" URL "/home/dmitr/Dev"
 ENTRY "docs" URL "/home/dmitr/Documents"

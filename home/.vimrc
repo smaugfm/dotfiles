@@ -37,13 +37,6 @@ Plugin 'plasticboy/vim-markdown'
 call vundle#end()
 filetype plugin on
 filetype plugin indent on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
 "*********************************************
 "*********************************************
 
@@ -107,9 +100,7 @@ imap <C-g><C-b> <S-Left>
 imap <C-g>w <S-Right>
 imap <C-g><C-w> <S-Right>
 " Use Q for formatting the current paragraph (or selection)
-" Use Q for formatting the current paragraph (or selection)
 vmap Q gq
-nmap Q gqapkup
 " Quickly edit/reload the vimrc file
 nnoremap <leader>ev :e $MYVIMRC<CR>
 nnoremap <leader>sv :so $MYVIMRC<CR>
@@ -125,8 +116,6 @@ nnoremap gV `[v`]
 nnoremap <leader>s :mksession<CR>
 " Change current directory to current file's directory
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
-" Close all buffers
-map <leader>ba :1,1000 bd!<cr>
 " Vim-like tab navigation
 nnoremap tf :tabfirst<CR>
 nnoremap tl :tabnext<CR>
@@ -135,8 +124,6 @@ nnoremap td :tabclose<CR>
 nnoremap te :tabedit<Space>
 nnoremap tm :tabm<Space>
 nnoremap to :tabonly<CR>
-" Vim-like buffer navigation
-nnoremap <leader>bn :buffernext
 "Quickly insert parenthesis etc.
 inoremap {<CR> {<CR>}<esc>O
 inoremap $( ()<esc>i
@@ -144,12 +131,6 @@ inoremap $[ []<esc>i
 inoremap ${ {}<esc>i
 inoremap $" ""<esc>i
 inoremap $' ''<esc>i
-"Surround the visual selection in parenthesis/brackets/etc
-vnoremap $( <esc>`>a)<esc>`<i(<esc>
-vnoremap $[ <esc>`>a]<esc>`<i[<esc>
-vnoremap ${ <esc>`>a}<esc>`<i{<esc>
-vnoremap $" <esc>`>a"<esc>`<i"<esc>
-vnoremap $' <esc>`>a'<esc>`<i'<esc>
 
 "Encoding
 if has("multi_byte")
@@ -174,7 +155,7 @@ set ignorecase
 set smartcase
 
 "Russian keymap
-set keymap=russian-jcukenwin
+set keymap=russian-jcukenwintype
 set iminsert=0
 set imsearch=0
 highlight lCursor guifg=NONE guibg=Cyan
@@ -222,6 +203,13 @@ let g:tagbar_show_linenubmers = -1
 let g:tagbar_compact = 1
 
 "YouCompleteMe
+noremap <leader>d :GoTo
+noremap <leader>q :GoToDeclaration
+noremap <leader>w :GoToImplementation
+noremap <leader>f :GoToReferences
+noremap <leader>t :GetType
+noremap <leader>gd :GetDoc
+noremap <leader>r :RefactorRename
 let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_filetype_blacklist = {
       \ 'tagbar' : 1,
@@ -240,14 +228,11 @@ let g:ycm_filetype_specific_completion_to_disable = {
       \ 'gitcommit': 1,
       \ 'fsharp' : 1
       \}
-let g:ycm_key_list_previous_completion = ['<C-TAB>', '<Up>']
 let g:ycm_collect_identifiers_from_tags_files = 1
-
-"Syntastic
-let g:syntastic_java_checkers = ["javac"]
-let g:syntastic_mode_map = {
-    \ "mode": "active",
-    \ "passive_filetypes": ["java"] }
+let g:ycm_complete_in_strings = 0
+let g:ycm_complete_in_comments = 0
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
 "CtrlP
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'

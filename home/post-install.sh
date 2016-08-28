@@ -1,6 +1,6 @@
 #!/bin/bash
 # autoexit on error
-set -e 
+set -e
 # Repos and ppas
 sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
 sudo add-apt-repository -y ppa:n-muench/burg
@@ -17,7 +17,7 @@ sudo apt-get -y install konsole mc git vim-gtk gparted openssh-server python-dev
     transmission goldendict gufw leafpad dkms linux-headers-generic mono-complete fsharp
 
 #Install File Compression Libs
-sudo apt-get -y install unace rar unrar zip unzip lzip lunzip xz-utils p7zip-full p7zip-rar sharutils uudeview mpack arj cabextract 
+sudo apt-get -y install unace rar unrar zip unzip lzip lunzip xz-utils p7zip-full p7zip-rar sharutils uudeview mpack arj cabextract
 
 #Codecs
 sudo apt-get -y install ffmpeg libavcodec-extra libvdpau-va-gl1 libmad0 mpg321 gstreamer1.0-libav
@@ -40,7 +40,7 @@ echo "Installing Google Chrome"
 sleep 2
 cd /tmp
 wget -O chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg -i chrome.deb || sudo apt-get -fy install 
+sudo dpkg -i chrome.deb || sudo apt-get -fy install
 
 echo "Installing Screenfetch"
 sleep 2
@@ -63,7 +63,7 @@ npm install -g typescript
 echo "Installing dotfiles"
 sleep 2
 cp -r ../* ~
-echo 'auth required pam_google_authenticator.so' | cat - /etc/pam.d/sshd > temp && sudo mv temp /etc/pam.d/sshd 
+echo 'auth required pam_google_authenticator.so' | cat - /etc/pam.d/sshd > temp && sudo mv temp /etc/pam.d/sshd
 
 echo "Configuring Vim"
 sleep 2
@@ -73,7 +73,7 @@ vim +PluginInstall +qall
 cd /tmp
 wget -O clang.tar.xz http://llvm.org/releases/3.8.1/clang+llvm-3.8.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz
 
-cd ~ && mkdir ycm_temp && cd ycm_temp 
+cd ~ && mkdir ycm_temp && cd ycm_temp
 tar -C . -xvf /tmp/clang.tar.xz
 mv -v clang* llvm_root_dir
 
