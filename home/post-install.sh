@@ -11,7 +11,7 @@ sudo apt-get -y --force-yes upgrade
 
 # Install packages
 sudo apt-get -y install konsole mc git vim-gtk gparted openssh-server python-dev python3-dev \
-    silversearcher-ag thunderbird grub-customizer kdiff3 keepass2 \
+    silversearcher-ag thunderbird grub-customizer kdiff3 keepass2 wine\
     gnome-calculator audacity audacious build-essential golang-go htop hardinfo\
     cmake conky dconf-tools dos2unix exfat-utils exfat-fuse ctags libpam-google-authenticator\
     transmission goldendict gufw leafpad dkms linux-headers-generic mono-complete fsharp
