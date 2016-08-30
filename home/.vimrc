@@ -12,7 +12,6 @@ else
 endif
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-scripts/ScrollColors'
-Plugin 'flazz/vim-colorschemes'
 "Plugin 'vim-scripts/YankRing.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'michaeljsmith/vim-indent-object'
@@ -31,9 +30,24 @@ Plugin 'valloric/youcompleteme'
 Plugin 'nvie/vim-togglemouse'
 Plugin 'rking/ag.vim'
 Plugin 'szw/vim-tags'
+"JS/TS
+Plugin 'pangloss/vim-javascript'
+Plugin 'helino/vim-json'
+Plugin 'HerringtonDarkholme/yats.vim'
+Plugin 'Quramy/tsuquyomi'
 "Markdown
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+"Colorschemes
+Plugin 'rakr/vim-two-firewatch'
+Plugin 'rakr/vim-one'
+Plugin 'lifepillar/vim-solarized8'
+Plugin 'jonathanfilip/vim-lucius'
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'atelierbram/vim-colors_atelier-schemes'
+Plugin 'vim-scripts/Visual-Studio'
+Plugin 'raphamorim/lucario'
+
 call vundle#end()
 filetype plugin on
 filetype plugin indent on
@@ -62,13 +76,20 @@ endif
 if $TERM == "xterm-256color"
   set t_Co=256
 endif
-colorscheme lucius
-let g:lucius_style='dark'
-let g:lucius_contrast='normal'
-let g:lucius_contrast_bg='normal'
-let g:lucius_use_bold=0
-let g:lucius_use_underline=0
+set termguicolors
 syntax enable
+set background=light
+colorscheme two-firewatch
+let g:two_firewatch_italics=1
+"let g:airline_theme='one'
+let g:airline_theme='twofirewatch'
+
+" colorscheme lucius
+" let g:lucius_style='dark'
+" let g:lucius_contrast='normal'
+" let g:lucius_contrast_bg='normal'
+" let g:lucius_use_bold=1
+" let g:lucius_use_underline=0
 let mapleader=","
 set tags=./tags;~,tags;~,./.git/tags;~,.git/tags;~
 set showcmd
