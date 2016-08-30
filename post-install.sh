@@ -10,10 +10,10 @@ sudo apt-get -y --force-yes update
 sudo apt-get -y --force-yes upgrade
 
 # Install packages
-sudo apt-get -y install konsole mc git vim-gtk gparted openssh-server python-dev python3-dev \
-    silversearcher-ag thunderbird grub-customizer kdiff3 keepass2 wine\
-    gnome-calculator audacity audacious build-essential golang-go htop hardinfo\
-    cmake conky dconf-tools dos2unix exfat-utils exfat-fuse ctags libpam-google-authenticator\
+sudo apt-get -y install konsole mc git gparted openssh-server python-dev python3-dev \
+    silversearcher-ag thunderbird grub-customizer kdiff3 keepass2 wine checkinstall \
+    gnome-calculator audacity audacious build-essential golang-go htop hardinfo \
+    cmake conky dconf-tools dos2unix exfat-utils exfat-fuse ctags libpam-google-authenticator \
     transmission goldendict gufw leafpad dkms linux-headers-generic mono-complete fsharp
 
 #Install File Compression Libs
@@ -56,27 +56,33 @@ sudo dpkg -i teamviewer_i386.deb || sudo apt-get -fy install
 
 echo "Installing node and typescript"
 sleep 2
+cd /tmp
 sudo curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
 npm install -g typescript
 
 echo "Installing dotfiles"
 sleep 2
-cp -r ../* ~
+cp -r rootdir/* ~
 echo 'auth required pam_google_authenticator.so' | cat - /etc/pam.d/sshd > temp && sudo mv temp /etc/pam.d/sshd
 
 echo "Configuring Vim"
 sleep 2
-yes | sudo git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
 
+# Remove old vim and install mine
+sudo apt-get -y remove vim*
+yes | sudo dpkg -i vim_20160830-1_amd64.deb
+
+yes | git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim +PluginInstall +qall
+cd ~/.vim/bundle/vimproc.vim && make
+
+# Build YouCompleteMe
 cd /tmp
 wget -O clang.tar.xz http://llvm.org/releases/3.8.1/clang+llvm-3.8.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz
-
 cd ~ && mkdir ycm_temp && cd ycm_temp
 tar -C . -xvf /tmp/clang.tar.xz
 mv -v clang* llvm_root_dir
-
 cd ~ && mkdir ycm_build && cd ycm_build
 cmake -G "Unix Makefiles" -DPATH_TO_LLVM_ROOT=~/ycm_temp/llvm_root_dir . ~/.vim/bundle/youcompleteme/third_party/ycmd/cpp
 cmake --build . --target ycm_core --config Release
