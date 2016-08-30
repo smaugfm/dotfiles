@@ -34,6 +34,7 @@ Plugin 'szw/vim-tags'
 Plugin 'pangloss/vim-javascript'
 Plugin 'helino/vim-json'
 Plugin 'HerringtonDarkholme/yats.vim'
+Plugin 'Shougo/vimproc.vim'
 Plugin 'Quramy/tsuquyomi'
 "Markdown
 Plugin 'godlygeek/tabular'
