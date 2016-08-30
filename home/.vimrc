@@ -62,6 +62,12 @@ endif
 if $TERM == "xterm-256color"
   set t_Co=256
 endif
+colorscheme lucius
+let g:lucius_style='dark'
+let g:lucius_contrast='normal'
+let g:lucius_contrast_bg='normal'
+let g:lucius_use_bold=0
+let g:lucius_use_underline=0
 syntax enable
 let mapleader=","
 set tags=./tags;~,tags;~,./.git/tags;~,.git/tags;~
@@ -84,12 +90,6 @@ set wildmenu " visual autocomplete for command menu
 set lazyredraw " redraw only when we need to.
 " Deciaml format for C-a, C-x commands.
 set nrformats=
-colorscheme lucius
-let g:lucius_style='dark'
-let g:lucius_contrast='normal'
-let g:lucius_contrast_bg='normal'
-let g:lucius_use_bold=0
-let g:lucius_use_underline=0
 "Insert mode mappings
 imap <C-g>h <Left>
 imap <C-g><C-h> <Left>
