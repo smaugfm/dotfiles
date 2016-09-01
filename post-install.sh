@@ -97,8 +97,8 @@ echo "Setting up folders"
 sleep 2
 rm -rf ~/Public
 rm -rf ~/Templates
-rm -rf ~/Videos
 mkdir ~/Dev
+mkdir ~/Wallpapers
 
 echo "Setting up settings"
 sleep 2

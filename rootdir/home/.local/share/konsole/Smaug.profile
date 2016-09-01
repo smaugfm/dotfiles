@@ -2,7 +2,7 @@
 AntiAliasFonts=true
 BoldIntense=false
 ColorScheme=DarkPastels
-Font=Cousine for Powerline,15,-1,5,50,0,0,0,0,0
+Font=Liberation Mono for Powerline,12,-1,5,50,0,0,0,0,0
 
 [Cursor Options]
 CursorShape=0
@@ -18,6 +18,10 @@ TrimTrailingSpacesInSelectedText=false
 
 [Keyboard]
 KeyBindings=solaris
+
+[Scrolling]
+HistorySize=6000
+ScrollBarPosition=1
 
 [Terminal Features]
 BlinkingCursorEnabled=true

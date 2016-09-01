@@ -1,0 +1,59 @@
+! Google Material Design
+
+*background 		: #263238
+*foreground 		: #eceff1
+
+! black
+*color0  			: #263238
+*color8  			: #37474f
+! red
+*color1  			: #ff9800
+*color9  			: #ffa74d
+! green
+*color2  			: #8bc34a
+*color10 			: #9ccc65
+! yellow
+*color3  			: #ffc107
+*color11 			: #ffa000
+! blue
+*color4  			: #03a9f4
+*color12 			: #81d4fa
+! magenta
+*color5  			: #e91e63
+*color13 			: #ad1457
+! cyan
+*color6  			: #009688
+*color14 			: #26a69a
+! white
+*color7  			: #cfd8dc
+*color15 			: #eceff1
+
+! General
+urxvt*termName:  rxvt-256color
+urxvt*loginShell:         true
+urxvt*scrollBar:         false
+urxvt*secondaryScroll:    true
+urxvt*saveLines:         16384
+urxvt*cursorBlink:       true
+urxvt*urgentOnBell:       true
+!urxvt*override-redirect:false
+!urxvt*borderLess:       false
+!urxvt*internalBorder:       0
+!urxvt*externalBorder:       0
+
+! Extensions
+!urxvt*perl-lib:        /usr/lib/urxvt/perl/
+!urxvt*perl-ext-common: default,matcher
+urxvt*urlLauncher:     /usr/bin/google-chrome
+urxvt*matcher.button:  1
+
+! Appearance
+!  - use xft for drawing fonts
+URxvt.letterSpace: -1
+urxvt*font:       xft:Liberation Mono for Powerline:style=Regular:size=12
+urxvt*boldFont:       xft:Liberation Mono for Powerline:style=Regular:size=12
+!  - cursor
+urxvt*cursorColor: #DCDCCC
+!  - pseudo transparency
+!urxvt*shading:    50
+!urxvt*transparent:true

@@ -42,12 +42,7 @@ Plugin 'plasticboy/vim-markdown'
 "Colorschemes
 Plugin 'rakr/vim-two-firewatch'
 Plugin 'rakr/vim-one'
-Plugin 'lifepillar/vim-solarized8'
 Plugin 'jonathanfilip/vim-lucius'
-Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'atelierbram/vim-colors_atelier-schemes'
-Plugin 'vim-scripts/Visual-Studio'
-Plugin 'raphamorim/lucario'
 
 call vundle#end()
 filetype plugin on
@@ -58,6 +53,32 @@ filetype plugin indent on
 
 "**************Settings***************
 "*********************************************
+
+"Colors
+if $TERM == "xterm-256color"
+  set t_Co=256
+endif
+set termguicolors
+syntax enable
+
+"Colorschemes
+
+"Two-firewatch
+" set background=light
+" colorscheme two-firewatch
+" let g:two_firewatch_italics=1
+" let g:airline_theme='twofirewatch'
+"One
+" set background=light
+" colorscheme one
+" let g:one_allow_italics=1
+" let g:airline_theme='one'
+colorscheme lucius
+set background=light
+let g:lucius_contrast='normal'
+let g:lucius_contrast_bg='normal'
+let g:lucius_use_bold=0
+let g:lucius_use_underline=0
 
 "Gui options
 if has('gui_running')
@@ -73,24 +94,6 @@ if has('gui_running')
     set guifont=Powerline_Consolas:h12:cRUSSIAN
 endif
 
-"General settings
-if $TERM == "xterm-256color"
-  set t_Co=256
-endif
-set termguicolors
-syntax enable
-set background=light
-colorscheme two-firewatch
-let g:two_firewatch_italics=1
-"let g:airline_theme='one'
-let g:airline_theme='twofirewatch'
-
-" colorscheme lucius
-" let g:lucius_style='dark'
-" let g:lucius_contrast='normal'
-" let g:lucius_contrast_bg='normal'
-" let g:lucius_use_bold=1
-" let g:lucius_use_underline=0
 let mapleader=","
 set tags=./tags;~,tags;~,./.git/tags;~,.git/tags;~
 set showcmd

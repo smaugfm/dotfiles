@@ -1,0 +1,68 @@
+#!/bin/bash
+##-ANSI-COLOR-CODES-##
+Off="\033[0m"
+###-Regular-###
+Red="\033[0;31m"
+Green="\033[0;32m"
+Blue="\033[0;34m"
+Yellow="\033[0;33m"
+Purple="\033[0;35"
+Cyan="\033[0;36m"
+####-Bold-####
+BRed="\033[1;31m"
+BPurple="\033[1;35m"
+
+Lightning=$'\u26a1'
+
+function __prompt_command()
+{
+    # capture the exit status of the last command
+    EXIT="$?"
+    PS1="\[$Blue\][\t]\[$Off\] "
+ 
+    if [ $EXIT -ne 0 ]; then 
+        PS1+="\[$Red\][$EXIT]\[$Off\] "
+    else
+        PS1+="\[$Yellow\]$Lightning$Lightning\[$Yellow\] "
+    fi
+
+    # if logged in via ssh shows the ip of the client
+    if [ -n "$SSH_CLIENT" ]; then PS1+="\[$Yellow\]("${$SSH_CLIENT%% *}")\[$Off\]"; fi
+ 
+    # debian chroot stuff (take it or leave it)
+    PS1+="${debian_chroot:+($debian_chroot)}"
+ 
+    if [[ $EUID -eq 0 ]]; then 
+        PS1+="\[$Red\]\u\[$Off\]@\[$Red\]\h\[$Off\] \[$Blue\]\w\[$Off\] "
+    else
+        # basic information (user@host:path)
+        PS1+="\[$Green\]\u\[$Off\]@\[$Green\]\h\[$Off\] \[$Blue\]\w\[$Off\] "
+    fi
+    
+    # check if inside git repo
+    local git_status="`git status -unormal 2>&1`"    
+    if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
+        # parse the porcelain output of git status
+        if [[ "$git_status" =~ nothing\ to\ commit ]]; then
+            local Color_On=$Green
+        elif [[ "$git_status" =~ nothing\ added\ to\ commit\ but\ untracked\ files\ present ]]; then
+            local Color_On=$Purple
+        else
+            local Color_On=$Red
+        fi
+ 
+        if [[ "$git_status" =~ On\ branch\ ([^[:space:]]+) ]]; then
+            branch=${BASH_REMATCH[1]}
+        else
+            # Detached HEAD. (branch=HEAD is a faster alternative.)
+            branch="(`git describe --all --contains --abbrev=4 HEAD 2> /dev/null || echo HEAD`)"
+        fi
+ 
+        # add the result to prompt
+        PS1+="\[$Color_On\][$branch]\[$Off\] "
+    fi
+ 
+    # prompt $ or # for root
+    PS1+="\$ $Off"
+}
+PROMPT_COMMAND=__prompt_command
