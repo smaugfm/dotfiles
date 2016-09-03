@@ -152,6 +152,11 @@ gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
 gsettings set org.gnome.settings-daemon.plugins.xsettings hinting 'slight'
 gsettings set org.gnome.settings-daemon.plugins.xsettings rgba-order 'rgb'
 
+dconf write /org/cinnamon/desktop/keybindings/custom-list "['custom0']"
+dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/name "'Screen off'"
+dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/command "'${HOME}/bin/screenoff'"
+dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/binding "['<Super>q']"
+
 
 echo "Final steps. Require user action"
 echo "Installing Dropbox"
