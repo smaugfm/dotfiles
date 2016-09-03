@@ -10,9 +10,9 @@ sudo apt-get -y --force-yes update
 sudo apt-get -y --force-yes upgrade
 
 # Install packages
-sudo apt-get -y install konsole rxvt-unicode-256color mc git gparted openssh-server python-dev python3-dev \
+sudo apt-get -y install konsole mc git gparted openssh-server python-dev python3-dev \
     silversearcher-ag thunderbird grub-customizer kdiff3 keepass2 wine checkinstall \
-    gnome-calculator audacity audacious build-essential golang-go htop hardinfo \
+    gnome-calculator audacity audacious build-essential golang-go htop hardinfo pinta \
     cmake conky dconf-tools dos2unix exfat-utils exfat-fuse ctags libpam-google-authenticator \
     transmission goldendict gufw leafpad dkms linux-headers-generic mono-complete fsharp
 
@@ -65,9 +65,6 @@ echo "Installing dotfiles"
 sleep 2
 cp -r rootdir/* ~
 echo 'auth required pam_google_authenticator.so' | cat - /etc/pam.d/sshd > temp && sudo mv temp /etc/pam.d/sshd
-cd /tmp
-git clone https://github.com/muennich/urxvt-perls.git
-sudo mv urxvt-perls/keyboard-select /usr/lib/urxvt/perl
 
 echo "Configuring Vim"
 sleep 2
