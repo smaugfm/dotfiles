@@ -10,11 +10,15 @@ sudo apt-get -y --force-yes update
 sudo apt-get -y --force-yes upgrade
 
 # Install packages
-sudo apt-get -y install konsole mc git gparted openssh-server python-dev python3-dev \
+sudo apt-get -y install konsole mc git gparted openssh-server \
     silversearcher-ag thunderbird grub-customizer kdiff3 keepass2 wine checkinstall \
-    gnome-calculator audacity audacious build-essential golang-go htop hardinfo pinta \
-    cmake conky dconf-tools dos2unix exfat-utils exfat-fuse ctags libpam-google-authenticator \
-    transmission goldendict gufw leafpad dkms linux-headers-generic mono-complete fsharp
+    gnome-calculator audacity audacious htop hardinfo pinta conky libpam-google-authenticator \
+    transmission goldendict gufw leafpad 
+
+# Install dev
+sudo apt-get -y install python-dev python3-dev mono-complete fsharp golang-go\
+    build-essential cmake exfat-utils exfat-fuse dkms linux-headers-generic dconf-tools ctags \
+    dh-autoreconf autotools-dev debhelper dh-autoreconf libconfuse-dev libgtk-3-dev libvte-2.91-dev pkg-config
 
 #Install File Compression Libs
 sudo apt-get -y install unace rar unrar zip unzip lzip lunzip xz-utils p7zip-full p7zip-rar sharutils uudeview mpack arj cabextract
@@ -114,6 +118,10 @@ gsettings set org.cinnamon.desktop.keybindings.media-keys calculator "['XF86Calc
 gsettings set org.cinnamon.desktop.keybindings.media-keys terminal "['<Primary><Alt>t', '<Primary>grave']"
 gsettings set org.cinnamon.desktop.keybindings.media-keys volume-down "['XF86AudioLowerVolume', '<Alt><Super>Down']"
 gsettings set org.cinnamon.desktop.keybindings.media-keys volume-up "['XF86AudioRaiseVolume', '<Alt><Super>Up']"
+gsettings set org.cinnamon.desktop.keybindings.media-keys screenshot "['Print']"
+gsettings set org.cinnamon.desktop.keybindings.media-keys screenshot-clip "['<Primary><Shift>Print']"
+gsettings set org.cinnamon.desktop.keybindings.media-keys area-screenshot "['<Shift>Print']"
+gsettings set org.cinnamon.desktop.keybindings.media-keys area-screenshot-clip "['<Primary>Print']"
 gsettings set org.cinnamon.desktop.notifications display-notifications true
 gsettings set org.cinnamon.desktop.notifications fade-on-mouseover true
 gsettings set org.cinnamon.desktop.notifications fade-opacity 40
