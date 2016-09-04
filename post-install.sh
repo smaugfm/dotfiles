@@ -122,6 +122,7 @@ gsettings set org.cinnamon.desktop.keybindings.media-keys screenshot "['Print']"
 gsettings set org.cinnamon.desktop.keybindings.media-keys screenshot-clip "['<Primary><Shift>Print']"
 gsettings set org.cinnamon.desktop.keybindings.media-keys area-screenshot "['<Shift>Print']"
 gsettings set org.cinnamon.desktop.keybindings.media-keys area-screenshot-clip "['<Primary>Print']"
+gsettings set org.cinnamon.desktop.keybindings.media-keys screensaver "['XF86ScreenSaver']"
 gsettings set org.cinnamon.desktop.notifications display-notifications true
 gsettings set org.cinnamon.desktop.notifications fade-on-mouseover true
 gsettings set org.cinnamon.desktop.notifications fade-opacity 40
@@ -163,7 +164,7 @@ gsettings set org.gnome.settings-daemon.plugins.xsettings rgba-order 'rgb'
 dconf write /org/cinnamon/desktop/keybindings/custom-list "['custom0']"
 dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/name "'Screen off'"
 dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/command "'${HOME}/bin/screenoff'"
-dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/binding "['<Super>q']"
+dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/binding "['<Super>l']"
 
 
 echo "Final steps. Require user action"
