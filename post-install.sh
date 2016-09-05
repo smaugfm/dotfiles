@@ -38,8 +38,8 @@ sudo apt-get -y autoclean
 echo "Installing Telegram"
 sleep 2
 cd /tmp
-wget https://tdesktop.com/linux
-tar -xzvf telegram*
+wget -O telegram.tar.xz https://tdesktop.com/linux
+tar -xvf telegram*
 sudo mv Telegram /opt
 sudo ln -sf /opt/Telegram/Telegram /usr/bin/telegram
 
@@ -52,8 +52,8 @@ sudo dpkg -i google-chrome* || sudo apt-get -fy install
 echo "Installing Screenfetch"
 sleep 2
 cd /usr/local/bin
-wget -O screenfetch 'https://raw.github.com/KittyKatt/screenFetch/master/screenfetch-dev'
-chmod +x screenfetch
+sudo wget -O screenfetch 'https://raw.github.com/KittyKatt/screenFetch/master/screenfetch-dev'
+sudo chmod +x screenfetch
 
 echo "Installing Teamviewer"
 sleep 2
@@ -66,11 +66,12 @@ sleep 2
 cd /tmp
 sudo curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
-npm install -g typescript
+sudo npm install -g typescript
 
 echo "Installing dotfiles"
 sleep 2
-cp -r rootdir/* /
+sudo cp -r rootdir/* /
+cp -r homedir/* ~
 echo 'auth required pam_google_authenticator.so' | cat - /etc/pam.d/sshd > temp && sudo mv temp /etc/pam.d/sshd
 
 echo "Configuring Vim"
@@ -78,10 +79,14 @@ sleep 2
 
 # Remove old vim and install custom-built
 sudo apt-get -y remove vim*
-yes | sudo dpkg -i vim_20160830-1_amd64.deb
+cat /proc/cpuinfo | grep hypervisor
+if [ $? != 0 ]; then
+    yes | sudo dpkg -i vim*.deb
+else
+    sudo apt-get install -y vim
 
 yes | git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
+yes | vim +PluginInstall +qall
 cd ~/.vim/bundle/vimproc.vim && make
 
 # Build YouCompleteMe
