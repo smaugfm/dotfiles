@@ -3,6 +3,10 @@
 set -e
 # set umask
 eval $(cat rootdir/etc/profile.d/umask.sh)
+
+#Prompt for password
+sudo echo "Enter password"
+
 # Repos and ppas
 sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
 sudo add-apt-repository -y ppa:n-muench/burg
