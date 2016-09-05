@@ -9,18 +9,21 @@ CursorShape=0
 
 [General]
 Environment=TERM=xterm-256color
+Icon=utilities-terminal
 Name=Smaug
 Parent=FALLBACK/
 
 [Interaction Options]
 AutoCopySelectedText=true
 TrimTrailingSpacesInSelectedText=false
+UnderlineLinksEnabled=false
 
 [Keyboard]
-KeyBindings=solaris
+KeyBindings=default
 
 [Scrolling]
-HistorySize=6000
+HistoryMode=1
+HistorySize=8192
 ScrollBarPosition=1
 
 [Terminal Features]

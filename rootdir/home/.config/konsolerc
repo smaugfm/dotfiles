@@ -5,8 +5,10 @@ DefaultProfile=Smaug.profile
 Favorites=
 
 [MainWindow]
-Height 1080=497
-State=AAAA/wAAAAD9AAAAAAAAB4AAAAPpAAAABAAAAAQAAAAIAAAACPwAAAAA
+Height 1080=792
+State=AAAA/wAAAAD9AAAAAAAABfAAAAMAAAAABAAAAAQAAAAIAAAACPwAAAAA
 ToolBarsMovable=Disabled
-Width 1920=1920
-Window-Maximized 1080x1920=true
+Width 1920=1520
+
+[TabBar]
+TabBarVisibility=ShowTabBarWhenNeeded

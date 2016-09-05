@@ -1,0 +1,2 @@
+#!/bin/bash
+${DESKTOP_SESSION}-screensaver-command -l;sleep 1;xset dpms force off
