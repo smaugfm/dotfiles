@@ -1,6 +1,8 @@
 #!/bin/bash
 # autoexit on error
 set -e
+# set umask
+eval $(cat rootdir/etc/profile.d/umask.sh)
 # Repos and ppas
 sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
 sudo add-apt-repository -y ppa:n-muench/burg
@@ -13,18 +15,15 @@ sudo apt-get -y --force-yes upgrade
 sudo apt-get -y install konsole mc git gparted openssh-server \
     silversearcher-ag thunderbird grub-customizer kdiff3 keepass2 wine checkinstall \
     gnome-calculator audacity audacious htop hardinfo pinta conky libpam-google-authenticator \
-    transmission goldendict gufw leafpad 
+    transmission goldendict gufw leafpad virtualbox virtualbox-qt
 
 # Install dev
 sudo apt-get -y install python-dev python3-dev mono-complete fsharp golang-go\
     build-essential cmake exfat-utils exfat-fuse dkms linux-headers-generic dconf-tools ctags \
-    dh-autoreconf autotools-dev debhelper dh-autoreconf libconfuse-dev libgtk-3-dev libvte-2.91-dev pkg-config
+    dh-autoreconf autotools-dev debhelper ffmpeg
 
 #Install File Compression Libs
 sudo apt-get -y install unace rar unrar zip unzip lzip lunzip xz-utils p7zip-full p7zip-rar sharutils uudeview mpack arj cabextract
-
-#Codecs
-sudo apt-get -y install ffmpeg libavcodec-extra libvdpau-va-gl1 libmad0 mpg321 gstreamer1.0-libav
 
 #Clean-up System
 sudo apt-get -y autoremove
@@ -35,16 +34,16 @@ sudo apt-get -y autoclean
 echo "Installing Telegram"
 sleep 2
 cd /tmp
-wget -O telegram.tar.xz https://tdesktop.com/linux
-tar -xzvf telegram.tar.xz
+wget https://tdesktop.com/linux
+tar -xzvf telegram*
 sudo mv Telegram /opt
 sudo ln -sf /opt/Telegram/Telegram /usr/bin/telegram
 
 echo "Installing Google Chrome"
 sleep 2
 cd /tmp
-wget -O chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg -i chrome.deb || sudo apt-get -fy install
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome* || sudo apt-get -fy install
 
 echo "Installing Screenfetch"
 sleep 2
@@ -56,7 +55,7 @@ echo "Installing Teamviewer"
 sleep 2
 cd /tmp
 wget http://download.teamviewer.com/download/teamviewer_i386.deb
-sudo dpkg -i teamviewer_i386.deb || sudo apt-get -fy install
+sudo dpkg -i teamviewer* || sudo apt-get -fy install
 
 echo "Installing node and typescript"
 sleep 2
@@ -67,13 +66,13 @@ npm install -g typescript
 
 echo "Installing dotfiles"
 sleep 2
-cp -r rootdir/* ~
+cp -r rootdir/* /
 echo 'auth required pam_google_authenticator.so' | cat - /etc/pam.d/sshd > temp && sudo mv temp /etc/pam.d/sshd
 
 echo "Configuring Vim"
 sleep 2
 
-# Remove old vim and install mine
+# Remove old vim and install custom-built
 sudo apt-get -y remove vim*
 yes | sudo dpkg -i vim_20160830-1_amd64.deb
 
@@ -83,9 +82,9 @@ cd ~/.vim/bundle/vimproc.vim && make
 
 # Build YouCompleteMe
 cd /tmp
-wget -O clang.tar.xz http://llvm.org/releases/3.8.1/clang+llvm-3.8.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz
+wget http://llvm.org/releases/3.8.1/clang+llvm-3.8.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz
 cd ~ && mkdir ycm_temp && cd ycm_temp
-tar -C . -xvf /tmp/clang.tar.xz
+tar -C . -xvf /tmp/clang*.tar.xz
 mv -v clang* llvm_root_dir
 cd ~ && mkdir ycm_build && cd ycm_build
 cmake -G "Unix Makefiles" -DPATH_TO_LLVM_ROOT=~/ycm_temp/llvm_root_dir . ~/.vim/bundle/youcompleteme/third_party/ycmd/cpp
@@ -162,10 +161,9 @@ gsettings set org.gnome.settings-daemon.plugins.xsettings hinting 'slight'
 gsettings set org.gnome.settings-daemon.plugins.xsettings rgba-order 'rgb'
 
 dconf write /org/cinnamon/desktop/keybindings/custom-list "['custom0']"
-dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/name "'Screen off'"
-dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/command "'${HOME}/bin/screenoff'"
+dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/name 'Screen off'
+dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/command '${HOME}/bin/screenoff'
 dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/binding "['<Super>l']"
-
 
 echo "Final steps. Require user action"
 echo "Installing Dropbox"
@@ -176,13 +174,16 @@ dropbox start -i
 echo "Configure Google-Authenticator"
 google-authenticator
 
-echo "Install BURG"
-sudo apt-get install burg burg-themes
-sudo update-burg
+#Check if inside virtual environment
+cat /proc/cpuinfo | grep hypervisor
+if [ $? != 0 ]; then
+    echo "Install BURG"
+    sudo apt-get install burg burg-themes
+    sudo update-burg
 
-echo "Ubuntu restricted extras"
-sleep 2
-sudo apt-get install -y ubuntu-restricted-extras
-sudo apt-get dist-upgrade
-
+    echo "Ubuntu restricted extras"
+    sleep 2
+    sudo apt-get install -y ubuntu-restricted-extras
+    sudo apt-get dist-upgrade
+fi
 reboot
