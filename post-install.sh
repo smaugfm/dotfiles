@@ -21,7 +21,7 @@ sudo apt-get -y --force-yes upgrade
 sudo apt-get -y install konsole mc git gparted openssh-server \
     silversearcher-ag thunderbird grub-customizer kdiff3 keepass2 checkinstall \
     gnome-calculator audacity audacious htop hardinfo pinta conky libpam-google-authenticator \
-    transmission goldendict leafpad virtualbox virtualbox-qt
+    transmission goldendict virtualbox virtualbox-qt
 
 # Install dev
 sudo apt-get -y install python-dev python3-dev mono-complete fsharp golang-go\
