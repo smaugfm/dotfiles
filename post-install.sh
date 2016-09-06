@@ -1,5 +1,6 @@
 #!/bin/bash
 # autoexit on error
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 set -e
 # set umask
 eval $(cat rootdir/etc/profile.d/umask.sh)
@@ -70,6 +71,7 @@ sudo npm install -g typescript
 
 echo "Installing dotfiles"
 sleep 2
+cd $DIR
 sudo cp -r rootdir/* /
 cp -r homedir/* ~
 echo 'auth required pam_google_authenticator.so' | cat - /etc/pam.d/sshd > temp && sudo mv temp /etc/pam.d/sshd

@@ -233,13 +233,18 @@ let g:tagbar_show_linenubmers = -1
 let g:tagbar_compact = 1
 
 "YouCompleteMe
-noremap <leader>d :GoTo
+"RefactorgoTo
+noremap <leader>rg :GoTo
 noremap <leader>q :GoToDeclaration
 noremap <leader>w :GoToImplementation
-noremap <leader>f :GoToReferences
-noremap <leader>t :GetType
+"RefactorgotoreFerences
+noremap <leader>rf :GoToReferences
+"RefactorgetType
+noremap <leader>rt :GetType
+"RefactorgetgetDoc
 noremap <leader>gd :GetDoc
-noremap <leader>r :RefactorRename
+"RefactorRename, intentional trailing whitespace
+noremap <leader>rr :RefactorRename 
 let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_filetype_blacklist = {
       \ 'tagbar' : 1,
