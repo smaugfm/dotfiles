@@ -27,6 +27,11 @@ sudo apt-get -y install python-dev python3-dev mono-complete fsharp golang-go\
     build-essential cmake exfat-utils exfat-fuse dkms linux-headers-generic dconf-tools ctags \
     dh-autoreconf autotools-dev debhelper ffmpeg
 
+# Install vim dependecies
+sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev \
+    libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
+    libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev python3-dev
+
 #Install File Compression Libs
 sudo apt-get -y install unace rar unrar zip unzip lzip lunzip xz-utils p7zip-full p7zip-rar sharutils uudeview mpack arj cabextract
 
@@ -79,13 +84,23 @@ echo 'auth required pam_google_authenticator.so' | cat - /etc/pam.d/sshd > temp 
 echo "Configuring Vim"
 sleep 2
 
-# Remove old vim and install custom-built
+# Remove old vim 
 sudo apt-get -y remove vim*
-cat /proc/cpuinfo | grep hypervisor
-if [ $? != 0 ]; then
-    yes | sudo dpkg -i vim*.deb
-else
-    sudo apt-get install -y vim
+
+# Build vim from sources
+cd /tmp
+git clone https://github.com/vim/vim.git
+cd vim
+./configure --with-features=huge \
+            --enable-multibyte \
+            --enable-rubyinterp \
+            --enable-pythoninterp \
+            --enable-python3interp \
+            --enable-gui=auto \
+            --enable-cscope \
+            --prefix=/usr \
+make VIMRUNTIMEDIR=/usr/share/vim/vim74
+sudo checkinstall
 
 yes | git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 yes | vim +PluginInstall +qall
@@ -113,6 +128,14 @@ rm -rf ~/Public
 rm -rf ~/Templates
 mkdir ~/Dev
 mkdir ~/Wallpapers
+
+echo "Update alternatives"
+sudo update-alternatives --install /usr/bin/editor editor /usr/bin/vim 1
+sudo update-alternatives --set editor /usr/bin/vim
+sudo update-alternatives --install /usr/bin/vi vi /usr/bin/vim 1
+sudo update-alternatives --set vi /usr/bin/vim
+sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/konsole 1
+sudo update-alternatives --set x-terminal-emulator /usr/bin/konsole
 
 echo "Setting up settings"
 sleep 2

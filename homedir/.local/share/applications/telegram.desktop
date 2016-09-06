@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Terminal=false
+Name=Telegram
+Comment=Messaging app
+Encoding=UTF-8
+Exec=telegram 
