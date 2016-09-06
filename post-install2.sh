@@ -147,7 +147,7 @@ gsettings set org.gnome.libgnomekbd.desktop default-group 0
 gsettings set org.gnome.libgnomekbd.desktop group-per-window true
 gsettings set org.gnome.libgnomekbd.keyboard layouts "['us', 'ru\ttypewriter']"
 gsettings set org.gnome.libgnomekbd.keyboard options "['caps\tcaps:ctrl_modifier', 'grp\tgrp:win_space_toggle']"
-gsettings set org.gnome.Settings-daemon.plugins.xsettings active true
+gsettings set org.gnome.settings-daemon.plugins.xsettings active true
 gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
 gsettings set org.gnome.settings-daemon.plugins.xsettings hinting 'slight'
 gsettings set org.gnome.settings-daemon.plugins.xsettings rgba-order 'rgb'
