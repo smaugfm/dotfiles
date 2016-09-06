@@ -6,7 +6,8 @@ set -e
 eval $(cat rootdir/etc/profile.d/umask.sh)
 
 #Prompt for password
-sudo echo "Enter password"
+sudo echo "Starting..."
+sleep 2
 
 # Repos and ppas
 sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
@@ -28,7 +29,7 @@ sudo apt-get -y install python-dev python3-dev mono-complete fsharp golang-go\
     dh-autoreconf autotools-dev debhelper ffmpeg
 
 # Install vim dependecies
-sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev \
+sudo apt-get -y install libncurses5-dev libgnome2-dev libgnomeui-dev \
     libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
     libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev python3-dev
 
@@ -45,7 +46,7 @@ echo "Installing Telegram"
 sleep 2
 cd /tmp
 wget -O telegram.tar.xz https://tdesktop.com/linux
-tar -xvf telegram*
+tar -xvf telegram.tar.xz
 sudo mv Telegram /opt
 sudo ln -sf /opt/Telegram/Telegram /usr/bin/telegram
 
@@ -77,15 +78,17 @@ sudo npm install -g typescript
 echo "Installing dotfiles"
 sleep 2
 cd $DIR
+shopt -s dotglob
 sudo cp -r rootdir/* /
 cp -r homedir/* ~
+shopt -u dotglob
 echo 'auth required pam_google_authenticator.so' | cat - /etc/pam.d/sshd > temp && sudo mv temp /etc/pam.d/sshd
 
 echo "Configuring Vim"
 sleep 2
 
-# Remove old vim 
-sudo apt-get -y remove vim*
+# Remove old vim
+sudo apt-get -y remove vim vim-runtime vim-tiny vim-common vim-gui-common gvim
 
 # Build vim from sources
 cd /tmp
@@ -98,21 +101,21 @@ cd vim
             --enable-python3interp \
             --enable-gui=auto \
             --enable-cscope \
-            --prefix=/usr \
+            --prefix=/usr
 make VIMRUNTIMEDIR=/usr/share/vim/vim74
 sudo checkinstall
 
 yes | git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-yes | vim +PluginInstall +qall
+vim +PluginInstall +qall
 cd ~/.vim/bundle/vimproc.vim && make
 
 # Build YouCompleteMe
 cd /tmp
-wget http://llvm.org/releases/3.8.1/clang+llvm-3.8.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz
-cd ~ && mkdir ycm_temp && cd ycm_temp
-tar -C . -xvf /tmp/clang*.tar.xz
+wget -O clang.tar.xz http://llvm.org/releases/3.8.1/clang+llvm-3.8.1-$(uname -p)-linux-gnu-ubuntu-16.04.tar.xz
+cd ~ && mkdir ycm_temp && cd ~/ycm_temp
+tar -C . -xvf /tmp/clang.tar.xz
 mv -v clang* llvm_root_dir
-cd ~ && mkdir ycm_build && cd ycm_build
+cd ~ && mkdir ycm_build && cd ~/ycm_build
 cmake -G "Unix Makefiles" -DPATH_TO_LLVM_ROOT=~/ycm_temp/llvm_root_dir . ~/.vim/bundle/youcompleteme/third_party/ycmd/cpp
 cmake --build . --target ycm_core --config Release
 #cd ~/.vim/bundle/youcompleteme/third_party/ycmd/third_party/OmniSharpServer
@@ -177,29 +180,11 @@ gsettings set org.gnome.libgnomekbd.desktop default-group 0
 gsettings set org.gnome.libgnomekbd.desktop group-per-window true
 gsettings set org.gnome.libgnomekbd.keyboard layouts "['us', 'ru\ttypewriter']"
 gsettings set org.gnome.libgnomekbd.keyboard options "['caps\tcaps:ctrl_modifier', 'grp\tgrp:win_space_toggle']"
-gsettings set org.gnome.mutter attach-modal-dialogs false
-gsettings set org.gnome.mutter auto-maximize true
-gsettings set org.gnome.mutter center-new-windows true
-gsettings set org.gnome.mutter draggable-border-width 10
-gsettings set org.gnome.mutter dynamic-workspaces false
-gsettings set org.gnome.mutter edge-tiling false
-gsettings set org.gnome.mutter focus-change-on-pointer-rest false
-gsettings set org.gnome.mutter no-tab-popup false
-gsettings set org.gnome.mutter overlay-key 'Super_L'
-gsettings set org.gnome.mutter workspaces-only-on-primary false
-gsettings set org.gnome.mutter.keybindings toggle-tiled-left "['<Primary><Super>Left', '<Super>Left']"
-gsettings set org.gnome.mutter.keybindings toggle-tiled-right "['<Primary><Super>Right', '<Super>Right']"
-gsettings set org.gnome.settings-daemon.plugins.xsettings active true
+gsettings set org.gnome.Settings-daemon.plugins.xsettings active true
 gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
 gsettings set org.gnome.settings-daemon.plugins.xsettings hinting 'slight'
 gsettings set org.gnome.settings-daemon.plugins.xsettings rgba-order 'rgb'
 
-dconf write /org/cinnamon/desktop/keybindings/custom-list "['custom0']"
-dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/name 'Screen off'
-dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/command '${HOME}/bin/screenoff'
-dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/binding "['<Super>l']"
-
-echo "Final steps. Require user action"
 echo "Installing Dropbox"
 sleep 2
 sudo apt-get install dropbox python-gpgme
