@@ -38,9 +38,14 @@ sudo dpkg -i teamviewer* || sudo apt-get -fy install
 echo "Installing node and typescript"
 sleep 2
 cd /tmp
-sudo curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 sudo apt-get install -y nodejs
-sudo npm install -g typescript
+wget https://raw.githubusercontent.com/glenpike/npm-g_nosudo/master/npm-g-nosudo.sh
+chmod +x npm-g-nosudo.sh
+yes | ./npm-g-nosudo.sh -v
+npm install -g typescript
+npm install -g js-beautify
+npm install -g typescript-formatter
 
 echo "Installing dotfiles"
 sleep 2
@@ -91,6 +96,7 @@ cd ~/.vim/bundle/youcompleteme/third_party/ycmd/third_party/gocode
 go build
 cd ~/.vim/bundle/youcompleteme/third_party/ycmd/third_party/tern_runtime
 npm install --production
+
 
 echo "Setting up folders"
 sleep 2
