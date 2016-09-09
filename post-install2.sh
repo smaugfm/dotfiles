@@ -45,6 +45,7 @@ chmod +x npm-g-nosudo.sh
 yes | ./npm-g-nosudo.sh -v
 npm install -g typescript
 npm install -g js-beautify
+npm instlal -g electron-prebuilt
 npm install -g typescript-formatter
 
 echo "Installing dotfiles"

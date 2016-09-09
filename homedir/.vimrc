@@ -36,7 +36,6 @@ Plugin 'szw/vim-tags'
 Plugin 'sirver/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'chiel92/vim-autoformat'
-Plugin 'editorconfig/editorconfig-vim'
 "JS/TS
 Plugin 'pangloss/vim-javascript'
 Plugin 'helino/vim-json'
@@ -290,6 +289,3 @@ let g:AutoPairsMultilineClose = 0
 
 "vim-autoformat
 noremap <leader>af :Autoformat<CR>
-
-"Editor config
-let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
