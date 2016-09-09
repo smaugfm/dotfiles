@@ -14,12 +14,10 @@ Plugin 'VundleVim/Vundle.vim'
 "Future use
 "Plugin 'scrooloose/syntastic'
 "Plugin 'vim-scripts/YankRing.vim'
-"Plugin 'sirver/ultisnips'
-"Plugin 'honza/vim-snippets'
 "Plugin 'tpope/vim-fugitive'
 "Plugin 'airblade/vim-gitgutter'
 "Plugin 'mattn/emmet-vim'
-"Plugin 'plugin/delimitmate'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'vim-scripts/ScrollColors'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'michaeljsmith/vim-indent-object'
@@ -35,6 +33,10 @@ Plugin 'valloric/youcompleteme'
 Plugin 'nvie/vim-togglemouse'
 Plugin 'rking/ag.vim'
 Plugin 'szw/vim-tags'
+Plugin 'sirver/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'chiel92/vim-autoformat'
+Plugin 'editorconfig/editorconfig-vim'
 "JS/TS
 Plugin 'pangloss/vim-javascript'
 Plugin 'helino/vim-json'
@@ -155,12 +157,12 @@ nnoremap te :tabedit<Space>
 nnoremap tm :tabm<Space>
 nnoremap to :tabonly<CR>
 "Quickly insert parenthesis etc.
-inoremap {<CR> {<CR>}<esc>O
-inoremap $( ()<esc>i
-inoremap $[ []<esc>i
-inoremap ${ {}<esc>i
-inoremap $" ""<esc>i
-inoremap $' ''<esc>i
+" inoremap {<CR> {<CR>}<esc>O
+" inoremap $( ()<esc>i
+" inoremap $[ []<esc>i
+" inoremap ${ {}<esc>i
+" inoremap $" ""<esc>i
+" inoremap $' ''<esc>i
 
 "Encoding
 if has("multi_byte")
@@ -231,6 +233,10 @@ let g:tagbar_width = 45
 let g:tagbar_sort = 0
 let g:tagbar_show_linenubmers = -1
 let g:tagbar_compact = 1
+"UltiSnips
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 "YouCompleteMe
 "RefactorgoTo
@@ -274,3 +280,16 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 "Vim-tags
 let g:vim_tags_auto_generate = 0
+
+"Auto-pairs
+let g:AutoPairsShortcutToggle = ''
+let g:AutoPairsShortcutFastWrap = ''
+let g:AutoPairsShortcutJump = ''
+let g:AutoPairsCenterLine = 0
+let g:AutoPairsMultilineClose = 0
+
+"vim-autoformat
+noremap <leader>af :Autoformat<CR>
+
+"Editor config
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
