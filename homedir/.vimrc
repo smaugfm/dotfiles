@@ -138,7 +138,7 @@ nnoremap <leader>sv :so $MYVIMRC<CR>
 "Clear search highliting AND clear search pattern
 nnoremap <leader><space> :noh<CR>:let @/ = ""<CR>
 "Highlight words under cursor BUT without moving the cursor
-nnoremap <leader>h :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+nnoremap <leader>l :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 "If you forget to sudo edit the file
 cmap w!! w !sudo tee % >/dev/null
 " highlight last inserted text
@@ -289,3 +289,18 @@ let g:AutoPairsMultilineClose = 0
 
 "vim-autoformat
 noremap <leader>af :Autoformat<CR>
+
+"Vim-gitgutter
+nmap <leader>hh :GitGutterLineHighlightsToggle<CR>
+nmap <leader>hj <Plug>GitGutterNextHunk
+nmap <leader>hk <Plug>GitGutterPrevHunk
+
+"Git fugitive
+nmap <leader>gs :Gstatus<CR>
+nmap <leader>gd :Gdiff<CR>
+nmap <leader>ga :Git add 
+nmap <leader>gr :Git reset 
+nmap <leader>gc :Gcommit<CR>
+nmap <leader>gp :Gpull<CR>
+nmap <leader>gl :15<CR>
+nmap <leader>gwq :Gwq

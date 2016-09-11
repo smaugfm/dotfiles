@@ -53,4 +53,3 @@
     ht = log --pretty=format:\"%Cred%h%Creset %Cgreen%ad%Creset %C(yellow)%d%Creset | %C(bold blue)[%an]%Creset %s %Cgreen(%cr)%Creset\" --graph --date=local --since=\"7 days ago\"
     type = cat-file -t
     dump = cat-file -p
-    
