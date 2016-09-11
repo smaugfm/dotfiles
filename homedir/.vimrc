@@ -49,6 +49,7 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'rakr/vim-two-firewatch'
 Plugin 'rakr/vim-one'
 Plugin 'jonathanfilip/vim-lucius'
+Plugin 'junegunn/seoul256.vim'
 
 call vundle#end()
 filetype plugin on
@@ -85,6 +86,7 @@ let g:lucius_contrast='normal'
 let g:lucius_contrast_bg='normal'
 let g:lucius_use_bold=0
 let g:lucius_use_underline=0
+" hi LineNr guibg=#afd7ff
 
 "Gui options
 if has('gui_running')
