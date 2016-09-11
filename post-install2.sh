@@ -105,6 +105,7 @@ rm -rf ~/Public
 rm -rf ~/Templates
 mkdir ~/Dev
 mkdir ~/Wallpapers
+mkdir ~/Downloads/Torrents
 
 echo "Update alternatives"
 sudo update-alternatives --install /usr/bin/editor editor /usr/bin/vim 1

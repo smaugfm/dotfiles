@@ -1,4 +1,3 @@
-#!/usr/bin/x-www-browser
 ## Insert mode
 | Command                   | Description
 | -------                   | -----------
