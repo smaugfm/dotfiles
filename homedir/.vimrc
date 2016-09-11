@@ -248,8 +248,8 @@ noremap <leader>rf :GoToReferences
 noremap <leader>rt :GetType
 "RefactorgetgetDoc
 noremap <leader>gd :GetDoc
-"RefactorRename, intentional trailing whitespace
-noremap <leader>rr :RefactorRename 
+"RefactorRename
+noremap <leader>rr :RefactorRename<space>
 let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_filetype_blacklist = {
       \ 'tagbar' : 1,
@@ -298,8 +298,8 @@ nmap <leader>hk <Plug>GitGutterPrevHunk
 "Git fugitive
 nmap <leader>gs :Gstatus<CR>
 nmap <leader>gd :Gdiff<CR>
-nmap <leader>ga :Git add 
-nmap <leader>gr :Git reset 
+nmap <leader>ga :Git add<space>
+nmap <leader>gr :Git reset<space>
 nmap <leader>gc :Gcommit<CR>
 nmap <leader>gp :Gpull<CR>
 nmap <leader>gl :15<CR>
