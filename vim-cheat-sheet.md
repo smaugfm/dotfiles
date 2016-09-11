@@ -15,6 +15,24 @@
 | -------   | -----------
 | `<C-o>zz` | Center screen by cursor and back to insert mode
 
+## Ranges
+| Command             | Lines acted on
+| -------             | --------------
+| `:d`                | Current line.
+| `:.d`               | Current line.
+| `:1d`               | First line.
+| `:$d`               | Last line.
+| `:1,$d`             | All lines.
+| `:%d`               | All lines (syntactic sugar for `1,$`).
+| `:.,5d`             | Current line to line 5.
+| `:,5d`              | Also current line to line 5.
+| `:,+3d`             | Current line and the next 3 lines.
+| `:1,+3d`            | First line to current line + 3.
+| `:,-3d`             | Current line and the last 3 lines. (Vim will prompt you, since this is a reversed range.) |
+| `:3,'xdelete`       | Lines 3 to the line marked by [mark](#marks) x.
+| `:/^foo/,$delete`   | From the next line that starts with "foo" to the end.
+| `:/^foo/+1,$delete` | From the line after the line that starts with "foo" to the end.
+
 ## Normal mode
 | Command      | Description
 | -------      | -----------
