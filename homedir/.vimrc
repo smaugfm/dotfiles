@@ -31,6 +31,13 @@ endif
 "Plug 'vim-scripts/YankRing.vim'
 "Plug 'mattn/emmet-vim'
 
+" Appearance
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'mhinz/vim-startify'
+
 " Edit
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'chiel92/vim-autoformat'
@@ -64,10 +71,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
-
-" Appearance
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 
 " Colors
 Plug 'jonathanfilip/vim-lucius'
@@ -135,6 +138,37 @@ set iminsert=0
 set imsearch=0
 highlight lCursor guifg=NONE guibg=Cyan
 
+" Colorschemes
+" Two-firewatch
+" set background=light
+" colorscheme two-firewatch
+" let g:two_firewatch_italics=1
+" let g:airline_theme='twofirewatch'
+" One
+" set background=light
+" colorscheme one
+" let g:one_allow_italics=1
+" let g:airline_theme='one'
+colorscheme lucius
+set background=light
+let g:lucius_contrast='normal'
+let g:lucius_contrast_bg='normal'
+let g:lucius_use_bold=0
+let g:lucius_use_underline=0
+
+"Gui options
+if has('gui_running')
+    au GUIEnter * simalt ~x
+    set guioptions+=c
+    set guioptions+=e
+    set guioptions+=g
+    set guioptions-=T
+    set guioptions-=r
+    set guioptions-=R
+    set guioptions-=l
+    set guioptions-=L
+    set guifont=Powerline_Consolas:h12:cRUSSIAN
+endif
 
 " ======================================================
 " General mappings
@@ -197,8 +231,8 @@ nnoremap <silent> <C-h> <<
 nnoremap <silent> <C-l> >>
 vnoremap <silent> <C-k> :<C-U>execute "normal! gv:move ".max([0,         line("'<") - 2])."\n"<cr>gv
 vnoremap <silent> <C-j> :<C-U>execute "normal! gv:move ".min([line('$'), line("'>") + 1])."\n"<cr>gv
-vnoremap <silent> <C-h> <gv
 vnoremap <silent> <C-l> >gv
+vnoremap <silent> <C-h> <gv
 vnoremap < <gv
 vnoremap > >gv
 
@@ -335,33 +369,73 @@ nmap <leader>gp :Gpull<CR>
 nmap <leader>gl :15<CR>
 nmap <leader>gwq :Gwq
 
-" Two-firewatch
-" set background=light
-" colorscheme two-firewatch
-" let g:two_firewatch_italics=1
-" let g:airline_theme='twofirewatch'
-" One
-" set background=light
-" colorscheme one
-" let g:one_allow_italics=1
-" let g:airline_theme='one'
-colorscheme lucius
-set background=light
-let g:lucius_contrast='normal'
-let g:lucius_contrast_bg='normal'
-let g:lucius_use_bold=0
-let g:lucius_use_underline=0
+" vim-devicon
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 
-"Gui options
-if has('gui_running')
-    au GUIEnter * simalt ~x
-    set guioptions+=c
-    set guioptions+=e
-    set guioptions+=g
-    set guioptions-=T
-    set guioptions-=r
-    set guioptions-=R
-    set guioptions-=l
-    set guioptions-=L
-    set guifont=Powerline_Consolas:h12:cRUSSIAN
-endif
+" NERDTree
+" clone vim :h when NERDtree is last window
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:loaded_netrw       = 1
+let g:loaded_netrwPlugin = 0
+
+" Startup of vim
+function! StartUp()
+    if 0 == argc()
+        Startify | NERDTree | wincmd p
+    else
+        if (filereadable(glob(argv(0))))
+            execute 'e' glob(argv(0))
+        else
+            Startify
+            execute 'NERDTree' glob(argv(0))
+            wincmd p
+        endif
+    endif
+endfunction
+autocmd VimEnter * call StartUp()
+
+
+" vim-startify
+let g:startify_files_number = 5
+function! s:filter_header(lines) abort
+    let longest_line   = max(map(copy(a:lines), 'len(v:val)'))
+    let centered_lines = map(copy(a:lines), 'repeat(" ", (&columns / 3) - (longest_line / 3)) . v:val')
+    return centered_lines
+endfunction
+
+autocmd User Startified setlocal buftype=
+let g:startify_disable_at_vimenter = 0
+let g:ascii = [
+            \ '                                         ',
+            \ '            -/oyhhddddhhso:.             ',
+            \ '         :hNMMMMMMMMMMMMMMMMmy:          ',
+            \ '       :dMMMMMMMMMMMMMMMMMMMMMMNo`       ',
+            \ '    `+dMMMMMMMMMMMMMMMMMMMMMMMMMMN+      ',
+            \ '   -mMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd`    ',
+            \ '  `NMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMm`   ',
+            \ '  +MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMy   ',
+            \ '  sMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMm   ',
+            \ '  sMM+ohMMMMMMMMMMMMMMMMMMMMMMMMdyohMm   ',
+            \ '  +MM    :smMMMMMMMMMMMMMMMMNy:`   oMs   ',
+            \ '  .MM+      -odMMMMMMMMMMNy/      `mM-   ',
+            \ '   yMN/`       `:ohMMms/.        .hMh    ',
+            \ '    sMMMdhso+//+shmsdmdyo//+osydNMMM-    ',
+            \ '    .yMMMMMMMMMMMM+`o`mMMMMMMMMMMMMm     ',
+            \ '    sMMMMMMMmmMMMs yN-.MMMMMMNmNMMMM:    ',
+            \ '    yMMMMh/` .MMMMhMMdmMMMMh`   mMMy`    ',
+            \ '     oy/++.  .NMMMMMMMNhNMMy   .s+.      ',
+            \ '              dMmsMM:Mm-NMN.             ',
+            \ '              oMNoMM/Mm+MM+              ',
+            \ '              +MMoMM+MNoMM/              ',
+            \ '              /MM+MMoMmsMM:              ',
+            \ '              :MM+MM+MmyMM.              ',
+            \ '              .MM:MM/MhyMM               ',
+            \ '               NM-MN:MsyMm               ',
+            \ '                .`+:`o.-/.               ',
+            \ '                                         ',
+            \]
+
+let g:startify_custom_header = s:filter_header(g:ascii) + s:filter_header(startify#fortune#quote())
