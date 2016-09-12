@@ -78,10 +78,6 @@ cd vim
 make VIMRUNTIMEDIR=/usr/share/vim/vim74
 sudo checkinstall
 
-yes | git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
-cd ~/.vim/bundle/vimproc.vim && make
-
 # Build YouCompleteMe
 cd /tmp
 wget -O clang.tar.xz http://llvm.org/releases/3.8.1/clang+llvm-3.8.1-$(uname -p)-linux-gnu-ubuntu-16.04.tar.xz
