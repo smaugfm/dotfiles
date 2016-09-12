@@ -2,7 +2,7 @@
 AntiAliasFonts=true
 BoldIntense=false
 ColorScheme=DarkPastels
-Font=Liberation Mono for Powerline,12,-1,5,50,0,0,0,0,0
+Font=LiterationMonoPowerline Nerd Font,12,-1,5,50,0,0,0,0,0
 
 [Cursor Options]
 CursorShape=0
