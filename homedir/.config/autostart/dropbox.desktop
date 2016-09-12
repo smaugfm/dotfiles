@@ -1,11 +1,16 @@
 [Desktop Entry]
 Name=Dropbox
-X-GNOME-Autostart-Delay=10
 GenericName=File Synchronizer
 Comment=Sync your files across computers and to the web
-Exec=dropbox start -i 
+Exec=dropbox start -i
 Terminal=false
 Type=Application
 Icon=dropbox
 Categories=Network;FileTransfer;
 StartupNotify=false
+X-GNOME-Autostart-enabled=true
+NoDisplay=false
+Hidden=false
+Name[en_US]=Dropbox
+Comment[en_US]=Sync your files across computers and to the web
+X-GNOME-Autostart-Delay=7

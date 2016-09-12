@@ -747,6 +747,9 @@ type/^Parity\ Archive\ Volume\ Set
 # Markdown
 shell/.md
     Open=x-www-browser %f
+# Txt
+shell/.txt
+    Open=xed %f
 
 ### Default ###
 

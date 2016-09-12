@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Terminal=false
+Name=Telegram
+X-GNOME-Autostart-Delay=5
+Comment=Messaging app
+Encoding=UTF-8
+Exec=telegram 
