@@ -391,7 +391,6 @@ function! StartUp()
         else
             Startify
             execute 'NERDTree' glob(argv(0))
-            wincmd p
         endif
     endif
 endfunction
