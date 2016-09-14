@@ -9,6 +9,15 @@ eval $(cat rootdir/etc/profile.d/umask.sh)
 sudo echo "Starting..."
 sleep 2
 
+echo "Setting up folders"
+sleep 2
+rm -rf ~/Public
+rm -rf ~/Templates
+mkdir ~/Dev
+mkdir -p ~/Dev/go/src/github.com/smaugfm
+mkdir ~/Wallpapers
+mkdir ~/Downloads/Torrents
+
 echo "Installing Telegram"
 sleep 2
 cd /tmp
@@ -40,11 +49,15 @@ sleep 2
 cd /tmp
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.7/install.sh | bash
 nvm install node
-npm install -g typescript
-npm install -g ember-cli
-npm instlal -g electron-prebuilt
-npm install -g typescript-formatter
-npm install -g js-beautify
+npm install -g typescript ember-cli electron-prebuilt typescript-formatter js-beautify
+
+echo "Installing go"
+sleep 2
+cd /tmp
+wget https://storage.googleapis.com/golang/go1.7.1.linux-amd64.tar.gz
+tar -xvf go*.tar.gz
+sudo chown -R root:root ./go
+sudo mv go /usr/local
 
 echo "Installing dotfiles"
 sleep 2
@@ -76,6 +89,9 @@ cd vim
 make VIMRUNTIMEDIR=/usr/share/vim/vim74
 sudo checkinstall
 
+vim +PlugInstall +qall
+vim +GoInstallBinaries +qall
+
 # Build YouCompleteMe
 cd /tmp
 wget -O clang.tar.xz http://llvm.org/releases/3.8.1/clang+llvm-3.8.1-$(uname -p)-linux-gnu-ubuntu-16.04.tar.xz
@@ -91,15 +107,6 @@ cd ~/.vim/bundle/youcompleteme/third_party/ycmd/third_party/gocode
 go build
 cd ~/.vim/bundle/youcompleteme/third_party/ycmd/third_party/tern_runtime
 npm install --production
-
-
-echo "Setting up folders"
-sleep 2
-rm -rf ~/Public
-rm -rf ~/Templates
-mkdir ~/Dev
-mkdir ~/Wallpapers
-mkdir ~/Downloads/Torrents
 
 echo "Update alternatives"
 sudo update-alternatives --install /usr/bin/editor editor /usr/bin/vim 1

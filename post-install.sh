@@ -24,11 +24,11 @@ sudo apt-get -y install konsole mc git gparted openssh-server \
     transmission goldendict virtualbox virtualbox-qt
 
 # Install dev
-sudo apt-get -y install python-dev python3-dev mono-complete fsharp golang-go\
+sudo apt-get -y install python-dev python3-dev mono-complete fsharp \
     build-essential cmake exfat-utils exfat-fuse dkms linux-headers-generic dconf-tools ctags \
     dh-autoreconf autotools-dev debhelper ffmpeg
 
-# Install vim dependecies
+# Install vim build dependecies
 sudo apt-get -y install libncurses5-dev libgnome2-dev libgnomeui-dev \
     libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
     libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev python3-dev

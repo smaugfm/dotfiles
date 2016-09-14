@@ -62,6 +62,7 @@ Plug 'fsharp/vim-fsharp', {'for': 'fsharp'}
 Plug 'helino/vim-json', {'for': ['typescript', 'json']}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+Plug 'fatih/vim-go', {'for': 'go'}
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -391,6 +392,7 @@ function! StartUp()
         else
             Startify
             execute 'NERDTree' glob(argv(0))
+            wincmd p
         endif
     endif
 endfunction
