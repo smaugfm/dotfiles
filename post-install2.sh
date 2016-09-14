@@ -35,18 +35,16 @@ cd /tmp
 wget http://download.teamviewer.com/download/teamviewer_i386.deb
 sudo dpkg -i teamviewer* || sudo apt-get -fy install
 
-echo "Installing node and typescript"
+echo "Installing node"
 sleep 2
 cd /tmp
-sudo curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-sudo apt-get install -y nodejs
-wget https://raw.githubusercontent.com/glenpike/npm-g_nosudo/master/npm-g-nosudo.sh
-chmod +x npm-g-nosudo.sh
-yes | ./npm-g-nosudo.sh -v
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.7/install.sh | bash
+nvm install node
 npm install -g typescript
-npm install -g js-beautify
+npm install -g ember-cli
 npm instlal -g electron-prebuilt
 npm install -g typescript-formatter
+npm install -g js-beautify
 
 echo "Installing dotfiles"
 sleep 2
