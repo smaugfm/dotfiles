@@ -98,7 +98,7 @@ set breakindent
 set visualbell
 set tabstop=4 shiftwidth=4
 set shiftround "round indent to shiftwidth
-set expandtab smarttab
+set expandtab
 set backspace=indent,eol,start
 set timeoutlen=500
 set hlsearch
@@ -211,9 +211,11 @@ inoremap <C-k> <C-o>k
 
 " F-keys
 noremap <F3> :NERDTreeToggle<CR>
-noremap <F10> :TagbarToggle<CR>
-noremap <F5> :make<CR>
+noremap <F4> :TagbarToggle<CR>
 noremap <F1> :TagsGenerate
+
+" Build
+noremap <leader>b :make<CR>
 
 " Maps C-SPACE for tag search
 nnoremap <NUL> :CtrlPTag<CR>
@@ -239,21 +241,21 @@ vnoremap > >gv
 
 " Colors
 if $TERM == "xterm-256color"
-    set t_Co=256
+set t_Co=256
 endif
 set termguicolors
 syntax enable
 
 " Google it
 function! s:goog(q)
-    let url = 'https://www.google.co.kr/search?q='
-    " Excerpt from vim-unimpared
-    let q = substitute(
-                \ '"'.a:q.'"',
-                \ '[^A-Za-z0-9_.~-]',
-                \ '\="%".printf("%02X", char2nr(submatch(0)))',
-                \ 'g')
-    call system('open ' . url . q)
+let url = 'https://www.google.co.kr/search?q='
+" Excerpt from vim-unimpared
+let q = substitute(
+            \ '"'.a:q.'"',
+            \ '[^A-Za-z0-9_.~-]',
+            \ '\="%".printf("%02X", char2nr(submatch(0)))',
+            \ 'g')
+call system('open ' . url . q)
 endfunction
 
 vnoremap <leader>? "gy:call <SID>goog(@g)<cr>
@@ -267,7 +269,7 @@ nnoremap <leader>ag :Ag
 
 " Python
 if has("win32")
-    autocmd FileType python :nnoremap <F5> :!start cmd /k "python %" & pause<CR>
+autocmd FileType python :nnoremap <F5> :!start cmd /k "python %" & pause<CR>
 else
     autocmd FileType python :nnoremap <F5> :!python %<CR>
 endif
@@ -276,10 +278,8 @@ let python_highlight_all = 1
 " Markdown
 if has("win32")
     autocmd FileType markdown :nnoremap <F5> :!start chrome %<CR>
-    autocmd FileType markdown :nnoremap <S-F5> :!start chrome https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet<CR>
 else
     autocmd FileType markdown :nnoremap <F5> :!google-chrome %<CR>
-    autocmd FileType markdown :nnoremap <S-F5> :! google-chrome https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet<CR>
 endif
 autocmd FileType markdown :AirlineToggleWhitespace
 let g:vim_markdown_folding_disabled = 1
@@ -289,6 +289,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 "Show buffer number in tabline
 let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#virtualenv#enabled = 0
 
 " Tagbar
 let g:tagbar_width = 45
@@ -303,18 +304,13 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " YouCompleteMe
 "
-" RefactorgoTo
-noremap <leader>rg :GoTo
-noremap <leader>q :GoToDeclaration
-noremap <leader>w :GoToImplementation
-" RefactorgotoreFerences
-noremap <leader>rf :GoToReferences
-" RefactorgetType
-noremap <leader>rt :GetType
-" RefactorgetgetDoc
-noremap <leader>gd :GetDoc
-" RefactorRename
-noremap <leader>rr :RefactorRename<space>
+noremap <leader>ro :YcmCompleter GoTo<CR>
+noremap <leader>rq :YcmCompleter GoToDeclaration<cr>
+noremap <leader>rw :YcmCompleter GoToImplementation<cr>
+noremap <leader>rf :YcmCompleter GoToReferences<cr>
+noremap <leader>rt :YcmCompleter GetType<cr>
+noremap <leader>rd :YcmCompleter GetDoc<cr>
+noremap <leader>rr :YcmCompleter RefactorRename<space><cr>
 let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_filetype_blacklist = {
             \ 'tagbar' : 1,
@@ -356,25 +352,42 @@ let g:AutoPairsMultilineClose = 0
 noremap <leader>af :Autoformat<CR>
 
 " vim-gitgutter
-nmap <leader>hh :GitGutterLineHighlightsToggle<CR>
-nmap <leader>hj <Plug>GitGutterNextHunk
-nmap <leader>hk <Plug>GitGutterPrevHunk
+noremap <leader>hh :GitGutterLineHighlightsToggle<CR>
+noremap <leader>hj <Plug>GitGutterNextHunk
+noremap <leader>hk <Plug>GitGutterPrevHunk
 
 " vim-fugitive
-nmap <leader>gs :Gstatus<CR>
-nmap <leader>gd :Gdiff<CR>
-nmap <leader>ga :Git add<space>
-nmap <leader>gr :Git reset<space>
-nmap <leader>gc :Gcommit<CR>
-nmap <leader>gp :Gpull<CR>
-nmap <leader>gl :15<CR>
-nmap <leader>gwq :Gwq
+noremap <leader>gs :Gstatus<CR>
+noremap <leader>gd :Gdiff<CR>
+noremap <leader>ga :Git add<space>
+noremap <leader>gr :Git reset<space>
+noremap <leader>gc :Gcommit<CR>
+noremap <leader>gp :Gpull<CR>
+noremap <leader>gco :Git checkout
+noremap <leader>gwq :Gwq
 
 " vim-devicon
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+
+" vim-go
+autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4 sts=4
+autocmd FileType go :noremap <leader>b <Plug>(go-build)
+autocmd FileType go :noremap <F5> :<Plug>(go-run)
+autocmd FileType go :noremap <leader>rt :<Plug>(go-info)
+autocmd FileType go :noremap <leader>rgt :<Plug>(go-describe)
+autocmd FileType go :noremap <F2> <Plug>(go-vet)
+autocmd FileType go :noremap <S-F2> :GoMetaLinter<cr>
+autocmd FileType go :noremap <leader>rw <Plug>(go-implements)
+autocmd FileType go :noremap <leader>rf <Plug>(go-referrers)
+autocmd FileType go :noremap <leader>rr <Plug>(go-rename)
+autocmd FileType go :noremap <leader>rd <Plug>(go-doc)
+autocmd FileType go :noremap <leader>rgd <Plug>(go-doc-browser)
+autocmd FileType go :noremap <leader>ri <Plug>(go-imports)
+autocmd FileType go :noremap <leader>rt <Plug>(go-test)
+autocmd FileType go :noremap <leader>rst <Plug>(go-test-func)
 
 " NERDTree
 " clone vim :h when NERDtree is last window
@@ -397,7 +410,6 @@ function! StartUp()
     endif
 endfunction
 autocmd VimEnter * call StartUp()
-
 
 " vim-startify
 let g:startify_files_number = 5
