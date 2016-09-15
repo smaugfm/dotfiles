@@ -34,9 +34,11 @@ endif
 " Appearance
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
+Plug 'itchyny/lightline.vim'
+Plug 'taohex/lightline-buffer'
 
 " Edit
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -53,6 +55,7 @@ if has("unix")
     Plug 'szw/vim-tags'
     Plug 'valloric/youcompleteme'
 endif
+
 
 " Languages
 Plug 'HerringtonDarkholme/yats.vim', {'for': 'javascript'}
@@ -172,6 +175,199 @@ if has('gui_running')
 endif
 
 " ======================================================
+" Lightline
+" ======================================================
+
+set noshowmode
+set showtabline=2
+let g:lightline = {
+            \ 'colorscheme': 'wombat',
+            \ 'active': {
+            \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'fugitive', 'filename', 'modified'], ['ctrlpmark'], ['go', 'goinfo'] ],
+            \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+            \ },
+            \ 'inactive': {
+            \   'left': [ [ 'filename' ], [ 'go' ] ],
+            \   'right': [ [ 'lineinfo' ], [ 'percent' ] ]
+            \ },
+            \ 'tabline': {
+            \   'left': [ [ 'bufferinfo', 'bufferbefore', 'buffercurrent', 'bufferafter' ], ],
+            \   'right': [ [ 'tabs' ], ],
+            \ },
+            \ 'component_function': {
+            \   'bufferbefore': 'lightline#buffer#bufferbefore',
+            \   'bufferafter': 'lightline#buffer#bufferafter',
+            \   'bufferinfo': 'lightline#buffer#bufferinfo',
+            \   'readonly': 'LightLineReadonly',
+            \   'lineinfo': 'LightLineInfo',
+            \   'percent': 'LightLinePercent',
+            \   'modified': 'LightLineModified',
+            \   'go': 'LightLineGo',
+            \   'goinfo': 'LightLineGoInfo',
+            \   'fugitive': 'LightLineFugitive',
+            \   'filename': 'LightLineFilename',
+            \   'fileformat': 'LightLineFileformat',
+            \   'filetype': 'LightLineFiletype',
+            \   'fileencoding': 'LightLineFileencoding',
+            \   'mode': 'LightLineMode',
+            \   'ctrlpmark': 'CtrlPMark',
+            \ },
+            \ 'component_expand': {
+            \   'syntastic': 'SyntasticStatuslineFlag',
+            \   'buffercurrent': 'lightline#buffer#buffercurrent2',
+            \ },
+            \ 'component_type': {
+            \   'syntastic': 'error',
+            \ },
+            \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+            \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+            \ }
+
+function! LightLineReadonly()
+    return &ft !~? 'help' && &readonly ? "\ue0a2" : ''
+endfunction
+
+function! LightLineInfo()
+    return winwidth(0) > 60 ? printf("%3d:%-2d", line('.'), col('.')) : ''
+endfunction
+
+function! LightLinePercent()
+    return &ft =~? 'vimfiler' ? '' : (100 * line('.') / line('$')) . '%'
+endfunction
+
+function! LightLineModified()
+    return &ft =~ 'help' || expand('%:t') =~ 'Tagbar|ControlP|Gundo|NERD|vimfiler|unite|vimshell' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightLineGo()
+    return exists('*go#jobcontrol#Statusline') ? go#jobcontrol#Statusline() : ''
+endfunction
+
+function! LightLineGoInfo()
+    return exists('*go#complete#GetInfo') ? go#complete#GetInfo() : ''
+endfunction
+
+function! LightLineFugitive()
+    try
+        if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
+            let mark = "\ue0a0 "  " edit here for cool mark
+            let branch = fugitive#head()
+            return branch !=# '' ? mark.branch : ''
+        endif
+    catch
+    endtry
+    return ''
+endfunction
+
+function! LightLineFilename()
+    let fname = expand('%:t')
+    return fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
+                \ fname == '__Tagbar__' ? g:lightline.fname :
+                \ fname =~ '__Gundo\|NERD_tree' ? '' :
+                \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
+                \ &ft == 'unite' ? unite#get_status_string() :
+                \ &ft == 'vimshell' ? vimshell#get_status_string() :
+                \ ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+                \ ('' != fname ? fname : '[No Name]') .
+                \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+endfunction
+
+function! LightLineFileformat()
+    return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightLineFiletype()
+    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightLineFileencoding()
+    return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+endfunction
+
+function! LightLineMode()
+    let fname = expand('%:t')
+    return fname == '__Tagbar__' ? 'Tagbar' :
+                \ fname == 'ControlP' ? 'CtrlP' :
+                \ fname == '__Gundo__' ? 'Gundo' :
+                \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
+                \ fname =~ 'NERD_tree' ? 'NERDTree' :
+                \ &ft == 'unite' ? 'Unite' :
+                \ &ft == 'vimfiler' ? 'VimFiler' :
+                \ &ft == 'vimshell' ? 'VimShell' :
+                \ winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+
+function! CtrlPMark()
+    if expand('%:t') =~ 'ControlP' && has_key(g:lightline, 'ctrlp_item')
+        call lightline#link('iR'[g:lightline.ctrlp_regex])
+        return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
+                    \ , g:lightline.ctrlp_next], 0)
+    else
+        return ''
+    endif
+endfunction
+
+let g:ctrlp_status_func = {
+            \ 'main': 'CtrlPStatusFunc_1',
+            \ 'prog': 'CtrlPStatusFunc_2',
+            \ }
+
+function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
+    let g:lightline.ctrlp_regex = a:regex
+    let g:lightline.ctrlp_prev = a:prev
+    let g:lightline.ctrlp_item = a:item
+    let g:lightline.ctrlp_next = a:next
+    return lightline#statusline(0)
+endfunction
+
+function! CtrlPStatusFunc_2(str)
+    return lightline#statusline(0)
+endfunction
+
+let g:tagbar_status_func = 'TagbarStatusFunc'
+
+function! TagbarStatusFunc(current, sort, fname, ...) abort
+    let g:lightline.fname = a:fname
+    return lightline#statusline(0)
+endfunction
+
+augroup AutoSyntastic
+    autocmd!
+    autocmd BufWritePost *.c,*.cpp call s:syntastic()
+augroup END
+function! s:syntastic()
+    SyntasticCheck
+    call lightline#update()
+endfunction
+
+let g:unite_force_overwrite_statusline = 0
+let g:vimfiler_force_overwrite_statusline = 0
+let g:vimshell_force_overwrite_statusline = 0
+
+" Lightline-buffer settings
+let g:lightline_buffer_logo = "# "
+let g:lightline_buffer_readonly_icon = ''
+let g:lightline_buffer_modified_icon = '+'
+let g:lightline_buffer_git_icon = ' '
+let g:lightline_buffer_ellipsis_icon = '..'
+let g:lightline_buffer_expand_left_icon = '◀ '
+let g:lightline_buffer_expand_right_icon = ' ▶'
+let g:lightline_buffer_active_buffer_left_icon = ''
+let g:lightline_buffer_active_buffer_right_icon = ''
+let g:lightline_buffer_separator_icon = ' '
+
+let g:lightline_buffer_show_bufnr = 1
+let g:lightline_buffer_rotate = 0
+let g:lightline_buffer_fname_mod = ':t'
+let g:lightline_buffer_excludes = ['vimfiler', 'NERD_tree', '__Tagbar__', 'ControlP']
+
+let g:lightline_buffer_maxflen = 10
+let g:lightline_buffer_maxfextlen = 3
+let g:lightline_buffer_minflen = 16
+let g:lightline_buffer_minfextlen = 3
+let g:lightline_buffer_reservelen = 20
+
+" ======================================================
 " General mappings
 " ======================================================
 
@@ -241,21 +437,21 @@ vnoremap > >gv
 
 " Colors
 if $TERM == "xterm-256color"
-set t_Co=256
+    set t_Co=256
 endif
 set termguicolors
 syntax enable
 
 " Google it
 function! s:goog(q)
-let url = 'https://www.google.co.kr/search?q='
-" Excerpt from vim-unimpared
-let q = substitute(
-            \ '"'.a:q.'"',
-            \ '[^A-Za-z0-9_.~-]',
-            \ '\="%".printf("%02X", char2nr(submatch(0)))',
-            \ 'g')
-call system('open ' . url . q)
+    let url = 'https://www.google.co.kr/search?q='
+    " Excerpt from vim-unimpared
+    let q = substitute(
+                \ '"'.a:q.'"',
+                \ '[^A-Za-z0-9_.~-]',
+                \ '\="%".printf("%02X", char2nr(submatch(0)))',
+                \ 'g')
+    call system('open ' . url . q)
 endfunction
 
 vnoremap <leader>? "gy:call <SID>goog(@g)<cr>
@@ -269,7 +465,7 @@ nnoremap <leader>ag :Ag
 
 " Python
 if has("win32")
-autocmd FileType python :nnoremap <F5> :!start cmd /k "python %" & pause<CR>
+    autocmd FileType python :nnoremap <F5> :!start cmd /k "python %" & pause<CR>
 else
     autocmd FileType python :nnoremap <F5> :!python %<CR>
 endif
@@ -386,8 +582,7 @@ autocmd FileType go :noremap <leader>rr <Plug>(go-rename)
 autocmd FileType go :noremap <leader>rd <Plug>(go-doc)
 autocmd FileType go :noremap <leader>rgd <Plug>(go-doc-browser)
 autocmd FileType go :noremap <leader>ri <Plug>(go-imports)
-autocmd FileType go :noremap <leader>rt <Plug>(go-test)
-autocmd FileType go :noremap <leader>rst <Plug>(go-test-func)
+autocmd FileType go :noremap <leader>rt <Plug>(go-info)
 
 " NERDTree
 " clone vim :h when NERDtree is last window
