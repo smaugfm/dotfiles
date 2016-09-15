@@ -38,9 +38,12 @@ sudo apt-get -y install unace rar unrar zip unzip lzip lunzip xz-utils p7zip-ful
 sudo apt-get -y autoremove
 sudo apt-get -y autoclean
 
-echo "Installing node"
-sleep 2
-cd /tmp
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.7/install.sh | bash
+read -p "Continues to the rest of the post-installation? (y|n)" -n 1 -r
+echo    # (optional) move to a new line
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+    exit 1
+else
+    ./post-install2.sh
+fi
 
-read -n 1 -s -p "Close this terminal, open a new one, run post-install2.sh"

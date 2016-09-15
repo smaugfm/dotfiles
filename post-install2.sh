@@ -7,12 +7,6 @@ set -e
 sudo echo "Starting..."
 sleep 2
 
-echo "Installing node"
-sleep 2
-
-nvm install node
-npm install -g typescript ember-cli electron-prebuilt typescript-formatter js-beautify
-
 echo "Setting up folders"
 sleep 2
 rm -rf ~/Public
@@ -47,6 +41,15 @@ sleep 2
 cd /tmp
 wget http://download.teamviewer.com/download/teamviewer_i386.deb
 sudo dpkg -i teamviewer* || sudo apt-get -fy install
+
+echo "Installing node"
+sleep 2
+cd /tmp
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.7/install.sh | bash
+. ~/.bashrc
+. ~/.nvm/nvm.sh
+nvm install node
+npm install -g typescript ember-cli electron-prebuilt typescript-formatter js-beautify
 
 echo "Installing go"
 sleep 2
