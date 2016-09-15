@@ -97,13 +97,13 @@ cd ~ && mkdir ycm_temp && cd ~/ycm_temp
 tar -C . -xvf /tmp/clang.tar.xz
 mv -v clang* llvm_root_dir
 cd ~ && mkdir ycm_build && cd ~/ycm_build
-cmake -G "Unix Makefiles" -DPATH_TO_LLVM_ROOT=~/ycm_temp/llvm_root_dir . ~/.vim/bundle/youcompleteme/third_party/ycmd/cpp
+cmake -G "Unix Makefiles" -DPATH_TO_LLVM_ROOT=~/ycm_temp/llvm_root_dir . ~/.vim/plugins/youcompleteme/third_party/ycmd/cpp
 cmake --build . --target ycm_core --config Release
-#cd ~/.vim/bundle/youcompleteme/third_party/ycmd/third_party/OmniSharpServer
+#cd ~/.vim/plugins/youcompleteme/third_party/ycmd/third_party/OmniSharpServer
 #xbuild
-cd ~/.vim/bundle/youcompleteme/third_party/ycmd/third_party/gocode
+cd ~/.vim/plugins/youcompleteme/third_party/ycmd/third_party/gocode
 go build
-cd ~/.vim/bundle/youcompleteme/third_party/ycmd/third_party/tern_runtime
+cd ~/.vim/plugins/youcompleteme/third_party/ycmd/third_party/tern_runtime
 npm install --production
 
 echo "Update alternatives"
