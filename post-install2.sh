@@ -84,9 +84,8 @@ cd vim
             --enable-pythoninterp \
             --enable-python3interp \
             --enable-gui=auto \
-            --enable-cscope \
-            --prefix=/usr
-make VIMRUNTIMEDIR=/usr/share/vim/vim74
+            --enable-cscope
+make
 sudo checkinstall
 
 vim +PlugInstall +qall
