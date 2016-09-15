@@ -89,7 +89,6 @@ make
 sudo checkinstall
 
 vim +PlugInstall +qall
-vim +GoInstallBinaries +qall
 
 # Build YouCompleteMe
 cd /tmp
