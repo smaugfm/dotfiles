@@ -48,6 +48,7 @@ echo "Installing node"
 sleep 2
 cd /tmp
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.7/install.sh | bash
+source ~/.bashrc
 nvm install node
 npm install -g typescript ember-cli electron-prebuilt typescript-formatter js-beautify
 
