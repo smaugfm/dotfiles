@@ -119,8 +119,6 @@ set nobackup
 set wildmode=longest,list,full " visual autocomplete for command menu
 set wildmenu " visual autocomplete for command menu
 set lazyredraw " redraw only when we need to.
-set list
-set listchars=tab:\|\ ,
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp1251,cp866,koi8-r,latin1
 set diffopt=filler,vertical
@@ -570,19 +568,22 @@ let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 
 " vim-go
 autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4 sts=4
-autocmd FileType go :noremap <leader>b <Plug>(go-build)
-autocmd FileType go :noremap <F5> :<Plug>(go-run)
-autocmd FileType go :noremap <leader>rt :<Plug>(go-info)
-autocmd FileType go :noremap <leader>rgt :<Plug>(go-describe)
-autocmd FileType go :noremap <F2> <Plug>(go-vet)
+autocmd FileType go :noremap <leader>b :GoBuild<cr>
+autocmd FileType go :noremap <F5> :GoRun<cr>
+autocmd FileType go :noremap <leader>rt :GoInfo<cr>
+autocmd FileType go :noremap <leader>rgt :GoDescribe<cr>
+autocmd FileType go :noremap <F2> :GoVet<cr>
 autocmd FileType go :noremap <S-F2> :GoMetaLinter<cr>
-autocmd FileType go :noremap <leader>rw <Plug>(go-implements)
-autocmd FileType go :noremap <leader>rf <Plug>(go-referrers)
-autocmd FileType go :noremap <leader>rr <Plug>(go-rename)
-autocmd FileType go :noremap <leader>rd <Plug>(go-doc)
-autocmd FileType go :noremap <leader>rgd <Plug>(go-doc-browser)
-autocmd FileType go :noremap <leader>ri <Plug>(go-imports)
-autocmd FileType go :noremap <leader>rt <Plug>(go-info)
+autocmd FileType go :noremap <leader>rw :GoImplements<cr>
+autocmd FileType go :noremap <leader>rf :GoReferrers<cr>
+autocmd FileType go :noremap <leader>rr :GoRename<cr>
+autocmd FileType go :noremap <leader>rd :GoDoc<cr>
+autocmd FileType go :noremap <leader>rgd :GoDocBrowser<cr>
+let g:go_auto_type_info = 1
+let g:go_fmt_autosave = 0
+let g:go_def_reuse_buffer = 1
+let g:go_highlight_types = 1
+let g:go_highlight_format_strings = 1
 
 " NERDTree
 " clone vim :h when NERDtree is last window
