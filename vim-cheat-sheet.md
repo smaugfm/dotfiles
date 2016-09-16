@@ -15,6 +15,23 @@
 | -------   | -----------
 | `<C-o>zz` | Center screen by cursor and back to insert mode
 
+## Vim-go
+| Command       | Description
+| -------       | -----------
+| `<F5>`        | Run
+| `<leader>b`   | Build with :GoBuild
+| `<leader>rb`  | Build with console go build
+| `<leader>rt`  | Show syntacits properties under cursor :GoDescribe
+| `<F2>`        | :GoVet
+| `<S-F2>`      | :GoMetaLinter
+| `<leader>rw`  | :GoImplements
+| `<leader>rf`  | :GoReferrers
+| `<leader>rr`  | :GoRename
+| `<leader>rd`  | :GoDoc
+| `<leader>rgd` | :GoDocBrowser
+| `<leader>rh`  | Highlihgt semantically word under cursor :GoSameIdsAutoToggle
+
+
 ## Ranges
 | Command             | Lines acted on
 | -------             | --------------
