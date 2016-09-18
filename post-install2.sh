@@ -51,6 +51,12 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.7/install.sh | b
 nvm install node
 npm install -g typescript ember-cli electron-prebuilt typescript-formatter js-beautify
 
+echo "Install VSCode"
+sleep 2
+cd /tmp
+wget -O code.deb code_1.5.2-1473686317_amd64
+sudo apt-get install ./code*.deb
+
 echo "Installing go"
 sleep 2
 cd /tmp

@@ -10,6 +10,7 @@ sleep 2
 # Repos and ppas
 sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
 sudo add-apt-repository -y ppa:n-muench/burg
+sudo add-apt-repository -y ppa:atareao/telegram
 
 # Update and upgrage
 sudo apt-get -y --force-yes update
@@ -19,7 +20,7 @@ sudo apt-get -y --force-yes upgrade
 sudo apt-get -y install konsole mc git gparted openssh-server \
     silversearcher-ag thunderbird grub-customizer kdiff3 keepass2 checkinstall \
     gnome-calculator audacity audacious htop hardinfo pinta conky libpam-google-authenticator \
-    transmission goldendict virtualbox virtualbox-qt workrave
+    transmission goldendict virtualbox virtualbox-qt telegram workrave
 
 # Install dev
 sudo apt-get -y install python-dev python3-dev mono-complete fsharp \
