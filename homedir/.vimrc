@@ -38,7 +38,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
 "Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
 Plug 'itchyny/lightline.vim'
-Plug 'bling/vim-bufferline'
+Plug 'taohex/lightline-buffer'
 
 " Edit
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -50,7 +50,6 @@ Plug 'nvie/vim-togglemouse'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'schickling/vim-bufonly'
 if has("unix")
     Plug 'rking/ag.vim'
     Plug 'szw/vim-tags'
@@ -163,8 +162,8 @@ let g:lucius_use_underline=0
 "Gui options
 if has('gui_running')
     au GUIEnter * simalt ~x
-    set guioptions+=e
     set guioptions+=c
+    set guioptions+=e
     set guioptions+=g
     set guioptions-=T
     set guioptions-=r
@@ -183,7 +182,7 @@ set showtabline=2
 let g:lightline = {
             \ 'colorscheme': 'lucius',
             \ 'active': {
-            \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'fugitive', 'filename', 'modified'], ['ctrlpmark'], ['go', 'goinfo'] ],
+            \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'fugitive', 'filename', 'modified'], ['ctrlpmark'], ['go'] ],
             \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
             \ },
             \ 'inactive': {
@@ -191,8 +190,8 @@ let g:lightline = {
             \   'right': [ [ 'lineinfo' ], [ 'percent' ] ]
             \ },
             \ 'tabline': {
-            \   'left': [ [ 'bufferline' ] ],
-            \   'right': [ [ 'tabs' ] ],
+            \   'left': [ [ 'bufferline' ], ],
+            \   'right': [ [ 'tabs' ], ],
             \ },
             \ 'component_function': {
             \   'readonly': 'LightLineReadonly',
@@ -215,12 +214,11 @@ let g:lightline = {
             \ },
             \ 'component_type': {
             \   'syntastic': 'error',
-            \   'bufferline': 'tabsel',
+			\   'bufferline': 'tabsel',
             \ },
             \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
             \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
             \ }
-
 " vim-bufferline
 let g:bufferline_echo = 0
 let g:bufferline_active_buffer_left = ''
@@ -229,9 +227,10 @@ let g:bufferline_modified = ' +'
 let g:bufferline_excludes = ['NERD_tree']
 
 function! LightLineBufferline()
-  call bufferline#refresh_status()
-  return [ g:bufferline_status_info.before, g:bufferline_status_info.current, g:bufferline_status_info.after]
+	call bufferline#refresh_status()
+	return [ g:bufferline_status_info.before, g:bufferline_status_info.current, g:bufferline_status_info.after]
 endfunction
+
 
 function! LightLineReadonly()
     return &ft !~? 'help' && &readonly ? "\ue0a2" : ''
@@ -287,8 +286,7 @@ function! LightLineFileformat()
 endfunction
 
 function! LightLineFiletype()
-    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : '') : ''
 endfunction
 
 function! LightLineFileencoding()
@@ -355,6 +353,29 @@ let g:unite_force_overwrite_statusline = 0
 let g:vimfiler_force_overwrite_statusline = 0
 let g:vimshell_force_overwrite_statusline = 0
 
+" Lightline-buffer settings
+let g:lightline_buffer_logo = "# "
+let g:lightline_buffer_readonly_icon = ''
+let g:lightline_buffer_modified_icon = '+'
+let g:lightline_buffer_git_icon = ' '
+let g:lightline_buffer_ellipsis_icon = '..'
+let g:lightline_buffer_expand_left_icon = '◀ '
+let g:lightline_buffer_expand_right_icon = ' ▶'
+let g:lightline_buffer_active_buffer_left_icon = ''
+let g:lightline_buffer_active_buffer_right_icon = ''
+let g:lightline_buffer_separator_icon = ' '
+
+let g:lightline_buffer_show_bufnr = 1
+let g:lightline_buffer_rotate = 0
+let g:lightline_buffer_fname_mod = ':t'
+let g:lightline_buffer_excludes = ['vimfiler', 'NERD_tree', '__Tagbar__', 'ControlP']
+
+let g:lightline_buffer_maxflen = 10
+let g:lightline_buffer_maxfextlen = 3
+let g:lightline_buffer_minflen = 16
+let g:lightline_buffer_minfextlen = 3
+let g:lightline_buffer_reservelen = 20
+
 " ======================================================
 " General mappings
 " ======================================================
@@ -370,7 +391,7 @@ cmap w!! w !sudo tee % >/dev/null
 " highlight last inserted text
 nnoremap gV `[v`]
 " save session
-nnoremap <leader>s :mksession<CR>
+nnoremap <leader>s :mksession
 " Change current directory to current file's directory
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 " Make Y behave like other capitals
@@ -416,6 +437,7 @@ nnoremap <silent> <C-k> :execute ":move ".max([0,         line('.') - 2])<cr>
 nnoremap <silent> <C-j> :execute ":move ".min([line('$'), line('.') + 1])<cr>
 nnoremap <silent> <C-h> <<
 nnoremap <silent> <C-l> >>
+
 vnoremap <silent> <C-k> :<C-U>execute "normal! gv:move ".max([0,         line("'<") - 2])."\n"<cr>gv
 vnoremap <silent> <C-j> :<C-U>execute "normal! gv:move ".min([line('$'), line("'>") + 1])."\n"<cr>gv
 vnoremap <silent> <C-l> >gv
@@ -453,20 +475,17 @@ nnoremap <leader>ag :Ag
 
 " Python
 if has("win32")
-    autocmd FileType python :nnoremap <F5> :!start cmd /k "python %" & pause<CR>
+    autocmd FileType python :nnoremap <buffer> <F5> :!start cmd /k "python %" & pause<CR>
 else
-    autocmd FileType python :nnoremap <F5> :!python %<CR>
+    autocmd FileType python :nnoremap <buffer> <F5> :!python %<CR>
 endif
 let python_highlight_all = 1
 
-" BufOnly
-nnoremap <leader>bo :BufOnly
-
 " Markdown
 if has("win32")
-    autocmd FileType markdown :nnoremap <F5> :!start chrome %<CR>
+    autocmd FileType markdown :nnoremap <buffer> <F5> :!start chrome %<CR>
 else
-    autocmd FileType markdown :nnoremap <F5> :!google-chrome %<CR>
+    autocmd FileType markdown :nnoremap <buffer> <F5> :!google-chrome %<CR>
 endif
 let g:vim_markdown_folding_disabled = 1
 
@@ -491,30 +510,21 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " vim-go
 autocmd FileType go setlocal completeopt=menu,menuone
 autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4 sts=4
-autocmd FileType go :noremap <F5> :GoRun<cr>
-autocmd FileType go :noremap <leader>b :GoBuild<cr>
-autocmd FileType go :noremap <leader>rb :GoBuild<cr>
-autocmd FileType go :noremap <leader>rt :GoInfo<cr>
-autocmd FileType go :noremap <leader>rgt :GoDescribe<cr>
-autocmd FileType go :noremap <F2> :GoVet<cr>
-autocmd FileType go :noremap <S-F2> :GoMetaLinter<cr>
-autocmd FileType go :noremap <leader>rw :GoImplements<cr>
-autocmd FileType go :noremap <leader>rf :GoReferrers<cr>
-autocmd FileType go :noremap <leader>rr :GoRename<cr>
-autocmd FileType go :noremap <leader>rd :GoDoc<cr>
-autocmd FileType go :noremap <leader>rgd :GoDocBrowser<cr>
-autocmd FileType go :noremap <leader>rh :GoSameIdsAutoToggle<cr>
-let g:go_auto_type_info = 1
-let g:go_fmt_autosave = 0
-let g:go_def_reuse_buffer = 1
-let g:go_highlight_types = 1
-let g:go_highlight_format_strings = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_types = 1
+autocmd FileType go :noremap <buffer> <F5> :GoRun<cr>
+autocmd FileType go :noremap <buffer> <leader>b :GoBuild<cr>
+autocmd FileType go :noremap <buffer> <leader>rb :!go build<cr>
+autocmd FileType go :noremap <buffer> <leader>rt :GoDescribe<cr>
+autocmd FileType go :noremap <buffer> <F2> :GoMetaLinter<cr>
+autocmd FileType go :noremap <buffer> <leader>ro :GoDef<cr>
+autocmd FileType go :noremap <buffer> <leader>rw :GoImplements<cr>
+autocmd FileType go :noremap <buffer> <leader>rf :GoReferrers<cr>
+autocmd FileType go :noremap <buffer> <leader>rr :GoRename<cr>
+autocmd FileType go :noremap <buffer> <leader>rd :GoDoc<cr>
+autocmd FileType go :noremap <buffer> <leader>rgd :GoDocBrowser<cr>
+autocmd FileType go :noremap <buffer> <leader>rh :GoSameIdsToggle<cr>
 
 " YouCompleteMe
+"
 noremap <leader>ro :YcmCompleter GoTo<CR>
 noremap <leader>rq :YcmCompleter GoToDeclaration<cr>
 noremap <leader>rw :YcmCompleter GoToImplementation<cr>
@@ -583,6 +593,17 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+
+
+let g:go_auto_type_info = 1
+let g:go_fmt_autosave = 0
+let g:go_def_reuse_buffer = 1
+let g:go_highlight_types = 1
+let g:go_highlight_format_strings = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_types = 1
 
 " NERDTree
 " clone vim :h when NERDtree is last window
