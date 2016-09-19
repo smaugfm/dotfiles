@@ -38,7 +38,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
 "Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
 Plug 'itchyny/lightline.vim'
-Plug 'taohex/lightline-buffer'
+Plug 'bling/vim-bufferline''
 
 " Edit
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
