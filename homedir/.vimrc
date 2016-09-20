@@ -38,7 +38,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
 "Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
 Plug 'itchyny/lightline.vim'
-Plug 'bling/vim-bufferline''
+Plug 'bling/vim-bufferline'
 
 " Edit
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -182,12 +182,12 @@ set showtabline=2
 let g:lightline = {
             \ 'colorscheme': 'lucius',
             \ 'active': {
-            \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'fugitive', 'filename', 'modified'], ['ctrlpmark'], ['go'] ],
+            \   'left': [ [ 'mode', 'paste' ], [ 'filename', 'fugitive' ], [ 'go', 'ctrlpmark' ] ],
             \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
             \ },
             \ 'inactive': {
-            \   'left': [ [ 'filename' ], [ 'go' ] ],
-            \   'right': [ [ 'lineinfo' ], [ 'percent' ] ]
+            \   'left': [ [ 'filename', 'fugitive' ] ],
+            \   'right': [ [ 'lineinfo' ], [ 'filetype', 'percent' ] ]
             \ },
             \ 'tabline': {
             \   'left': [ [ 'bufferline' ], ],
@@ -199,7 +199,6 @@ let g:lightline = {
             \   'percent': 'LightLinePercent',
             \   'modified': 'LightLineModified',
             \   'go': 'LightLineGo',
-            \   'goinfo': 'LightLineGoInfo',
             \   'fugitive': 'LightLineFugitive',
             \   'filename': 'LightLineFilename',
             \   'fileformat': 'LightLineFileformat',
@@ -250,10 +249,6 @@ endfunction
 
 function! LightLineGo()
     return exists('*go#jobcontrol#Statusline') ? go#jobcontrol#Statusline() : ''
-endfunction
-
-function! LightLineGoInfo()
-    return exists('*go#complete#GetInfo') ? go#complete#GetInfo() : ''
 endfunction
 
 function! LightLineFugitive()
@@ -380,8 +375,6 @@ let g:lightline_buffer_reservelen = 20
 " General mappings
 " ======================================================
 
-" Select-all (don't need confusing increment C-a)
-noremap  <C-a> gg0vG$
 " Clear search highliting AND clear search pattern
 nnoremap <leader><space> :noh<CR>:let @/ = ""<CR>
 " Highlight words under cursor but without moving the cursor
