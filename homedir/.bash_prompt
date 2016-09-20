@@ -22,12 +22,10 @@ function __prompt_command()
  
     if [ $EXIT -ne 0 ]; then 
         PS1+="\[$Red\][$EXIT]\[$Off\] "
-    else
-        PS1+="\[$Yellow\]$Lightning$Lightning\[$Yellow\] "
     fi
 
     # if logged in via ssh shows the ip of the client
-    if [ -n "$SSH_CLIENT" ]; then PS1+="\[$Yellow\]("${$SSH_CLIENT%% *}")\[$Off\]"; fi
+    if [ -n "$SSH_CLIENT" ]; then PS1+="\[$Yellow\]($SSH_CLIENT)\[$Off\] "; fi
  
     if [[ $EUID -eq 0 ]]; then 
         PS1+="\[$Red\]\u\[$Off\]@\[$Red\]\h\[$Off\] \[$Blue\]\w\[$Off\] "
