@@ -95,6 +95,8 @@ make
 sudo checkinstall
 
 vim +PlugInstall +qall
+cd $DIR
+yes | cp lucius.vim ~/.vim/plugins/lightline.vim/autoload/lightline/colorscheme
 
 # Build YouCompleteMe
 cd /tmp
