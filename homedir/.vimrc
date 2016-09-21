@@ -222,12 +222,26 @@ let g:lightline = {
 let g:bufferline_echo = 0
 let g:bufferline_active_buffer_left = ''
 let g:bufferline_active_buffer_right = ''
+let g:bufferline_show_bufnr = 1
 let g:bufferline_modified = ' +'
 let g:bufferline_excludes = ['NERD_tree']
 
+function! ToSymbol(str)
+    if a:str != ''
+        return ' '.WebDevIconsGetFileTypeSymbol(
+                    \ bufname(str2nr(strpart(a:str, 0, 1))))
+    else
+        return ''
+    endif
+endfunction
+
+
 function! LightLineBufferline()
 	call bufferline#refresh_status()
-	return [ g:bufferline_status_info.before, g:bufferline_status_info.current, g:bufferline_status_info.after]
+    let prev = g:bufferline_status_info.before
+    let cur = g:bufferline_status_info.current
+    let next = g:bufferline_status_info.after
+	return [prev . ToSymbol(prev), cur . ToSymbol(cur), next . ToSymbol(next)]
 endfunction
 
 
@@ -347,29 +361,6 @@ endfunction
 let g:unite_force_overwrite_statusline = 0
 let g:vimfiler_force_overwrite_statusline = 0
 let g:vimshell_force_overwrite_statusline = 0
-
-" Lightline-buffer settings
-let g:lightline_buffer_logo = "# "
-let g:lightline_buffer_readonly_icon = ''
-let g:lightline_buffer_modified_icon = '+'
-let g:lightline_buffer_git_icon = ' '
-let g:lightline_buffer_ellipsis_icon = '..'
-let g:lightline_buffer_expand_left_icon = '◀ '
-let g:lightline_buffer_expand_right_icon = ' ▶'
-let g:lightline_buffer_active_buffer_left_icon = ''
-let g:lightline_buffer_active_buffer_right_icon = ''
-let g:lightline_buffer_separator_icon = ' '
-
-let g:lightline_buffer_show_bufnr = 1
-let g:lightline_buffer_rotate = 0
-let g:lightline_buffer_fname_mod = ':t'
-let g:lightline_buffer_excludes = ['vimfiler', 'NERD_tree', '__Tagbar__', 'ControlP']
-
-let g:lightline_buffer_maxflen = 10
-let g:lightline_buffer_maxfextlen = 3
-let g:lightline_buffer_minflen = 16
-let g:lightline_buffer_minfextlen = 3
-let g:lightline_buffer_reservelen = 20
 
 " ======================================================
 " General mappings
