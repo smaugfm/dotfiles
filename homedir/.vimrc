@@ -241,7 +241,7 @@ function! LightLineBufferline()
     let prev = g:bufferline_status_info.before
     let cur = g:bufferline_status_info.current
     let next = g:bufferline_status_info.after
-	return [prev . ToSymbol(prev), cur . ToSymbol(cur), next . ToSymbol(next)]
+	return [prev, cur . ToSymbol(cur), next]
 endfunction
 
 
@@ -588,6 +588,7 @@ let g:go_highlight_extra_types = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_types = 1
+let g:go_highlight_build_constraints = 1
 
 " NERDTree
 " clone vim :h when NERDtree is last window
