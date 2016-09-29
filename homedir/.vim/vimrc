@@ -191,11 +191,10 @@ let g:lightline = {
             \ },
             \ 'tabline': {
             \   'left': [ [ 'tabsWord', 'tabs' ] ],
-            \   'right': [ [ 'buffersWord', 'bufferline' ] ],
+            \   'right': [ [ 'bufferline' ] ],
             \ },
             \ 'component': {
             \   'tabsWord': 'tabs',
-            \   'buffersWord': 'buffers',
             \ },
             \ 'component_function': {
             \   'readonly': 'LightLineReadonly',
