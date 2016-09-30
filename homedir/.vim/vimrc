@@ -510,6 +510,8 @@ autocmd FileType go :noremap <buffer> <leader>rd :GoDoc<cr>
 autocmd FileType go :noremap <buffer> <leader>rgd :GoDocBrowser<cr>
 autocmd FileType go :noremap <buffer> <leader>rh :GoSameIdsToggle<cr>
 autocmd FileType go :noremap <buffer> <leader>ri :GoInstall<cr>
+autocmd FileType go :noremap <buffer> <leader>rgt :GoTest<cr>
+autocmd FileType go :noremap <buffer> <leader>rgf :GoTestFunc<cr>
 
 " YouCompleteMe
 "
