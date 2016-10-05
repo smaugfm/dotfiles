@@ -14,7 +14,7 @@ rm -rf ~/Templates
 mkdir ~/Dev
 mkdir -p ~/Dev/go/src/github.com/smaugfm
 mkdir ~/Wallpapers
-mkdir ~/Downloads/Torrents
+mkdir -p ~/Downloads/Torrents/torrents
 
 echo "Installing Telegram"
 sleep 2
