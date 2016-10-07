@@ -66,7 +66,7 @@ Plug 'helino/vim-json', {'for': ['typescript', 'json']}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'fatih/vim-go', {'for': 'go'}
-Plug 'ternjs/tern_for_vim', {'for': 'javascript'}
+Plug 'ternjs/tern_for_vim', {'for': 'javascript', 'do': 'npm install --production'}
 
 " Git
 Plug 'airblade/vim-gitgutter'
