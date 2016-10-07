@@ -66,6 +66,7 @@ Plug 'helino/vim-json', {'for': ['typescript', 'json']}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'fatih/vim-go', {'for': 'go'}
+Plug 'ternjs/tern_for_vim', {'for': 'javascript'}
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -513,8 +514,14 @@ autocmd FileType go :noremap <buffer> <leader>ri :GoInstall<cr>
 autocmd FileType go :noremap <buffer> <leader>rgt :GoTest<cr>
 autocmd FileType go :noremap <buffer> <leader>rgf :GoTestFunc<cr>
 
+" tern
+autocmd FileType javascript :noremap <buffer> <leader>ro :TernDef<cr>
+autocmd FileType javascript :noremap <buffer> <leader>rd :TernDoc<cr>
+autocmd FileType javascript :noremap <buffer> <leader>rt :TernType<cr>
+autocmd FileType javascript :noremap <buffer> <leader>rf :TernRefs<cr>
+autocmd FileType javascript :noremap <buffer> <leader>rr :TernRename<cr>
+
 " YouCompleteMe
-"
 noremap <leader>ro :YcmCompleter GoTo<CR>
 noremap <leader>rq :YcmCompleter GoToDeclaration<cr>
 noremap <leader>rw :YcmCompleter GoToImplementation<cr>
@@ -534,7 +541,7 @@ let g:ycm_filetype_blacklist = {
             \ 'pandoc' : 1,
             \ 'infolog' : 1,
             \ 'mail' : 1,
-            \ 'fsharp' : 1
+            \ 'fsharp' : 1,
             \}
 let g:ycm_filetype_specific_completion_to_disable = {
             \ 'gitcommit': 1,

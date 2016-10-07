@@ -111,8 +111,6 @@ cmake --build . --target ycm_core --config Release
 #xbuild
 cd ~/.vim/plugins/youcompleteme/third_party/ycmd/third_party/gocode
 go build
-cd ~/.vim/plugins/youcompleteme/third_party/ycmd/third_party/tern_runtime
-npm install --production
 
 echo "Update alternatives"
 sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
