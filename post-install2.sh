@@ -64,6 +64,8 @@ wget https://download.jetbrains.com/idea/ideaIC-2016.2.4.tar.gz
 sudo tar -C /opt xvf idea*.tar.gz
 cd /opt
 sudo mv idea* idea
+cd /opt/idea/bin
+sudo mv idea.sh idea
 
 echo "Installing go"
 sleep 2
