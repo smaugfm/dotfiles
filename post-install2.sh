@@ -54,8 +54,16 @@ npm install -g typescript ember-cli electron-prebuilt typescript-formatter js-be
 echo "Install VSCode"
 sleep 2
 cd /tmp
-wget -O code.deb code_1.5.2-1473686317_amd64
-sudo apt-get install ./code*.deb
+wget -O code.deb https://go.microsoft.com/fwlink/?LinkID=760868
+sudo apt-get install ./code.deb
+
+echo "Installing ItelliJ IDEA"
+sleep 2
+cd /tmp
+wget https://download.jetbrains.com/idea/ideaIC-2016.2.4.tar.gz
+sudo tar -C /opt xvf idea*.tar.gz
+cd /opt
+sudo mv idea* idea
 
 echo "Installing go"
 sleep 2
