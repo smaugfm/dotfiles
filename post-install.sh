@@ -20,7 +20,7 @@ sudo apt-get -y --force-yes upgrade
 sudo apt-get -y install konsole mc git gparted openssh-server \
     silversearcher-ag thunderbird grub-customizer kdiff3 keepass2 checkinstall \
     gnome-calculator audacity audacious htop hardinfo pinta conky libpam-google-authenticator \
-    deluge goldendict virtualbox virtualbox-qt telegram workrave
+    deluge goldendict virtualbox virtualbox-qt telegram workrave catdoc
 
 # Install dev
 sudo apt-get -y install python-dev python3-dev mono-complete fsharp \
