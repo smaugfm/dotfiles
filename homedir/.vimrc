@@ -56,8 +56,7 @@ if has("unix")
     Plug 'valloric/youcompleteme'
 endif
 
-
-" Languages
+" Language specific
 Plug 'HerringtonDarkholme/yats.vim', {'for': 'javascript'}
 Plug 'Quramy/tsuquyomi', {'for': 'typescript'}
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
@@ -67,6 +66,9 @@ Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'fatih/vim-go', {'for': 'go'}
 Plug 'ternjs/tern_for_vim', {'for': 'javascript', 'do': 'npm install --production'}
+Plug 'tmux-plugins/vim-tmux'
+Plug 'skammer/vim-css-color'
+Plug 'mattn/emmet-vim', {'for': ['html', 'css']}
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -434,8 +436,11 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Colors
-if $TERM == "xterm-256color"
+if $TERM =~ "256color"
+    set term=xterm-256color
     set t_Co=256
+    " disable Background Color Erase (BCE)
+    set t_ut=
 endif
 set termguicolors
 syntax enable
@@ -514,12 +519,27 @@ autocmd FileType go :noremap <buffer> <leader>ri :GoInstall<cr>
 autocmd FileType go :noremap <buffer> <leader>rgt :GoTest<cr>
 autocmd FileType go :noremap <buffer> <leader>rgf :GoTestFunc<cr>
 
+let g:go_auto_type_info = 1
+let g:go_fmt_autosave = 0
+let g:go_def_reuse_buffer = 1
+let g:go_highlight_types = 1
+let g:go_highlight_format_strings = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_types = 1
+let g:go_highlight_build_constraints = 1
+
 " tern
 autocmd FileType javascript :noremap <buffer> <leader>ro :TernDef<cr>
 autocmd FileType javascript :noremap <buffer> <leader>rd :TernDoc<cr>
 autocmd FileType javascript :noremap <buffer> <leader>rt :TernType<cr>
 autocmd FileType javascript :noremap <buffer> <leader>rf :TernRefs<cr>
 autocmd FileType javascript :noremap <buffer> <leader>rr :TernRename<cr>
+
+" emmet-vim
+let g:user_emmet_mode='in'
+let g:user_emmet_leader='<M-e>'
 
 " YouCompleteMe
 noremap <leader>ro :YcmCompleter GoTo<CR>
@@ -590,18 +610,6 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
-
-
-let g:go_auto_type_info = 1
-let g:go_fmt_autosave = 0
-let g:go_def_reuse_buffer = 1
-let g:go_highlight_types = 1
-let g:go_highlight_format_strings = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_types = 1
-let g:go_highlight_build_constraints = 1
 
 " NERDTree
 " clone vim :h when NERDtree is last window

@@ -8,7 +8,7 @@ Font=LiterationMonoPowerline Nerd Font,12,-1,5,50,0,0,0,0,0
 CursorShape=0
 
 [General]
-Environment=TERM=xterm-256color
+Environment=TERM=konsole-256color
 Icon=utilities-terminal
 Name=Smaug
 Parent=FALLBACK/
