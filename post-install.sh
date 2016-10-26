@@ -11,13 +11,14 @@ sleep 2
 sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
 sudo add-apt-repository -y ppa:n-muench/burg
 sudo add-apt-repository -y ppa:atareao/telegram
+sudo add-apt-repository ppa:webupd8team/terminix
 
 # Update and upgrage
 sudo apt-get -y --force-yes update
 sudo apt-get -y --force-yes upgrade
 
 # Install packages
-sudo apt-get -y install konsole mc git gparted openssh-server \
+sudo apt-get -y install terminix mc git gparted openssh-server \
     silversearcher-ag thunderbird grub-customizer kdiff3 keepass2 checkinstall \
     gnome-calculator audacity audacious htop hardinfo pinta conky libpam-google-authenticator \
     deluge goldendict virtualbox virtualbox-qt telegram workrave catdoc

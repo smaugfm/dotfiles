@@ -1,7 +1,7 @@
 #!/bin/bash
 # autoexit on error
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 set -e
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 #Prompt for password
 sudo echo "Starting..."
@@ -133,13 +133,13 @@ sleep 2
 gsettings set org.cinnamon.desktop.background.slideshow image-source 'xml:///usr/share/cinnamon-background-properties/linuxmint-sarah.xml'
 gsettings set org.cinnamon.desktop.background.slideshow random-order true
 gsettings set org.cinnamon.desktop.background.slideshow slideshow-enabled true
-gsettings set org.cinnamon.desktop.default-applications.terminal exec 'konsole'
+gsettings set org.cinnamon.desktop.default-applications.terminal exec 'terminix'
 gsettings set org.cinnamon.desktop.interface clock-show-date true
 gsettings set org.cinnamon.desktop.interface clock-show-seconds false
 gsettings set org.cinnamon.desktop.interface clock-use-24h true
 gsettings set org.cinnamon.desktop.interface icon-theme 'Mint-Y'
 gsettings set org.cinnamon.desktop.keybindings.media-keys calculator "['XF86Calculator', '<Super>F12']"
-gsettings set org.cinnamon.desktop.keybindings.media-keys terminal "['<Primary><Alt>t', '<Primary>grave']"
+gsettings set org.cinnamon.desktop.keybindings.media-keys terminal "['<Primary>grave']"
 gsettings set org.cinnamon.desktop.keybindings.media-keys volume-down "['XF86AudioLowerVolume', '<Alt><Super>Down']"
 gsettings set org.cinnamon.desktop.keybindings.media-keys volume-up "['XF86AudioRaiseVolume', '<Alt><Super>Up']"
 gsettings set org.cinnamon.desktop.keybindings.media-keys screenshot "['Print']"
@@ -147,6 +147,10 @@ gsettings set org.cinnamon.desktop.keybindings.media-keys screenshot-clip "['<Pr
 gsettings set org.cinnamon.desktop.keybindings.media-keys area-screenshot "['<Shift>Print']"
 gsettings set org.cinnamon.desktop.keybindings.media-keys area-screenshot-clip "['<Primary>Print']"
 gsettings set org.cinnamon.desktop.keybindings.media-keys screensaver "['XF86ScreenSaver']"
+gsettings set org.cinnamon.desktop.keybindings.wm.switch-to-workspace-left "[]"
+gsettings set org.cinnamon.desktop.keybindings.wm.switch-to-workspace-right "[]"
+gsettings set org.cinnamon.desktop.keybindings.wm.switch-to-workspace-down "['<Shift><Alt>F1']"
+gsettings set org.cinnamon.desktop.keybindings.wm.switch-to-workspace-up "['<Alt>F1']"
 gsettings set org.cinnamon.desktop.notifications display-notifications true
 gsettings set org.cinnamon.desktop.notifications fade-on-mouseover true
 gsettings set org.cinnamon.desktop.notifications fade-opacity 40
@@ -172,6 +176,53 @@ gsettings set org.gnome.settings-daemon.plugins.xsettings active true
 gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
 gsettings set org.gnome.settings-daemon.plugins.xsettings hinting 'slight'
 gsettings set org.gnome.settings-daemon.plugins.xsettings rgba-order 'rgb'
+
+dconf write /com/gexperts/Terminix/profiles/list "['2b7c4080-0ddd-46c5-8f23-563fd3ba789d']"
+dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/foreground-color "'#A1B0B8'"
+dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/visible-name "'smaugfm'"
+dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/dim-color-set "false"
+dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/login-shell "true"
+dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/palette "['#252525', '#FF5252', '#C3D82C', '#FFC135', '#42A5F5', '#D81B60', '#00ACC1', '#F5F5F5', '#708284', '#FF5252', '#C3D82C', '#FFC135', '#42A5F5', '#D81B60', '#00ACC1', '#F5F5F5']"
+dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/default-size-columns "190"
+dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/default-size-rows "55"
+dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/scroll-on-output "false"
+dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/cursor-colors-set "false"
+dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/highlight-colors-set "false"
+dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/use-system-font "false"
+dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/exit-action "'hold'"
+dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/terminal-bell "'icon'"
+dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/font "'LiterationMonoPowerline Nerd Font 12'"
+dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/use-custom-command "false"
+dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/allow-bold "false"
+dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/use-theme-colors "false"
+dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/background-color "'#263238'"
+dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/background-transparency-percent "0"
+dconf write /com/gexperts/Terminix/keybinding/session-switch-to-next-terminal "'<Primary><Alt>n'"
+dconf write /com/gexperts/Terminix/keybinding/session-close "'<Primary><Shift>q'"
+dconf write /com/gexperts/Terminix/keybinding/session-resize-terminal-left "'<Primary><Alt>Left'"
+dconf write /com/gexperts/Terminix/keybinding/session-switch-to-terminal-down "'<Primary><Alt>j'"
+dconf write /com/gexperts/Terminix/keybinding/terminal-find "'<Primary><Shift>f'"
+dconf write /com/gexperts/Terminix/keybinding/session-resize-terminal-up "'<Primary><Alt>Up'"
+dconf write /com/gexperts/Terminix/keybinding/session-resize-terminal-down "'<Primary><Alt>Down'"
+dconf write /com/gexperts/Terminix/keybinding/win-view-session-switcher "'disabled'"
+dconf write /com/gexperts/Terminix/keybinding/win-switch-to-previous-session "'disabled'"
+dconf write /com/gexperts/Terminix/keybinding/win-switch-to-next-session "'disabled'"
+dconf write /com/gexperts/Terminix/keybinding/session-switch-to-terminal-right "'<Primary><Alt>l'"
+dconf write /com/gexperts/Terminix/keybinding/terminal-maximize "'<Primary><Alt>x'"
+dconf write /com/gexperts/Terminix/keybinding/app-shortcuts "'<Primary>Page_Up'"
+dconf write /com/gexperts/Terminix/keybinding/terminal-find-next "'<Primary><Shift>g'"
+dconf write /com/gexperts/Terminix/keybinding/session-switch-to-terminal-up "'<Primary><Alt>k'"
+dconf write /com/gexperts/Terminix/keybinding/terminal-close "'<Primary><Alt>q'"
+dconf write /com/gexperts/Terminix/keybinding/session-resize-terminal-right "'<Primary><Alt>Right'"
+dconf write /com/gexperts/Terminix/keybinding/session-switch-to-previous-terminal "'<Primary><Alt>p'"
+dconf write /com/gexperts/Terminix/keybinding/app-preferences "'disabled'"
+dconf write /com/gexperts/Terminix/keybinding/session-switch-to-terminal-left "'<Primary><Alt>h'"
+dconf write /com/gexperts/Terminix/sidebar-on-right "false"
+dconf write /com/gexperts/Terminix/terminal-title-style "'none'"
+dconf write /com/gexperts/Terminix/theme-variant "'system'"
+dconf write /com/gexperts/Terminix/enable-wide-handle "false"
+dconf write /com/gexperts/Terminix/prompt-on-new-session "false"
+dconf write /com/gexperts/Terminix/warn-vte-config-issue "false"
 
 echo "Installing Dropbox"
 sleep 2
