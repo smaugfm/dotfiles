@@ -149,10 +149,10 @@ gsettings set org.cinnamon.desktop.keybindings.media-keys screenshot-clip "['<Pr
 gsettings set org.cinnamon.desktop.keybindings.media-keys area-screenshot "['<Shift>Print']"
 gsettings set org.cinnamon.desktop.keybindings.media-keys area-screenshot-clip "['<Primary>Print']"
 gsettings set org.cinnamon.desktop.keybindings.media-keys screensaver "['XF86ScreenSaver']"
-gsettings set org.cinnamon.desktop.keybindings.wm.switch-to-workspace-left "[]"
-gsettings set org.cinnamon.desktop.keybindings.wm.switch-to-workspace-right "[]"
-gsettings set org.cinnamon.desktop.keybindings.wm.switch-to-workspace-down "['<Shift><Alt>F1']"
-gsettings set org.cinnamon.desktop.keybindings.wm.switch-to-workspace-up "['<Alt>F1']"
+gsettings set org.cinnamon.desktop.keybindings.wm switch-to-workspace-left "[]"
+gsettings set org.cinnamon.desktop.keybindings.wm switch-to-workspace-right "[]"
+gsettings set org.cinnamon.desktop.keybindings.wm switch-to-workspace-down "['<Shift><Alt>F1']"
+gsettings set org.cinnamon.desktop.keybindings.wm switch-to-workspace-up "['<Alt>F1']"
 gsettings set org.cinnamon.desktop.notifications display-notifications true
 gsettings set org.cinnamon.desktop.notifications fade-on-mouseover true
 gsettings set org.cinnamon.desktop.notifications fade-opacity 40
