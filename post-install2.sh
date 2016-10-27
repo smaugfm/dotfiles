@@ -184,7 +184,7 @@ dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d
 dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/visible-name "'smaugfm'"
 dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/dim-color-set "false"
 dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/login-shell "true"
-dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/palette "['#252525', '#FF5252', '#C3D82C', '#FFC135', '#42A5F5', '#D81B60', '#00ACC1', '#F5F5F5', '#708284', '#FF5252', '#C3D82C', '#FFC135', '#42A5F5', '#D81B60', '#00ACC1', '#F5F5F5']"
+dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/palette "['#252525252525', '#D3D32F2F2F2F', '#0000C8C85353', '#FFFF6D6D0000', '#0000B0B0FFFF', '#FFFF40408080', '#0000ACACC1C1', '#FAFAFAFAFAFA', '#708284', '#FF5252', '#6666BBBB6A6A', '#FFC135', '#42A5F5', '#D81B60', '#00ACC1', '#F5F5F5']"
 dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/default-size-columns "190"
 dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/default-size-rows "55"
 dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/scroll-on-output "false"
