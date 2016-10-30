@@ -11,7 +11,8 @@ sleep 2
 sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
 sudo add-apt-repository -y ppa:n-muench/burg
 sudo add-apt-repository -y ppa:atareao/telegram
-sudo add-apt-repository ppa:webupd8team/terminix
+sudo add-apt-repository -y ppa:webupd8team/terminix
+sudo add-apt-repository -y ppa:nathan-renniewaldock/qdirstat
 
 # Update and upgrage
 sudo apt-get -y --force-yes update
@@ -21,7 +22,7 @@ sudo apt-get -y --force-yes upgrade
 sudo apt-get -y install terminix mc git gparted openssh-server \
     silversearcher-ag thunderbird grub-customizer kdiff3 keepass2 checkinstall \
     gnome-calculator audacity audacious htop hardinfo pinta conky libpam-google-authenticator \
-    deluge goldendict virtualbox virtualbox-qt telegram workrave catdoc
+    deluge goldendict virtualbox virtualbox-qt telegram workrave catdoc qdirstat
 
 # Install dev
 sudo apt-get -y install python-dev python3-dev mono-complete fsharp \
