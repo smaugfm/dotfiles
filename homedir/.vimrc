@@ -66,9 +66,10 @@ Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'fatih/vim-go', {'for': 'go'}
 Plug 'ternjs/tern_for_vim', {'for': 'javascript', 'do': 'npm install --production'}
-Plug 'tmux-plugins/vim-tmux'
-Plug 'skammer/vim-css-color'
-Plug 'mattn/emmet-vim', {'for': ['html', 'css']}
+Plug 'mattn/emmet-vim', {'for': ['html']}
+Plug 'othree/html5.vim', {'for': 'html'}
+Plug 'valloric/matchtagalways', {'for': ['html', 'xml', 'xhtml']}
+Plug 'vim-scripts/closetag.vim', {'for': ['html', 'xml', 'xhtml']}
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -220,7 +221,7 @@ let g:lightline = {
             \ },
             \ 'component_type': {
             \   'syntastic': 'error',
-			\   'bufferline': 'tabsel',
+            \   'bufferline': 'tabsel',
             \ },
             \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
             \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
@@ -243,11 +244,11 @@ function! ToSymbol(str)
 endfunction
 
 function! LightLineBufferline()
-	call bufferline#refresh_status()
+    call bufferline#refresh_status()
     let prev = g:bufferline_status_info.before
     let cur = g:bufferline_status_info.current
     let next = g:bufferline_status_info.after
-	return [prev, cur . ToSymbol(cur), next]
+    return [prev, cur . ToSymbol(cur), next]
 endfunction
 
 
@@ -536,10 +537,6 @@ autocmd FileType javascript :noremap <buffer> <leader>rd :TernDoc<cr>
 autocmd FileType javascript :noremap <buffer> <leader>rt :TernType<cr>
 autocmd FileType javascript :noremap <buffer> <leader>rf :TernRefs<cr>
 autocmd FileType javascript :noremap <buffer> <leader>rr :TernRename<cr>
-
-" emmet-vim
-let g:user_emmet_mode='in'
-let g:user_emmet_leader='<M-e>'
 
 " YouCompleteMe
 noremap <leader>ro :YcmCompleter GoTo<CR>
