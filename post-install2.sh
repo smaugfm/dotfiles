@@ -145,9 +145,9 @@ gsettings set org.cinnamon.desktop.keybindings.media-keys terminal "['<Primary>g
 gsettings set org.cinnamon.desktop.keybindings.media-keys volume-down "['XF86AudioLowerVolume', '<Alt><Super>Down']"
 gsettings set org.cinnamon.desktop.keybindings.media-keys volume-up "['XF86AudioRaiseVolume', '<Alt><Super>Up']"
 gsettings set org.cinnamon.desktop.keybindings.media-keys screenshot "['Print']"
-gsettings set org.cinnamon.desktop.keybindings.media-keys screenshot-clip "['<Primary><Shift>Print']"
-gsettings set org.cinnamon.desktop.keybindings.media-keys area-screenshot "['<Shift>Print']"
-gsettings set org.cinnamon.desktop.keybindings.media-keys area-screenshot-clip "['<Primary>Print']"
+gsettings set org.cinnamon.desktop.keybindings.media-keys screenshot-clip "[]"
+gsettings set org.cinnamon.desktop.keybindings.media-keys area-screenshot "[]"
+gsettings set org.cinnamon.desktop.keybindings.media-keys area-screenshot-clip "[]"
 gsettings set org.cinnamon.desktop.keybindings.media-keys screensaver "['XF86ScreenSaver']"
 gsettings set org.cinnamon.desktop.keybindings.wm switch-to-workspace-left "[]"
 gsettings set org.cinnamon.desktop.keybindings.wm switch-to-workspace-right "[]"
@@ -179,6 +179,7 @@ gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
 gsettings set org.gnome.settings-daemon.plugins.xsettings hinting 'slight'
 gsettings set org.gnome.settings-daemon.plugins.xsettings rgba-order 'rgb'
 
+# terminix
 dconf write /com/gexperts/Terminix/profiles/list "['2b7c4080-0ddd-46c5-8f23-563fd3ba789d']"
 dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/foreground-color "'#A1B0B8'"
 dconf write /com/gexperts/Terminix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/visible-name "'smaugfm'"
@@ -225,6 +226,17 @@ dconf write /com/gexperts/Terminix/theme-variant "'system'"
 dconf write /com/gexperts/Terminix/enable-wide-handle "false"
 dconf write /com/gexperts/Terminix/prompt-on-new-session "false"
 dconf write /com/gexperts/Terminix/warn-vte-config-issue "false"
+
+# shutter
+dconf write /org/cinnamon/desktop/keybindings/custom-list "['custom0', 'custom1']"
+dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/name "'ScreenOff'"
+dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/command "'screenoff'"
+dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/binding "['<Super>l']"
+dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/name "'Shutter --select'"
+dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/command "'shutter --select'"
+dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/binding "['Alt_L']"
+
+
 
 echo "Installing Dropbox"
 sleep 2
