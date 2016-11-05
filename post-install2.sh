@@ -135,7 +135,7 @@ sleep 2
 gsettings set org.cinnamon.desktop.background.slideshow image-source 'xml:///usr/share/cinnamon-background-properties/linuxmint-sarah.xml'
 gsettings set org.cinnamon.desktop.background.slideshow random-order true
 gsettings set org.cinnamon.desktop.background.slideshow slideshow-enabled true
-gsettings set org.cinnamon.desktop.default-applications.terminal exec 'terminix'
+gsettings set org.cinnamon.desktop.default-applications.terminal exec 'terminix --maximize'
 gsettings set org.cinnamon.desktop.interface clock-show-date true
 gsettings set org.cinnamon.desktop.interface clock-show-seconds false
 gsettings set org.cinnamon.desktop.interface clock-use-24h true
