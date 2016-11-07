@@ -178,6 +178,7 @@ gsettings set org.gnome.settings-daemon.plugins.xsettings active true
 gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
 gsettings set org.gnome.settings-daemon.plugins.xsettings hinting 'slight'
 gsettings set org.gnome.settings-daemon.plugins.xsettings rgba-order 'rgb'
+gsettings set org.cinnamon.desktop.keybindings.wm toggle-recording "[]"
 
 # terminix
 dconf write /com/gexperts/Terminix/profiles/list "['2b7c4080-0ddd-46c5-8f23-563fd3ba789d']"
