@@ -356,10 +356,6 @@ function! TagbarStatusFunc(current, sort, fname, ...) abort
     return lightline#statusline(0)
 endfunction
 
-augroup AutoSyntastic
-    autocmd!
-    autocmd BufWritePost *.c,*.cpp call s:syntastic()
-augroup END
 function! s:syntastic()
     SyntasticCheck
     call lightline#update()
@@ -558,11 +554,12 @@ let g:ycm_filetype_blacklist = {
             \ 'pandoc' : 1,
             \ 'infolog' : 1,
             \ 'mail' : 1,
-            \ 'fsharp' : 1,
             \}
 let g:ycm_filetype_specific_completion_to_disable = {
             \ 'gitcommit': 1,
-            \ 'fsharp' : 1
+            \ 'fsharp' : 1,
+            \ 'c' : 1,
+            \ 'cpp' : 1,
             \}
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_complete_in_strings = 0
