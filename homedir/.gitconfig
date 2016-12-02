@@ -1,6 +1,6 @@
 [user]
     name = Dmitry Marchuk
-    email = code@dmarchuk.com
+    email = github@dmarchuk.com
 [merge]
     tool = kdiff3
     conflictstyle = diff3

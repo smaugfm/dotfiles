@@ -8,6 +8,10 @@ case $- in
     *) return;;
 esac
 
+if [[ $TERMINIX_ID ]]; then
+        source /etc/profile.d/vte.sh
+fi
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -36,9 +40,9 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm|xterm-color|*-256color) color_prompt=yes;;
-esac
+#case "$TERM" in
+    #xterm|xterm-color|*-256color) color_prompt=yes;;
+#esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
@@ -60,6 +64,7 @@ fi
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_prompt
 fi
+
 unset color_prompt force_color_prompt
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -95,7 +100,7 @@ fi
 
 
 export GOPATH=~/Dev/go
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin:~/.local/bin
+export PATH=$PATH:/opt/android-sdk-linux/tools:/usr/local/go/bin:$GOPATH/bin:~/.local/bin
 export NVM_DIR="/home/dmitr/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 export PATH=$PATH:/opt/idea/bin

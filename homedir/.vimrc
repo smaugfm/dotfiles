@@ -34,8 +34,6 @@ endif
 " Appearance
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
-" Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
 Plug 'itchyny/lightline.vim'
 Plug 'bling/vim-bufferline'
@@ -575,7 +573,7 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 let g:vim_tags_auto_generate = 0
 
 " auto-pairs
-let g:AutoPairsShortcutToggle = ''
+let g:AutoPairsShortcutToggle = '<F10>'
 let g:AutoPairsShortcutFastWrap = ''
 let g:AutoPairsShortcutJump = ''
 let g:AutoPairsCenterLine = 0
