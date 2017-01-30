@@ -9,7 +9,7 @@ case $- in
 esac
 
 if [[ $TERMINIX_ID ]]; then
-        source /etc/profile.d/vte.sh
+        source /etc/profile.d/vte*.sh
 fi
 
 # don't put duplicate lines or lines starting with space in the history.

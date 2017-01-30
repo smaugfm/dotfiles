@@ -23,7 +23,7 @@ sudo apt-get -y install terminix mc git gparted openssh-server \
     silversearcher-ag thunderbird grub-customizer kdiff3 keepass2 checkinstall \
     gnome-calculator audacity audacious htop hardinfo pinta conky libpam-google-authenticator \
     deluge goldendict virtualbox virtualbox-qt telegram workrave catdoc qdirstat \
-    shutter libgoo-canvas-perl gnome-web-photo mp3splt
+    shutter libgoo-canvas-perl gnome-web-photo mp3splt wxhexeditor
 
 # Install dev
 sudo apt-get -y install python-dev python3-dev mono-complete fsharp \
