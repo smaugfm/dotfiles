@@ -203,6 +203,8 @@ dconf write /com/gexperts/Terminix/theme-variant "'system'"
 dconf write /com/gexperts/Terminix/enable-wide-handle "false"
 dconf write /com/gexperts/Terminix/prompt-on-new-session "false"
 dconf write /com/gexperts/Terminix/warn-vte-config-issue "false"
+dconf write /com/gexperts/Terminix/focus-follow-mouse "true"
+dconf write /com/gexperts/Terminix/unsafe-paste-alert "false"
 
 # shutter
 dconf write /org/cinnamon/desktop/keybindings/custom-list "['custom0', 'custom1']"
