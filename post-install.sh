@@ -35,7 +35,7 @@ sudo apt-get -y install python-dev python3-dev mono-complete fsharp \
 # Java 8 and IntelliJ IDEA
 echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
 sudo apt-get -y install oracle-java8-set-default
-sudo apt-get -y instlal intellij-idea-community
+sudo apt-get -y install intellij-idea-community
 
 # Install vim build dependecies
 sudo apt-get -y install libncurses5-dev libgnome2-dev libgnomeui-dev \
