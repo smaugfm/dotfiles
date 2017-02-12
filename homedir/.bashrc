@@ -100,6 +100,7 @@ fi
 
 
 export GOPATH=~/Dev/go
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 export PATH=$PATH:/opt/android-sdk-linux/tools:/usr/local/go/bin:$GOPATH/bin:~/.local/bin
 export NVM_DIR="/home/dmitr/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

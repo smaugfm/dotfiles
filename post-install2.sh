@@ -49,31 +49,7 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.7/install.sh | b
 . ~/.bashrc
 . ~/.nvm/nvm.sh
 nvm install node
-npm install -g typescript ember-cli electron-prebuilt typescript-formatter js-beautify
-
-echo "Install VSCode"
-sleep 2
-cd /tmp
-wget -O code.deb https://go.microsoft.com/fwlink/?LinkID=760868
-sudo apt-get install ./code.deb
-
-echo "Installing ItelliJ IDEA"
-sleep 2
-cd /tmp
-wget https://download.jetbrains.com/idea/ideaIC-2016.2.4.tar.gz
-sudo tar -C /opt xvf idea*.tar.gz
-cd /opt
-sudo mv idea* idea
-cd /opt/idea/bin
-sudo mv idea.sh idea
-
-echo "Installing go"
-sleep 2
-cd /tmp
-wget https://storage.googleapis.com/golang/go1.7.1.linux-amd64.tar.gz
-tar -xvf go*.tar.gz
-sudo chown -R root:root ./go
-sudo mv go /usr/local
+npm install -g typescript ember-cli electron-prebuilt typescript-formatter js-beautify jshint bower
 
 echo "Installing dotfiles"
 sleep 2

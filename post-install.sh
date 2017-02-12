@@ -9,10 +9,12 @@ sleep 2
 
 # Repos and ppas
 sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
-sudo add-apt-repository -y ppa:n-muench/burg
 sudo add-apt-repository -y ppa:atareao/telegram
 sudo add-apt-repository -y ppa:webupd8team/terminix
 sudo add-apt-repository -y ppa:nathan-renniewaldock/qdirstat
+sudo apt-add-repository -y ppa:webupd8team/java
+sudo add-apt-repository -y ppa:mmk2410/intellij-idea-community
+sudo add-apt-repository -y ppa:ubuntu-lxc/lxd-stable
 
 # Update and upgrage
 sudo apt-get -y --force-yes update
@@ -28,7 +30,12 @@ sudo apt-get -y install terminix mc git gparted openssh-server \
 # Install dev
 sudo apt-get -y install python-dev python3-dev mono-complete fsharp \
     build-essential cmake exfat-utils exfat-fuse dkms linux-headers-generic dconf-tools ctags \
-    dh-autoreconf autotools-dev debhelper ffmpeg
+    dh-autoreconf autotools-dev debhelper ffmpeg golang
+
+# Java 8 and IntelliJ IDEA
+echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+sudo apt-get -y install oracle-java8-set-default
+sudo apt-get -y instlal intellij-idea-community
 
 # Install vim build dependecies
 sudo apt-get -y install libncurses5-dev libgnome2-dev libgnomeui-dev \
