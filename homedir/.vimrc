@@ -386,6 +386,8 @@ nnoremap Y y$
 nnoremap tf :tabfirst<CR>
 nnoremap tl :tabnext<CR>
 nnoremap th :tabprev<CR>
+nnoremap <C-M-l> :tabnext<CR>
+nnoremap <C-M-h> :tabprev<CR>
 nnoremap td :tabclose<CR>
 nnoremap tn :tabnew<cr>
 
@@ -573,7 +575,7 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 let g:vim_tags_auto_generate = 0
 
 " auto-pairs
-let g:AutoPairsShortcutToggle = '<F10>'
+let g:AutoPairsShortcutToggle = ''
 let g:AutoPairsShortcutFastWrap = ''
 let g:AutoPairsShortcutJump = ''
 let g:AutoPairsCenterLine = 0

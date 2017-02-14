@@ -1,0 +1,25 @@
+set ignorecase
+set smartcase
+set history=1500
+set surround
+let mapleader=","
+set clipboard=unnamedplus,unnamed
+
+nnoremap <leader>ev :e ~/.ideavimrc<CR>
+nnoremap <leader>sv :source ~/.ideavimrc<CR>
+
+nnoremap <C-h> <<
+nnoremap <C-l> >>
+inoremap <C-h> <C-d>
+inoremap <C-l> <C-t>
+" don't lose selection when indenting
+vnoremap <C-h> <gv
+vnoremap <C-l> >gv
+vnoremap = =gv
+" let Y yank not entire line, but from cursor to the end (consistent with D, C)
+nnoremap Y y$
+" map search to IDE
+noremap / :action Find<CR>
+noremap n :action FindNext<CR>
+noremap N :action FindPrevious<CR>
+
