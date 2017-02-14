@@ -2,6 +2,7 @@ set ignorecase
 set smartcase
 set history=1500
 set surround
+set scrolloff=5
 let mapleader=","
 set clipboard=unnamedplus,unnamed
 
