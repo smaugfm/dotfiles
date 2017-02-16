@@ -13,6 +13,13 @@ nnoremap <C-h> <<
 nnoremap <C-l> >>
 inoremap <C-h> <C-d>
 inoremap <C-l> <C-t>
+
+nnoremap <C-j> ddp
+nnoremap <C-k> dd2kp
+
+nnoremap <C-A-j> :action MethodDown<CR>
+nnoremap <C-A-k> :action MethodUp<CR>
+
 " don't lose selection when indenting
 vnoremap <C-h> <gv
 vnoremap <C-l> >gv
