@@ -122,8 +122,10 @@ gsettings set org.cinnamon.desktop.keybindings.media-keys volume-down "['XF86Aud
 gsettings set org.cinnamon.desktop.keybindings.media-keys volume-up "['XF86AudioRaiseVolume', '<Alt><Super>Up']"
 gsettings set org.cinnamon.desktop.keybindings.media-keys screenshot "['Print']"
 gsettings set org.cinnamon.desktop.keybindings.media-keys screenshot-clip "[]"
-gsettings set org.cinnamon.desktop.keybindings.media-keys area-screenshot "[]"
+gsettings set org.cinnamon.desktop.keybindings.media-keys area-screenshot "['<Primary>Print']"
 gsettings set org.cinnamon.desktop.keybindings.media-keys area-screenshot-clip "[]"
+gsettings set org.cinnamon.desktop.keybindings.media-keys window-screenshot "['<Primary><Shift>Print']"
+gsettings set org.cinnamon.desktop.keybindings.media-keys window-screenshot-clip "[]"
 gsettings set org.cinnamon.desktop.keybindings.media-keys screensaver "['XF86ScreenSaver']"
 gsettings set org.cinnamon.desktop.keybindings.wm switch-to-workspace-left "[]"
 gsettings set org.cinnamon.desktop.keybindings.wm switch-to-workspace-right "[]"
@@ -206,16 +208,11 @@ dconf write /com/gexperts/Terminix/warn-vte-config-issue "false"
 dconf write /com/gexperts/Terminix/focus-follow-mouse "false"
 dconf write /com/gexperts/Terminix/unsafe-paste-alert "false"
 
-# shutter
-dconf write /org/cinnamon/desktop/keybindings/custom-list "['custom0', 'custom1']"
+# ScreenOff
+dconf write /org/cinnamon/desktop/keybindings/custom-list "['custom0']"
 dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/name "'ScreenOff'"
 dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/command "'screenoff'"
 dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/binding "['<Super>l']"
-dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/name "'Shutter --select'"
-dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/command "'shutter --select'"
-dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/binding "['Alt_L']"
-
-
 
 echo "Installing Dropbox"
 sleep 2
