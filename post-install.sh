@@ -15,6 +15,7 @@ sudo add-apt-repository -y ppa:nathan-renniewaldock/qdirstat
 sudo apt-add-repository -y ppa:webupd8team/java
 sudo add-apt-repository -y ppa:mmk2410/intellij-idea-community
 sudo add-apt-repository -y ppa:ubuntu-lxc/lxd-stable
+sudo add-apt-repository -y ppa:peterlevi/ppa
 
 # Update and upgrage
 sudo apt-get -y --force-yes update
@@ -25,7 +26,7 @@ sudo apt-get -y install terminix mc git gparted openssh-server \
     silversearcher-ag thunderbird grub-customizer kdiff3 keepass2 checkinstall \
     gnome-calculator audacity audacious htop hardinfo pinta conky libpam-google-authenticator \
     deluge virtualbox virtualbox-qt telegram workrave catdoc qdirstat \
-    libgoo-canvas-perl gnome-web-photo mp3splt wxhexeditor
+    libgoo-canvas-perl gnome-web-photo mp3splt wxhexeditor variety variety-slideshow
 
 # Install dev
 sudo apt-get -y install python-dev python3-dev mono-complete fsharp \
