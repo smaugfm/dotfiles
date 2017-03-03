@@ -126,7 +126,7 @@ gsettings set org.cinnamon.desktop.keybindings.media-keys area-screenshot "['<Pr
 gsettings set org.cinnamon.desktop.keybindings.media-keys area-screenshot-clip "[]"
 gsettings set org.cinnamon.desktop.keybindings.media-keys window-screenshot "['<Primary><Shift>Print']"
 gsettings set org.cinnamon.desktop.keybindings.media-keys window-screenshot-clip "[]"
-gsettings set org.cinnamon.desktop.keybindings.media-keys screensaver "['XF86ScreenSaver']"
+gsettings set org.cinnamon.desktop.keybindings.media-keys screensaver "['<Super>l']"
 gsettings set org.cinnamon.desktop.keybindings.wm switch-to-workspace-left "[]"
 gsettings set org.cinnamon.desktop.keybindings.wm switch-to-workspace-right "[]"
 gsettings set org.cinnamon.desktop.keybindings.wm switch-to-workspace-down "['<Shift><Alt>F1']"
@@ -160,6 +160,8 @@ gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
 gsettings set org.gnome.settings-daemon.plugins.xsettings hinting 'slight'
 gsettings set org.gnome.settings-daemon.plugins.xsettings rgba-order 'rgb'
 gsettings set org.cinnamon.desktop.keybindings.wm toggle-recording "[]"
+
+dconf write /org/workrave/gui/main-window/enabled "false"
 
 # terminix
 dconf write /com/gexperts/Terminix/profiles/list "['2b7c4080-0ddd-46c5-8f23-563fd3ba789d']"
@@ -210,12 +212,6 @@ dconf write /com/gexperts/Terminix/prompt-on-new-session "false"
 dconf write /com/gexperts/Terminix/warn-vte-config-issue "false"
 dconf write /com/gexperts/Terminix/focus-follow-mouse "false"
 dconf write /com/gexperts/Terminix/unsafe-paste-alert "false"
-
-# ScreenOff
-dconf write /org/cinnamon/desktop/keybindings/custom-list "['custom0']"
-dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/name "'ScreenOff'"
-dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/command "'screenoff'"
-dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/binding "['<Super>l']"
 
 echo "Installing Dropbox"
 sleep 2
