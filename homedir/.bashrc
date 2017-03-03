@@ -98,11 +98,7 @@ if [ -x /usr/bin/mint-fortune ]; then
     /usr/bin/mint-fortune
 fi
 
-
+export EDITOR=/usr/bin/vim
 export GOPATH=~/Dev/go
 export JAVA_HOME=/usr/lib/jvm/java-8-oracle
-export PATH=$PATH:/opt/android-sdk-linux/tools:/usr/local/go/bin:$GOPATH/bin:~/.local/bin
-export NVM_DIR="/home/dmitr/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-export PATH=$PATH:/opt/idea/bin
-export EDITOR=/usr/local/bin/vim
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin:~/.local/bin

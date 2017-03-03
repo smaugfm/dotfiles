@@ -39,6 +39,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'bling/vim-bufferline'
 
 " Edit
+Plug 'maralla/completor.vim'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'chiel92/vim-autoformat'
 Plug 'godlygeek/tabular', {'on': 'Tabularize'}
@@ -51,7 +52,6 @@ Plug 'tpope/vim-surround'
 if has("unix")
     Plug 'rking/ag.vim'
     Plug 'szw/vim-tags'
-    Plug 'valloric/youcompleteme'
 endif
 
 " Language specific
@@ -534,39 +534,11 @@ autocmd FileType javascript :noremap <buffer> <leader>rt :TernType<cr>
 autocmd FileType javascript :noremap <buffer> <leader>rf :TernRefs<cr>
 autocmd FileType javascript :noremap <buffer> <leader>rr :TernRename<cr>
 
-" YouCompleteMe
-noremap <leader>ro :YcmCompleter GoTo<CR>
-noremap <leader>rq :YcmCompleter GoToDeclaration<cr>
-noremap <leader>rw :YcmCompleter GoToImplementation<cr>
-noremap <leader>rf :YcmCompleter GoToReferences<cr>
-noremap <leader>rt :YcmCompleter GetType<cr>
-noremap <leader>rd :YcmCompleter GetDoc<cr>
-noremap <leader>rr :YcmCompleter RefactorRename<space><cr>
-let g:ycm_server_python_interpreter = '/usr/bin/python'
-let g:ycm_filetype_blacklist = {
-            \ 'tagbar' : 1,
-            \ 'qf' : 1,
-            \ 'notes' : 1,
-            \ 'markdown' : 1,
-            \ 'unite' : 1,
-            \ 'text' : 1,
-            \ 'vimwiki' : 1,
-            \ 'pandoc' : 1,
-            \ 'infolog' : 1,
-            \ 'mail' : 1,
-            \}
-let g:ycm_filetype_specific_completion_to_disable = {
-            \ 'gitcommit': 1,
-            \ 'fsharp' : 1,
-            \ 'c' : 1,
-            \ 'cpp' : 1,
-            \}
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_complete_in_strings = 0
-let g:ycm_complete_in_comments = 0
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_add_preview_to_completeopt=0
+" completor.vim
+let g:completor_python_binary = '/usr/bin/python'
+let g:completor_gocode_binary = '/usr/bin/gocode'
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " CtrlP
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'

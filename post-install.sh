@@ -13,7 +13,7 @@ sudo add-apt-repository -y ppa:atareao/telegram
 sudo add-apt-repository -y ppa:webupd8team/terminix
 sudo add-apt-repository -y ppa:nathan-renniewaldock/qdirstat
 sudo apt-add-repository -y ppa:webupd8team/java
-sudo add-apt-repository -y ppa:mmk2410/intellij-idea-community
+sudo add-apt-repository -y ppa:mmk2410/intellij-idea
 sudo add-apt-repository -y ppa:ubuntu-lxc/lxd-stable
 sudo add-apt-repository -y ppa:peterlevi/ppa
 
@@ -31,7 +31,7 @@ sudo apt-get -y install terminix mc git gparted openssh-server \
 # Install dev
 sudo apt-get -y install python-dev python3-dev mono-complete fsharp \
     build-essential cmake exfat-utils exfat-fuse dkms linux-headers-generic dconf-tools ctags \
-    dh-autoreconf autotools-dev debhelper ffmpeg golang
+    dh-autoreconf autotools-dev debhelper ffmpeg golang python-pip
 
 # Java 8 and IntelliJ IDEA
 echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections

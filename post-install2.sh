@@ -45,11 +45,12 @@ sudo dpkg -i teamviewer* || sudo apt-get -fy install
 echo "Installing node"
 sleep 2
 cd /tmp
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.7/install.sh | bash
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
 . ~/.bashrc
 . ~/.nvm/nvm.sh
 nvm install node
 npm install -g typescript ember-cli electron-prebuilt typescript-formatter js-beautify jshint bower
+ln -s $NVM_BIN/node /usr/bin/node
 
 echo "Installing dotfiles"
 sleep 2
@@ -79,24 +80,15 @@ cd vim
             --enable-cscope
 make
 sudo checkinstall
-
+sudo ln -s /usr/local/bin/vim /usr/bin/vim
 vim +PlugInstall +qall
 cd $DIR
 yes | cp lucius.vim ~/.vim/plugins/lightline.vim/autoload/lightline/colorscheme
 
-# Build YouCompleteMe
-cd /tmp
-wget -O clang.tar.xz http://llvm.org/releases/3.8.1/clang+llvm-3.8.1-$(uname -p)-linux-gnu-ubuntu-16.04.tar.xz
-cd ~ && mkdir ycm_temp && cd ~/ycm_temp
-tar -C . -xvf /tmp/clang.tar.xz
-mv -v clang* llvm_root_dir
-cd ~ && mkdir ycm_build && cd ~/ycm_build
-cmake -G "Unix Makefiles" -DPATH_TO_LLVM_ROOT=~/ycm_temp/llvm_root_dir . ~/.vim/plugins/youcompleteme/third_party/ycmd/cpp
-cmake --build . --target ycm_core --config Release
-#cd ~/.vim/plugins/youcompleteme/third_party/ycmd/third_party/OmniSharpServer
-#xbuild
-cd ~/.vim/plugins/youcompleteme/third_party/ycmd/third_party/gocode
-go build
+pip install jedi
+go get -u github.com/nsf/gocode
+sudo ln -s $GOPATH/bin/gocode /usr/bin/gocode
+npm install tern
 
 echo "Update alternatives"
 sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
