@@ -103,8 +103,8 @@ sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
 sudo update-alternatives --set editor /usr/local/bin/vim
 sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
 sudo update-alternatives --set vi /usr/local/bin/vim
-sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/konsole 1
-sudo update-alternatives --set x-terminal-emulator /usr/bin/konsole
+sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/terminix 1
+sudo update-alternatives --set x-terminal-emulator /usr/bin/terminix
 
 echo "Setting up settings"
 sleep 2
@@ -139,7 +139,8 @@ gsettings set org.cinnamon.desktop.wm.preferences theme 'Mint-Y'
 gsettings set org.cinnamon.desktop.interface font-name 'Arimo 9'
 gsettings set org.nemo.desktop font 'Arimo 10'
 gsettings set org.nemo.desktop home-icon-visible false
-gsettings set org.nemo.desktop trash-icon-visible true
+gsettings set org.nemo.desktop trash-icon-visible false
+gsettings set org.nemo.desktop computer-icon-visible false
 gsettings set org.nemo.window-state geometry '800x550+550+241'
 gsettings set org.gnome.desktop.interface document-font-name 'Arimo 10'
 gsettings set org.gnome.desktop.interface monospace-font-name 'Cousine 10'
@@ -148,6 +149,8 @@ gsettings set org.cinnamon.settings-daemon.peripherals.keyboard numlock-state 'o
 gsettings set org.cinnamon.settings-daemon.peripherals.mouse middle-button-enabled false
 gsettings set org.cinnamon.settings-daemon.peripherals.mouse motion-acceleration 1.0
 gsettings set org.cinnamon.settings-daemon.peripherals.mouse motion-threshold 8
+gsettings set org.cinnamon.desktop.interface.keyboard-layout-show-flags false
+gsettings set org.cinnamon.desktop.interface.keyboard-layout-prefer-variant-names true
 gsettings set org.gnome.libgnomekbd.desktop default-group 0
 gsettings set org.gnome.libgnomekbd.desktop group-per-window true
 gsettings set org.gnome.libgnomekbd.keyboard layouts "['us', 'ru\ttypewriter']"
