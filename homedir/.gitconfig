@@ -47,9 +47,9 @@
     ds = "diff --stat"
     dc = "diff --cached"
     co = checkout
-    ha = log --pretty=format:\"%Cred%h%Creset %C(yellow)%d%Creset | %C(bold blue)[%an]%Creset %s %Cgreen(%cr)%Creset\" --graph --all
-    h =  log --pretty=format:\"%Cred%h%Creset %C(yellow)%d%Creset | %C(bold blue)[%an]%Creset %s %Cgreen(%cr)%Creset\" --graph --since=\"7 days ago\"
-    hat =log --pretty=format:\"%Cred%h%Creset %Cgreen%ad%Creset %C(yellow)%d%Creset | %C(bold blue)[%an]%Creset %s %Cgreen(%cr)%Creset\" --graph --all --date=local
-    ht = log --pretty=format:\"%Cred%h%Creset %Cgreen%ad%Creset %C(yellow)%d%Creset | %C(bold blue)[%an]%Creset %s %Cgreen(%cr)%Creset\" --graph --date=local --since=\"7 days ago\"
+    ha = log --pretty=format:\"%Cred%h%Creset %C(yellow)%d%Creset| %s %C(bold blue)[%an]%Creset %Cgreen(%cr)%Creset\" --graph --all
+    h =  log --pretty=format:\"%Cred%h%Creset %C(yellow)%d%Creset| %s %C(bold blue)[%an]%Creset %Cgreen(%cr)%Creset\" --graph --since=\"7 days ago\"
+    hat =log --pretty=format:\"%Cred%h%Creset %Cgreen%ad%Creset %C(yellow)%d%Creset| %s %C(bold blue)[%an]%Creset %Cgreen(%cr)%Creset\" --graph --all --date=local
+    ht = log --pretty=format:\"%Cred%h%Creset %Cgreen%ad%Creset %C(yellow)%d%Creset| %s %C(bold blue)[%an]%Creset %Cgreen(%cr)%Creset\" --graph --date=local --since=\"7 days ago\"
     type = cat-file -t
     dump = cat-file -p
