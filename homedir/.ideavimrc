@@ -26,7 +26,3 @@ vnoremap <C-l> >gv
 vnoremap = =gv
 " let Y yank not entire line, but from cursor to the end (consistent with D, C)
 nnoremap Y y$
-" map search to IDE
-noremap n :action FindNext<CR>
-noremap N :action FindPrevious<CR>
-
