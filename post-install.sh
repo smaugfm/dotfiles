@@ -47,6 +47,9 @@ sudo apt-get -y install libncurses5-dev libgnome2-dev libgnomeui-dev \
 #Install File Compression Libs
 sudo apt-get -y install unace rar unrar zip unzip lzip lunzip xz-utils p7zip-full p7zip-rar sharutils uudeview mpack arj cabextract
 
+#Gain yourself access to USB ports
+sudo usermod -a -G dialout smaugfm
+
 #Clean-up System
 sudo apt-get -y autoremove
 sudo apt-get -y autoclean
