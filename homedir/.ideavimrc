@@ -17,6 +17,10 @@ inoremap <C-l> <C-t>
 nnoremap <C-j> ddp
 nnoremap <C-k> dd2kp
 
+nnoremap zm zz
+nnoremap zh zt
+nnoremap zl zb
+
 nnoremap <C-A-j> :action MethodDown<CR>
 nnoremap <C-A-k> :action MethodUp<CR>
 
