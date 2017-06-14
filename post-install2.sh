@@ -196,6 +196,7 @@ dconf write /com/gexperts/Terminix/keybindings/session-resize-terminal-right "'<
 dconf write /com/gexperts/Terminix/keybindings/session-switch-to-previous-terminal "'<Primary><Alt>p'"
 dconf write /com/gexperts/Terminix/keybindings/app-preferences "'disabled'"
 dconf write /com/gexperts/Terminix/keybindings/session-switch-to-terminal-left "'<Primary><Alt>h'"
+dconf write /com/gexperts/Terminix/keybindings/win-view-sidebar "'disabled'"
 dconf write /com/gexperts/Terminix/sidebar-on-right "false"
 dconf write /com/gexperts/Terminix/terminal-title-style "'none'"
 dconf write /com/gexperts/Terminix/theme-variant "'system'"
