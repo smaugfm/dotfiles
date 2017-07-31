@@ -61,7 +61,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 # Prompt goes here
-if [ -f ~/.bash_aliases ]; then
+if [ -f ~/.bash_prompt ]; then
     . ~/.bash_prompt
 fi
 
