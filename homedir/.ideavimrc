@@ -24,6 +24,8 @@ nnoremap zl zb
 nnoremap <C-A-j> :action MethodDown<CR>
 nnoremap <C-A-k> :action MethodUp<CR>
 
+nnoremap J Jx
+
 " don't lose selection when indenting
 vnoremap <C-h> <gv
 vnoremap <C-l> >gv
