@@ -39,7 +39,13 @@ Plug 'itchyny/lightline.vim'
 Plug 'bling/vim-bufferline'
 
 " Edit
-Plug 'maralla/completor.vim'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'chiel92/vim-autoformat'
 Plug 'godlygeek/tabular', {'on': 'Tabularize'}
@@ -534,11 +540,8 @@ autocmd FileType javascript :noremap <buffer> <leader>rt :TernType<cr>
 autocmd FileType javascript :noremap <buffer> <leader>rf :TernRefs<cr>
 autocmd FileType javascript :noremap <buffer> <leader>rr :TernRename<cr>
 
-" completor.vim
-let g:completor_python_binary = '/usr/bin/python'
-let g:completor_gocode_binary = '/usr/bin/gocode'
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" deoplete vim
+let g:deoplete#enable_at_startup = 1
 
 " CtrlP
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
