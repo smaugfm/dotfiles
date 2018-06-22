@@ -5,6 +5,8 @@ set surround
 set scrolloff=5
 let mapleader=","
 set clipboard=unnamedplus,unnamed
+set visualbell
+set noerrorbells
 
 nnoremap <leader>ev :e ~/.ideavimrc<CR>
 nnoremap <leader>sv :source ~/.ideavimrc<CR>
