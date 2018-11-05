@@ -21,12 +21,6 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-# Make mc preserve directory upon exit
-alias mc='. /usr/share/mc/bin/mc-wrapper.sh '
-
-# shitty typo
-alias terminux='terminix'
-
 # git aliases
 alias gs='git status '
 alias gr='git reset '

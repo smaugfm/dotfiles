@@ -98,7 +98,5 @@ if [ -x /usr/bin/mint-fortune ]; then
     /usr/bin/mint-fortune
 fi
 
-export EDITOR=/usr/bin/vim
-export GOPATH=~/Dev/go
-export JAVA_HOME=/usr/lib/jvm/java-8-oracle
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin:~/.local/bin
+export EDITOR=vim
+export PATH=$PATH:~/.local/bin
