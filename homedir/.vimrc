@@ -59,7 +59,6 @@ Plug 'HerringtonDarkholme/yats.vim', {'for': 'javascript'}
 Plug 'Quramy/tsuquyomi', {'for': 'typescript'}
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'fsharp/vim-fsharp', {'for': 'fsharp'}
-Plug 'helino/vim-json', {'for': ['typescript', 'json']}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'fatih/vim-go', {'for': 'go'}
