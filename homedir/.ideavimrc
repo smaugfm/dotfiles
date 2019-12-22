@@ -34,3 +34,4 @@ vnoremap <C-l> >gv
 vnoremap = =gv
 " let Y yank not entire line, but from cursor to the end (consistent with D, C)
 nnoremap Y y$
+set keep-english-in-normal-and-restore-in-insert
