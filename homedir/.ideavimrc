@@ -4,9 +4,10 @@ set history=1500
 set surround
 set scrolloff=5
 let mapleader=","
+set relativenumber
+set nrformats
+set number
 set clipboard=unnamedplus,unnamed
-set visualbell
-set noerrorbells
 
 nnoremap <leader>ev :e ~/.ideavimrc<CR>
 nnoremap <leader>sv :source ~/.ideavimrc<CR>
@@ -26,12 +27,10 @@ nnoremap zl zb
 nnoremap <C-A-j> :action MethodDown<CR>
 nnoremap <C-A-k> :action MethodUp<CR>
 
-nnoremap J Jx
-
 " don't lose selection when indenting
 vnoremap <C-h> <gv
 vnoremap <C-l> >gv
 vnoremap = =gv
 " let Y yank not entire line, but from cursor to the end (consistent with D, C)
 nnoremap Y y$
-set keep-english-in-normal-and-restore-in-insert
+set ideajoin
