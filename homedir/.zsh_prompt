@@ -1,0 +1,25 @@
+precmd() { __prompt_command; }
+
+function __prompt_command()
+{
+    # capture the exit status of the last command
+    EXIT="$?"
+    PS1="%F{blue}[%*]%f "
+ 
+    if [ $EXIT -ne 0 ]; then 
+        PS1+="%F{red}[$EXIT]%f "
+    fi
+
+    # if logged in via ssh shows the ip of the client
+    if [ -n "$SSH_CLIENT" ]; then PS1+="%F{yellow}($SSH_CLIENT)%f "; fi
+ 
+    if [[ $EUID -eq 0 ]]; then 
+        PS1+="%F{red}%n%f@%F{red}%m%f %F{blue}%~%f "
+    else
+        # basic information (user@host:path)
+        PS1+="%F{green}%n%f@%F{green}%m%f %F{blue}%~%f "
+    fi
+    
+    # prompt $ or # for root
+    PS1+="\$ "
+}
