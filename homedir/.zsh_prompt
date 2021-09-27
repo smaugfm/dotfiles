@@ -1,5 +1,16 @@
 precmd() { __prompt_command; }
 
+function git_branch_name()
+{
+  branch=$(git branch --show-current)
+  if [[ $branch == "" ]];
+  then
+    :
+  else
+    echo ' %F{yellow}['$branch']%f'
+  fi
+}
+
 function __prompt_command()
 {
     # capture the exit status of the last command
@@ -12,13 +23,14 @@ function __prompt_command()
 
     # if logged in via ssh shows the ip of the client
     if [ -n "$SSH_CLIENT" ]; then PS1+="%F{yellow}($SSH_CLIENT)%f "; fi
- 
+
     if [[ $EUID -eq 0 ]]; then 
-        PS1+="%F{red}%n%f@%F{red}%m%f %F{blue}%~%f "
+        PS1+="%F{red}%n%f@%F{red}%m%f$(git_branch_name) %F{blue}%~%f "
     else
         # basic information (user@host:path)
-        PS1+="%F{green}%n%f@%F{green}%m%f %F{blue}%~%f "
+        PS1+="%F{green}%n%f@%F{green}%m%f$(git_branch_name) %F{blue}%~%f "
     fi
+
     
     # prompt $ or # for root
     PS1+="\$ "
