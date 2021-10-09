@@ -1,18 +1,19 @@
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git*' formats "[%b]"
 precmd() { __prompt_command; }
-
 function git_branch_name()
 {
-  branch=$(git branch --show-current)
-  if [[ $branch == "" ]];
-  then
+  if [[ -z ${vcs_info_msg_0_} ]]; then
     :
   else
-    echo ' %F{yellow}['$branch']%f'
+    echo ' %F{yellow}'${vcs_info_msg_0_}'%f'
   fi
 }
 
 function __prompt_command()
 {
+    vcs_info
     # capture the exit status of the last command
     EXIT="$?"
     PS1="%F{blue}[%*]%f "
