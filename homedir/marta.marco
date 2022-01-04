@@ -33,10 +33,12 @@ fonts {
 }
 
 keyBindings {
-    "H" "core.move.left"
-    "L" "core.move.right"
+    "H" "core.go.up"
+    "L" "core.open"
     "K" "core.move.up"
+    "Shift+K" "core.select.move.up"
     "J" "core.move.down"
+    "Shift+J" "core.select.move.down"
     "Opt+H" {
         id "core.open.folder"
         src "~"
@@ -50,9 +52,17 @@ keyBindings {
     
     "Cmd+P" "core.lookup.here"
     "Cmd+Opt+P" null
-
+    
+    "Ctrl+U" "core.pane.swap"
+    
+    "Ctrl+H" "core.clone.left.folder"
+    "Ctrl+L" "core.clone.right.folder"
+    "Shift+Ctrl+H" "core.clone.left"
+    "Shift+Ctrl+L" "core.clone.right"
     
     "Opt+1" "core.favorites"
     "Shift+Opt+1" "core.favorites.add"
-    "Opt+2" "core.hierarchy"
+    "Opt+2" "core.volumes"
+    "Opt+3" "core.hierarchy"
+    "Opt+4" "core.recent"
 }
