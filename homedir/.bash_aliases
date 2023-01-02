@@ -16,6 +16,10 @@ if [ -x /usr/bin/dircolors ]; then
     alias igrep='grep -i --color=auto'
 fi
 
+alias stl='sudo systemctl'
+alias jtl='sudo journalctl -u'
+alias dmesg='dmesg -H --nopager'
+
 # Some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
