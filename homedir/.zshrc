@@ -35,13 +35,5 @@ export GOPATH=$HOME/.go
 export PATH=$PATH:~/.local/bin:/usr/local/sbin
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
-export PATH="/usr/local/anaconda3/bin:$PATH"
-export PATH=$PATH:/Applications/kdiff3.app/Contents/MacOS
 export JAVA_HOME=$(/usr/libexec/java_home)
 export PATH=$PATH:/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin
-export ANDROID_HOME=~/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/31.0.0
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
