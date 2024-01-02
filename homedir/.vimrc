@@ -179,8 +179,6 @@ if $TERM =~ "256color"
     set t_ut=
 endif
 set termguicolors
-" Use new regular expression engine (fix for \"'redrawtime' exceeded, syntax highlighting disabled.\")
-set re=0
 syntax enable
 
 " ======================================================
@@ -194,7 +192,6 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 "==== <coc.nvim>
 let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-css', 'coc-tsserver', 'coc-eslint', 'coc-explorer', 'coc-go', 'coc-html', 'coc-prettier', 'coc-python', 'coc-sh', 'coc-sql', 'coc-yaml']
-
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <NUL> coc#refresh()
