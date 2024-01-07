@@ -18,6 +18,7 @@ fi
 alias stl='sudo systemctl'
 alias jtl='sudo journalctl -u'
 alias dmesg='dmesg -H --nopager'
+alias ktl='kubectl'
 
 # Some more ls aliases
 alias ls='ls --color=auto'

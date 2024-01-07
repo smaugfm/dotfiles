@@ -13,6 +13,8 @@ alias la='ls -G -A'
 alias l='ls -G -CF'
 alias ls='ls -G'
 
+alias ktl='kubectl'
+
 # git aliases
 alias gs='git status '
 alias gr='git reset '
