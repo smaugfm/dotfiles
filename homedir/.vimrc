@@ -191,7 +191,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 "==== <coc.nvim>
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-css', 'coc-tsserver', 'coc-eslint', 'coc-explorer', 'coc-go', 'coc-html', 'coc-prettier', 'coc-python', 'coc-sh', 'coc-sql', 'coc-yaml']
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-css', 'coc-tsserver', 'coc-eslint', 'coc-explorer', 'coc-go', 'coc-html', 'coc-prettier', 'coc-python', 'coc-sh', 'coc-sql', 'coc-yaml', 'coc-homeassistant']
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <NUL> coc#refresh()
