@@ -191,10 +191,12 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 "==== <coc.nvim>
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-css', 'coc-tsserver', 'coc-eslint', 'coc-explorer', 'coc-go', 'coc-html', 'coc-prettier', 'coc-python', 'coc-sh', 'coc-sql', 'coc-yaml', 'coc-homeassistant']
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-css', 'coc-tsserver', 'coc-eslint', 'coc-explorer', 'coc-go', 'coc-html', 'coc-prettier', 'coc-python', 'coc-sh', 'coc-sql', 'coc-yaml', 'coc-lua']
 
-" Use <c-space> to trigger completion.
+" Use <c-space> to trigger completion options
 inoremap <silent><expr> <NUL> coc#refresh()
+" Use <enter> to trigger completion
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
