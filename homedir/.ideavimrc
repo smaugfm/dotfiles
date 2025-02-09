@@ -8,9 +8,18 @@ set relativenumber
 set nrformats
 set number
 set clipboard=unnamedplus,unnamed
+set showcmd
+set startofline
+set ideawrite=file
+set incsearch
+set ideajoin
+set commentary
+set easymotion
 
 nnoremap <leader>ev :e ~/.ideavimrc<CR>
 nnoremap <leader>sv :source ~/.ideavimrc<CR>
+
+map <S-/> <Action>(AceAction)
 
 nnoremap <C-h> <<
 nnoremap <C-l> >>
@@ -33,4 +42,3 @@ vnoremap <C-l> >gv
 vnoremap = =gv
 " let Y yank not entire line, but from cursor to the end (consistent with D, C)
 nnoremap Y y$
-set ideajoin
