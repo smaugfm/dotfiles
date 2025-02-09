@@ -42,3 +42,14 @@ vnoremap <C-l> >gv
 vnoremap = =gv
 " let Y yank not entire line, but from cursor to the end (consistent with D, C)
 nnoremap Y y$
+
+sethandler <C-6> a:vim
+sethandler <C-A> a:vim
+sethandler <C-D> a:vim
+sethandler <C-J> a:vim
+sethandler <C-K> a:vim
+sethandler <C-L> a:vim
+sethandler <C-R> a:vim
+sethandler <C-U> a:vim
+sethandler <C-V> a:vim
+sethandler <C-X> a:vim
