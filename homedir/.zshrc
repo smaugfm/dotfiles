@@ -45,4 +45,6 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
 export JAVA_HOME=$(/usr/libexec/java_home)
 export PATH=$PATH:/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin
-
+export FZF_DEFAULT_COMMAND='ag -l --path-to-ignore ~/.ignore --nocolor --hidden -g ""'
+export FZF_DEFAULT_OPTS_FILE=~/.fzfrc
+source <(fzf --zsh)

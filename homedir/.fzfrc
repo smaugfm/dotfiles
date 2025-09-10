@@ -1,0 +1,5 @@
+--walker-skip .git,node_modules,target 
+--height=80%
+--preview '([[ -f {} ]] && (bat --style=numbers --color=always --line-range=:500 {} || cat {})) || ([[ -d {} ]] && (tree -C {} || ls {}) || echo {} 2> /dev/null | head -200)'
+--bind 'focus:transform-header:file --brief {}' 
+--bind 'ctrl-/:toggle-preview' --bind 'enter:become(vim {})'

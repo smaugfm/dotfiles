@@ -1,0 +1,5 @@
+ENTRY "home" URL "~"
+ENTRY "downloads" URL "~/Downloads"
+ENTRY "seafile" URL "~/Seafile/Seafile"
+ENTRY "dev" URL "~/Dev"
+ENTRY "docs" URL "~/Documents"

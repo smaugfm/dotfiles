@@ -19,8 +19,6 @@ set easymotion
 nnoremap <leader>ev :e ~/.ideavimrc<CR>
 nnoremap <leader>sv :source ~/.ideavimrc<CR>
 
-map <S-/> <Action>(AceAction)
-
 nnoremap <C-h> <<
 nnoremap <C-l> >>
 inoremap <C-h> <C-d>
