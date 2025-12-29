@@ -1,0 +1,11 @@
+# Ignore a specific directory
+.git/
+node_modules/
+target/
+bazel-out/
+bazel-bin/
+bazel-testlogs/
+
+# Ignore all files with a certain extension
+*.log
+*.temp
