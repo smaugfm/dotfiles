@@ -27,6 +27,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
+let g:camelcasemotion_key = '<leader>'
+
 " Edit
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jiangmiao/auto-pairs'
@@ -36,6 +38,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'rking/ag.vim'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'bkad/CamelCaseMotion'
 
 " Language specific
 Plug 'HerringtonDarkholme/yats.vim', {'for': ['javascript', 'typescript']}

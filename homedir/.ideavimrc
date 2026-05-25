@@ -1,7 +1,6 @@
 set ignorecase
 set smartcase
 set history=1500
-set surround
 set scrolloff=5
 let mapleader=","
 set relativenumber
@@ -13,8 +12,6 @@ set startofline
 set ideawrite=file
 set incsearch
 set ideajoin
-set commentary
-set easymotion
 
 nnoremap <leader>ev :e ~/.ideavimrc<CR>
 nnoremap <leader>sv :source ~/.ideavimrc<CR>
@@ -41,6 +38,11 @@ vnoremap = =gv
 " let Y yank not entire line, but from cursor to the end (consistent with D, C)
 nnoremap Y y$
 
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'easymotion/vim-easymotion'
+set anyobject
+
 sethandler <C-6> a:vim
 sethandler <C-A> a:vim
 sethandler <C-D> a:vim
@@ -51,3 +53,8 @@ sethandler <C-R> a:vim
 sethandler <C-U> a:vim
 sethandler <C-V> a:vim
 sethandler <C-X> a:vim
+
+nmap <leader>w ]u
+nmap <leader>b [u
+omap <leader>w iu
+xmap <leader>w iu
