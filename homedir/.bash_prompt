@@ -12,28 +12,37 @@ Cyan="\033[0;36m"
 BRed="\033[1;31m"
 BPurple="\033[1;35m"
 
-Lightning=$'\u26a1'
+Lightning=$'⚡'
+
+function git_branch_name()
+{
+    local branch
+    branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+    if [ -n "$branch" ]; then
+        echo " \[$Yellow\][$branch]\[$Off\]"
+    fi
+}
 
 function __prompt_command()
 {
     # capture the exit status of the last command
     EXIT="$?"
     PS1="\[$Blue\][\t]\[$Off\] "
- 
-    if [ $EXIT -ne 0 ]; then 
+
+    if [ $EXIT -ne 0 ]; then
         PS1+="\[$Red\][$EXIT]\[$Off\] "
     fi
 
     # if logged in via ssh shows the ip of the client
     if [ -n "$SSH_CLIENT" ]; then PS1+="\[$Yellow\]($SSH_CLIENT)\[$Off\] "; fi
- 
-    if [[ $EUID -eq 0 ]]; then 
-        PS1+="\[$Red\]\u\[$Off\]@\[$Red\]\h\[$Off\] \[$Blue\]\w\[$Off\] "
+
+    if [[ $EUID -eq 0 ]]; then
+        PS1+="\[$Red\]\u\[$Off\]@\[$Red\]\h\[$Off\]$(git_branch_name) \[$Blue\]\w\[$Off\] "
     else
         # basic information (user@host:path)
-        PS1+="\[$Green\]\u\[$Off\]@\[$Green\]\h\[$Off\] \[$Blue\]\w\[$Off\] "
+        PS1+="\[$Green\]\u\[$Off\]@\[$Green\]\h\[$Off\]$(git_branch_name) \[$Blue\]\w\[$Off\] "
     fi
-    
+
     # prompt $ or # for root
     PS1+="\$ "
 }
