@@ -100,3 +100,22 @@ fi
 
 export EDITOR=vim
 export PATH=$PATH:~/.local/bin
+
+export FZF_DEFAULT_COMMAND='ag -l --path-to-ignore ~/.agignore --nocolor --hidden -g ""'
+export FZF_DEFAULT_OPTS="
+--height 80% 
+--preview '([[ -f {} ]] && (bat --style=numbers --color=always --line-range=:500 {} || cat {})) || ([[ -d {} ]] && (tree -C {} || ls {}) || echo {} 2> /dev/null | head -200)'
+"
+export FZF_CTRL_T_OPTS="
+--bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+--bind 'ctrl-/:toggle-preview' 
+--bind 'enter:become(vim {})'
+"
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+~/.iterm2_shell_integration.bash
+
+if command -v tmux >/dev/null && [ -n "$PS1" ] && [ -z "$TMUX" ] \
+   && [ -n "$SSH_CONNECTION" ]; then
+  exec tmux new-session -A -s main
+fi
